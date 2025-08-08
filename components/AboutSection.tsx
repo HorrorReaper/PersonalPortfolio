@@ -20,7 +20,7 @@ export default function AboutSection() {
             {/* Replace with your image: put /public/images/Me.jpeg */}
             <Image
               src="/images/me.jpeg"
-              alt="Your Name portrait"
+              alt="Patrick Eger portrait"
               fill
               className="object-cover"
               sizes="240px"
@@ -42,7 +42,7 @@ export default function AboutSection() {
 
           <Reveal delay={0.06}>
             <h2 className="mt-2 text-3xl sm:text-4xl font-bold">
-              I’m Your Name — I build efficient, delightful web apps.
+              I’m Patrick Eger — I build efficient, delightful web apps.
             </h2>
           </Reveal>
 

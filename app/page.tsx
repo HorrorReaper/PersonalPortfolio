@@ -1,5 +1,3 @@
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
 import Reveal from '@/components/motion/Reveal'
 import MagneticButton from '@/components/ui/MagneticButton'
 import Image from 'next/image'
@@ -36,7 +34,6 @@ export default function HomePage() {
   return (
     <div className="min-h-dvh flex flex-col">
       <div className="bg-glow" aria-hidden />
-      <Navbar />
       <main className="flex-1">
         {/* Hero */}
         <section className="mx-auto max-w-6xl px-4 pt-24 pb-14">
@@ -159,7 +156,6 @@ export default function HomePage() {
         </section>
         <ContactSection />
       </main>
-      <Footer />
     </div>
   )
 }

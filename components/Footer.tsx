@@ -4,10 +4,8 @@ export default function Footer() {
       <div className="mx-auto max-w-6xl px-4 py-8 text-sm text-neutral-400 flex flex-col sm:flex-row items-center justify-between gap-2">
         <p>© {new Date().getFullYear()} Patrick Eger. All rights reserved.</p>
         <p>
-          Built with Next.js •{' '}
-          <a className="hover:underline" href="https://vercel.com" target="_blank" rel="noreferrer">
-            Deploy on Vercel
-          </a>
+          Built with Next.js
+
         </p>
       </div>
     </footer>

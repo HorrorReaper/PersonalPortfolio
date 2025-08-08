@@ -53,3 +53,56 @@ body {
     color: transparent;
   }
 }
+/* Animated background blobs */
+.animated-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -10;
+  overflow: hidden;
+}
+
+.blob {
+  position: absolute;
+  filter: blur(70px);
+  opacity: 0.35;
+  border-radius: 9999px;
+  transform: translateZ(0);
+  animation: drift 32s linear infinite;
+  will-change: transform;
+  contain: paint;
+}
+
+/* Individual blobs with sizes, colors, and offsets */
+.blob.b1 {
+  width: 36rem; height: 36rem;
+  left: -10%; top: -12%;
+  background: radial-gradient(closest-side, rgba(59,130,246,0.35), transparent 70%);
+  animation-duration: 36s;
+}
+.blob.b2 {
+  width: 28rem; height: 28rem;
+  right: -12%; top: 0%;
+  background: radial-gradient(closest-side, rgba(168,85,247,0.30), transparent 70%);
+  animation-duration: 40s;
+  animation-direction: reverse;
+}
+.blob.b3 {
+  width: 30rem; height: 30rem;
+  left: 20%; bottom: -16%;
+  background: radial-gradient(closest-side, rgba(236,72,153,0.25), transparent 70%);
+  animation-duration: 44s;
+}
+
+@keyframes drift {
+  0%   { transform: translate3d(0,0,0) scale(1) rotate(0deg); }
+  25%  { transform: translate3d(2%, -3%, 0) scale(1.05) rotate(10deg); }
+  50%  { transform: translate3d(-3%, 2%, 0) scale(1) rotate(0deg); }
+  75%  { transform: translate3d(3%, 3%, 0) scale(1.06) rotate(-8deg); }
+  100% { transform: translate3d(0,0,0) scale(1) rotate(0deg); }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .blob { animation: none; opacity: 0.25; }
+}
