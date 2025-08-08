@@ -1,0 +1,35 @@
+[
+  {
+    "title": "Animating Page Transitions in Next.js",
+    "slug": "nextjs-page-transitions",
+    "summary": "A practical guide to smooth route transitions with Framer Motion.",
+    "date": "2025-06-01T00:00:00.000Z",
+    "tags": [
+      "Next.js",
+      "Framer Motion"
+    ],
+    "cover": "/images/posts/transitions.jpg",
+    "published": true,
+    "body": {
+      "raw": "\nIn this post, we implement route transitions using a template component and Framer Motion's `AnimatePresence`.\n",
+      "code": "var Component=(()=>{var d=Object.create;var i=Object.defineProperty;var x=Object.getOwnPropertyDescriptor;var l=Object.getOwnPropertyNames;var g=Object.getPrototypeOf,j=Object.prototype.hasOwnProperty;var h=(t,e)=>()=>(e||t((e={exports:{}}).exports,e),e.exports),M=(t,e)=>{for(var n in e)i(t,n,{get:e[n],enumerable:!0})},a=(t,e,n,r)=>{if(e&&typeof e==\"object\"||typeof e==\"function\")for(let s of l(e))!j.call(t,s)&&s!==n&&i(t,s,{get:()=>e[s],enumerable:!(r=x(e,s))||r.enumerable});return t};var _=(t,e,n)=>(n=t!=null?d(g(t)):{},a(e||!t||!t.__esModule?i(n,\"default\",{value:t,enumerable:!0}):n,t)),f=t=>a(i({},\"__esModule\",{value:!0}),t);var m=h((y,c)=>{c.exports=_jsx_runtime});var A={};M(A,{default:()=>u,frontmatter:()=>w});var o=_(m()),w={title:\"Animating Page Transitions in Next.js\",slug:\"nextjs-page-transitions\",summary:\"A practical guide to smooth route transitions with Framer Motion.\",date:\"2025-06-01\",tags:[\"Next.js\",\"Framer Motion\"],cover:\"/images/posts/transitions.jpg\",published:!0};function p(t){let e={code:\"code\",p:\"p\",...t.components};return(0,o.jsxs)(e.p,{children:[\"In this post, we implement route transitions using a template component and Framer Motion's \",(0,o.jsx)(e.code,{children:\"AnimatePresence\"}),\".\"]})}function u(t={}){let{wrapper:e}=t.components||{};return e?(0,o.jsx)(e,{...t,children:(0,o.jsx)(p,{...t})}):p(t)}return f(A);})();\n;return Component;"
+    },
+    "_id": "blog/first-post.mdx",
+    "_raw": {
+      "sourceFilePath": "blog/first-post.mdx",
+      "sourceFileName": "first-post.mdx",
+      "sourceFileDir": "blog",
+      "contentType": "mdx",
+      "flattenedPath": "blog/first-post"
+    },
+    "type": "Post",
+    "url": "/blog/nextjs-page-transitions",
+    "dateObj": "2025-06-01T00:00:00.000Z",
+    "readingTime": {
+      "text": "1 min read",
+      "minutes": 0.075,
+      "time": 4500,
+      "words": 15
+    }
+  }
+]
