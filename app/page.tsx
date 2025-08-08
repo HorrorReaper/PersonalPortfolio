@@ -1,103 +1,174 @@
-import Image from "next/image";
+'use client'
 
-export default function Home() {
+import { motion } from 'framer-motion'
+import Link from 'next/link'
+import Navbar from '@/components/Navbar'
+import Footer from '@/components/Footer'
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 16 },
+  show: (i = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: 'easeOut', delay: 0.08 * i },
+  }),
+}
+
+export default function HomePage() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="min-h-dvh flex flex-col">
+      <Navbar />
+      <main className="flex-1">
+        <div aria-hidden className="pointer-events-none fixed inset-0 -z-10">
+  <div className="absolute -top-24 left-0 h-96 w-96 rounded-full bg-blue-500/10 blur-3xl" />
+  <div className="absolute -top-16 right-0 h-80 w-80 rounded-full bg-purple-500/10 blur-3xl" />
+</div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+        {/* Hero */}
+        <section className="mx-auto max-w-6xl px-4 pt-24 pb-16">
+          <motion.p
+            variants={fadeUp}
+            initial="hidden"
+            animate="show"
+            className="text-sm uppercase tracking-widest text-blue-300/80"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            Web Developer • Frontend • Next.js
+          </motion.p>
+
+          <motion.h1
+            variants={fadeUp}
+            initial="hidden"
+            animate="show"
+            custom={1}
+            className="mt-4 text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight"
           >
-            Read our docs
-          </a>
-        </div>
+            I build fast, elegant web experiences.
+          </motion.h1>
+
+          <motion.p
+            variants={fadeUp}
+            initial="hidden"
+            animate="show"
+            custom={2}
+            className="mt-5 max-w-2xl text-neutral-300"
+          >
+            I’m Your Name, a developer focused on delightful UX, clean architecture,
+            and scalable frontend with React and Next.js.
+          </motion.p>
+
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            animate="show"
+            custom={3}
+            className="mt-8 flex flex-wrap gap-3"
+          >
+            <Link
+              href="/projects"
+              className="inline-flex items-center rounded-md bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 text-sm font-medium transition"
+            >
+              View Projects →
+            </Link>
+            <Link
+              href="/blog"
+              className="inline-flex items-center rounded-md border border-white/20 hover:bg-white/5 text-white px-4 py-2 text-sm font-medium transition"
+            >
+              Read the Blog
+            </Link>
+            <a
+              href="/YourName_CV.pdf"
+              className="inline-flex items-center rounded-md border border-white/20 hover:bg-white/5 text-white px-4 py-2 text-sm font-medium transition"
+            >
+              Download CV
+            </a>
+          </motion.div>
+        </section>
+
+        {/* Featured Projects */}
+        <section className="mx-auto max-w-6xl px-4 pb-8">
+          <motion.h2
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.2 }}
+            className="text-2xl font-semibold"
+          >
+            Featured Projects
+          </motion.h2>
+          <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {[1, 2, 3].map((i) => (
+              <motion.article
+                key={i}
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true, amount: 0.2 }}
+                custom={i}
+                className="rounded-xl border border-white/10 bg-white/5 hover:bg-white/[0.07] transition p-4"
+              >
+                <div className="aspect-[16/10] rounded-lg bg-gradient-to-br from-white/10 to-white/0 mb-3" />
+                <h3 className="font-medium">Project Title {i}</h3>
+                <p className="text-sm text-neutral-300 mt-1">
+                  Short one-liner about what it is and your role.
+                </p>
+                <Link href="/projects/sample" className="text-blue-300 hover:text-blue-200 inline-block mt-2 text-sm">
+                  Read case study →
+                </Link>
+              </motion.article>
+            ))}
+          </div>
+        </section>
+
+        {/* Latest writing preview */}
+        <section className="mx-auto max-w-6xl px-4 pb-16">
+          <motion.h2
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.2 }}
+            className="text-2xl font-semibold"
+          >
+            Latest Writing
+          </motion.h2>
+
+          <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {[1, 2, 3].map((i) => (
+              <motion.article
+                key={i}
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true, amount: 0.2 }}
+                custom={i}
+                className="rounded-xl border border-white/10 bg-white/5 hover:bg-white/[0.07] transition p-4"
+              >
+                <h3 className="font-medium">Post Title {i}</h3>
+                <p className="text-sm text-neutral-300 mt-1">
+                  A short teaser about the topic and value of the post.
+                </p>
+                <div className="mt-2 text-xs text-neutral-400">5 min read • Jun 2025</div>
+                <Link href="/blog/sample-post" className="text-blue-300 hover:text-blue-200 inline-block mt-2 text-sm">
+                  Read post →
+                </Link>
+              </motion.article>
+            ))}
+          </div>
+
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.2 }}
+            custom={4}
+            className="mt-6"
+          >
+            <Link href="/blog" className="text-sm text-neutral-300 hover:text-white">
+              Visit the blog →
+            </Link>
+          </motion.div>
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      <Footer />
     </div>
-  );
+  )
 }
