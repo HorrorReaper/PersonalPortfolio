@@ -13,9 +13,9 @@ function Socials() {
   const linkClass = 'inline-flex items-center gap-2 text-sm text-neutral-300 hover:text-white transition'
   return (
     <div className="flex items-center gap-4">
-      <a href="https://github.com/yourname" target="_blank" rel="noreferrer" className={linkClass} aria-label="GitHub">GitHub</a>
-      <a href="https://www.linkedin.com/in/yourname" target="_blank" rel="noreferrer" className={linkClass} aria-label="LinkedIn">LinkedIn</a>
-      <a href="mailto:you@domain.com" className={linkClass} aria-label="Email">Email</a>
+      <a href="https://github.com/HorrorReaper" target="_blank" rel="noreferrer" className={linkClass} aria-label="GitHub">GitHub</a>
+      <a href="https://www.linkedin.com/in/patrick-eger-ba22b1212/" target="_blank" rel="noreferrer" className={linkClass} aria-label="LinkedIn">LinkedIn</a>
+      <a href="mailto:pe.business004@outlook.de" className={linkClass} aria-label="Email">Email</a>
     </div>
   )
 }
