@@ -1,5 +1,7 @@
+/* eslint-disable @next/next/no-img-element */
 import React from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 type AnchorProps = React.ComponentProps<'a'>
 type ImgProps = React.ComponentProps<'img'>
@@ -30,7 +32,18 @@ export const MDXComponents = {
       </Link>
     )
   },
-  img: (props: ImgProps) => <img {...props} className={`rounded-lg ${props.className ?? ''}`} />,
+  // eslint-disable-next-line @next/next/no-img-element
+  img: (props: ImgProps) => {
+    const { alt = '', src = '', className, ...rest } = props as ImgProps & { src?: string }
+    // If external or data URL fallback to plain img to avoid errors
+    if (typeof src === 'string' && (src.startsWith('http') || src.startsWith('data:'))) {
+      return <img {...rest} src={src} alt={alt} className={`rounded-lg ${className ?? ''}`} />
+    }
+    if (typeof src !== 'string') {
+      return <img {...rest} alt={alt} className={`rounded-lg ${className ?? ''}`} />
+    }
+    return <Image src={src} alt={alt} width={800} height={450} className={`rounded-lg ${className ?? ''}`} />
+  },
   pre: (props: PreProps) => <pre {...props} className={`rounded-lg border border-white/10 !bg-[#0b0b0c] overflow-auto ${props.className ?? ''}`} />,
   code: (props: CodeProps) => <code {...props} className={`px-1 py-0.5 rounded bg-white/10 ${props.className ?? ''}`} />,
 }

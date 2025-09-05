@@ -1,5 +1,5 @@
 import type { MetadataRoute } from 'next'
-import { allPosts, allProjects } from 'contentlayer/generated'
+import { allPosts, allProjects, Post, Project } from 'contentlayer/generated'
 
 const site = process.env.NEXT_PUBLIC_SITE_URL || 'https://yourname.dev'
 
@@ -13,15 +13,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ]
 
   const projectRoutes = allProjects
-    .filter(p => p.published)
-    .map(p => ({
+    .filter((p: Project) => p.published)
+    .map((p: Project) => ({
       url: `${site}${p.url}`,
       lastModified: new Date(p.date),
     }))
 
   const postRoutes = allPosts
-    .filter(p => p.published)
-    .map(p => ({
+    .filter((p: Post) => p.published)
+    .map((p: Post) => ({
       url: `${site}${p.url}`,
       lastModified: new Date(p.date),
     }))

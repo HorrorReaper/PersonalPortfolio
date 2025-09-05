@@ -1,0 +1,90 @@
+{
+  "cacheItemsMap": {
+    "blog/first-post.mdx": {
+      "document": {
+        "title": "Animating Page Transitions in Next.js",
+        "slug": "nextjs-page-transitions",
+        "summary": "A practical guide to smooth route transitions with Framer Motion.",
+        "date": "2025-06-01T00:00:00.000Z",
+        "tags": [
+          "Next.js",
+          "Framer Motion"
+        ],
+        "cover": "/images/posts/transitions.jpg",
+        "published": true,
+        "body": {
+          "raw": "\nIn this post, we implement route transitions using a template component and Framer Motion's `AnimatePresence`.\n",
+          "code": "var Component=(()=>{var d=Object.create;var i=Object.defineProperty;var x=Object.getOwnPropertyDescriptor;var l=Object.getOwnPropertyNames;var g=Object.getPrototypeOf,j=Object.prototype.hasOwnProperty;var h=(t,e)=>()=>(e||t((e={exports:{}}).exports,e),e.exports),M=(t,e)=>{for(var n in e)i(t,n,{get:e[n],enumerable:!0})},a=(t,e,n,r)=>{if(e&&typeof e==\"object\"||typeof e==\"function\")for(let s of l(e))!j.call(t,s)&&s!==n&&i(t,s,{get:()=>e[s],enumerable:!(r=x(e,s))||r.enumerable});return t};var _=(t,e,n)=>(n=t!=null?d(g(t)):{},a(e||!t||!t.__esModule?i(n,\"default\",{value:t,enumerable:!0}):n,t)),f=t=>a(i({},\"__esModule\",{value:!0}),t);var m=h((y,c)=>{c.exports=_jsx_runtime});var A={};M(A,{default:()=>u,frontmatter:()=>w});var o=_(m()),w={title:\"Animating Page Transitions in Next.js\",slug:\"nextjs-page-transitions\",summary:\"A practical guide to smooth route transitions with Framer Motion.\",date:\"2025-06-01\",tags:[\"Next.js\",\"Framer Motion\"],cover:\"/images/posts/transitions.jpg\",published:!0};function p(t){let e={code:\"code\",p:\"p\",...t.components};return(0,o.jsxs)(e.p,{children:[\"In this post, we implement route transitions using a template component and Framer Motion's \",(0,o.jsx)(e.code,{children:\"AnimatePresence\"}),\".\"]})}function u(t={}){let{wrapper:e}=t.components||{};return e?(0,o.jsx)(e,{...t,children:(0,o.jsx)(p,{...t})}):p(t)}return f(A);})();\n;return Component;"
+        },
+        "_id": "blog/first-post.mdx",
+        "_raw": {
+          "sourceFilePath": "blog/first-post.mdx",
+          "sourceFileName": "first-post.mdx",
+          "sourceFileDir": "blog",
+          "contentType": "mdx",
+          "flattenedPath": "blog/first-post"
+        },
+        "type": "Post",
+        "url": "/blog/nextjs-page-transitions",
+        "dateObj": "2025-06-01T00:00:00.000Z",
+        "readingTime": {
+          "text": "1 min read",
+          "minutes": 0.075,
+          "time": 4500,
+          "words": 15
+        }
+      },
+      "documentHash": "1754648436894",
+      "hasWarnings": false,
+      "documentTypeName": "Post"
+    },
+    "projects/first-project.mdx": {
+      "document": {
+        "title": "Analytics Dashboard",
+        "slug": "analytics-dashboard",
+        "summary": "Realtime charts, role-based access, and integrations.",
+        "date": "2025-05-20T00:00:00.000Z",
+        "tags": [
+          "Next.js",
+          "Charts",
+          "Auth"
+        ],
+        "stack": [
+          "Next.js",
+          "React",
+          "PostgreSQL",
+          "Tailwind"
+        ],
+        "repoUrl": "https://github.com/yourname/analytics-dashboard",
+        "liveUrl": "https://analytics.example.com",
+        "cover": "/images/posts/transitions.jpg",
+        "featured": true,
+        "published": true,
+        "body": {
+          "raw": "\n## Overview\nI built a performant dashboard with realtime metrics, row-level security, and a modular widget system.\n\n- Server components for data-heavy views\n- Streaming and Suspense for fast TTFB\n- Framer Motion for micro-interactions\n\n## Outcomes\n- 1.7s → 0.9s LCP\n- 30% time-on-page increase\n",
+          "code": "var Component=(()=>{var m=Object.create;var i=Object.defineProperty;var u=Object.getOwnPropertyDescriptor;var p=Object.getOwnPropertyNames;var f=Object.getPrototypeOf,g=Object.prototype.hasOwnProperty;var v=(t,e)=>()=>(e||t((e={exports:{}}).exports,e),e.exports),x=(t,e)=>{for(var r in e)i(t,r,{get:e[r],enumerable:!0})},o=(t,e,r,s)=>{if(e&&typeof e==\"object\"||typeof e==\"function\")for(let a of p(e))!g.call(t,a)&&a!==r&&i(t,a,{get:()=>e[a],enumerable:!(s=u(e,a))||s.enumerable});return t};var y=(t,e,r)=>(r=t!=null?m(f(t)):{},o(e||!t||!t.__esModule?i(r,\"default\",{value:t,enumerable:!0}):r,t)),w=t=>o(i({},\"__esModule\",{value:!0}),t);var c=v((C,l)=>{l.exports=_jsx_runtime});var j={};x(j,{default:()=>h,frontmatter:()=>b});var n=y(c()),b={title:\"Analytics Dashboard\",slug:\"analytics-dashboard\",summary:\"Realtime charts, role-based access, and integrations.\",date:\"2025-05-20\",tags:[\"Next.js\",\"Charts\",\"Auth\"],stack:[\"Next.js\",\"React\",\"PostgreSQL\",\"Tailwind\"],repoUrl:\"https://github.com/yourname/analytics-dashboard\",liveUrl:\"https://analytics.example.com\",cover:\"/images/posts/transitions.jpg\",featured:!0,published:!0};function d(t){let e={a:\"a\",h2:\"h2\",li:\"li\",p:\"p\",ul:\"ul\",...t.components};return(0,n.jsxs)(n.Fragment,{children:[(0,n.jsx)(e.h2,{id:\"overview\",children:(0,n.jsx)(e.a,{href:\"#overview\",children:\"Overview\"})}),`\n`,(0,n.jsx)(e.p,{children:\"I built a performant dashboard with realtime metrics, row-level security, and a modular widget system.\"}),`\n`,(0,n.jsxs)(e.ul,{children:[`\n`,(0,n.jsx)(e.li,{children:\"Server components for data-heavy views\"}),`\n`,(0,n.jsx)(e.li,{children:\"Streaming and Suspense for fast TTFB\"}),`\n`,(0,n.jsx)(e.li,{children:\"Framer Motion for micro-interactions\"}),`\n`]}),`\n`,(0,n.jsx)(e.h2,{id:\"outcomes\",children:(0,n.jsx)(e.a,{href:\"#outcomes\",children:\"Outcomes\"})}),`\n`,(0,n.jsxs)(e.ul,{children:[`\n`,(0,n.jsx)(e.li,{children:\"1.7s \\u2192 0.9s LCP\"}),`\n`,(0,n.jsx)(e.li,{children:\"30% time-on-page increase\"}),`\n`]})]})}function h(t={}){let{wrapper:e}=t.components||{};return e?(0,n.jsx)(e,{...t,children:(0,n.jsx)(d,{...t})}):d(t)}return w(j);})();\n;return Component;"
+        },
+        "_id": "projects/first-project.mdx",
+        "_raw": {
+          "sourceFilePath": "projects/first-project.mdx",
+          "sourceFileName": "first-project.mdx",
+          "sourceFileDir": "projects",
+          "contentType": "mdx",
+          "flattenedPath": "projects/first-project"
+        },
+        "type": "Project",
+        "url": "/projects/analytics-dashboard",
+        "dateObj": "2025-05-20T00:00:00.000Z",
+        "readingTime": {
+          "text": "1 min read",
+          "minutes": 0.23,
+          "time": 13800,
+          "words": 46
+        }
+      },
+      "documentHash": "1754648392730",
+      "hasWarnings": false,
+      "documentTypeName": "Project"
+    }
+  }
+}

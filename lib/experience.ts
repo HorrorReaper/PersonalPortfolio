@@ -1,9 +1,9 @@
 import type { ExperienceItem } from '@/components/ExperienceSection'
 
 export const experienceItems: ExperienceItem[] = [
-  // your items here
+  // your items here (fallback uses defaultItems if empty)
 ]
-const defaultItems: ExperienceItem[] = [
+export const defaultItems: ExperienceItem[] = [
   {
     role: 'Frontend Engineer',
     company: 'Tech Company',
@@ -31,3 +31,6 @@ const defaultItems: ExperienceItem[] = [
     ],
   },
 ]
+
+// Provide a merged export other components can import
+export const resolvedExperience: ExperienceItem[] = experienceItems.length ? experienceItems : defaultItems

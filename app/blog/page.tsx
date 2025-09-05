@@ -1,4 +1,4 @@
-import { allPosts } from 'contentlayer/generated'
+import { allPosts, Post } from 'contentlayer/generated'
 import Link from 'next/link'
 import { format } from 'date-fns'
 
@@ -8,15 +8,15 @@ export const metadata = {
 }
 
 export default function BlogPage() {
-  const posts = allPosts
-    .filter((p) => p.published)
-    .sort((a, b) => +new Date(b.date) - +new Date(a.date))
+  const posts: Post[] = allPosts
+    .filter((p: Post) => p.published)
+    .sort((a: Post, b: Post) => +new Date(b.date) - +new Date(a.date))
 
   return (
     <section className="container mx-auto max-w-6xl px-4 py-16">
       <h1 className="text-4xl font-bold">Blog</h1>
       <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {posts.map((post) => (
+  {posts.map((post: Post) => (
           <Link
             key={post.slug}
             href={post.url}

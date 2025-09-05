@@ -1,4 +1,4 @@
-import { allProjects } from 'contentlayer/generated'
+import { allProjects, Project } from 'contentlayer/generated'
 import Link from 'next/link'
 import Image from 'next/image'
 
@@ -8,15 +8,15 @@ export const metadata = {
 }
 
 export default function ProjectsPage() {
-  const projects = allProjects
-    .filter((p) => p.published)
-    .sort((a, b) => +new Date(b.date) - +new Date(a.date))
+  const projects: Project[] = allProjects
+    .filter((p: Project) => p.published)
+    .sort((a: Project, b: Project) => +new Date(b.date) - +new Date(a.date))
 
   return (
     <section className="container mx-auto max-w-6xl px-4 py-16">
       <h1 className="text-4xl font-bold">Projects</h1>
       <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {projects.map((p) => (
+  {projects.map((p: Project) => (
           <Link
             key={p.slug}
             href={p.url}

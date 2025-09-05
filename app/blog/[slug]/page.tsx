@@ -1,17 +1,16 @@
 import { allPosts } from 'contentlayer/generated'
 import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
-import { useMDXComponent } from 'next-contentlayer2/hooks'
-import { MDXComponents } from '@/components/MDXComponents'
+import { MDXRenderer } from '@/components/MDXRenderer'
 import { format } from 'date-fns'
-import type { Post } from 'contentlayer/generated'
 
 export async function generateStaticParams() {
   return allPosts.filter((p) => p.published).map((p) => ({ slug: p.slug }))
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const post = allPosts.find((p) => p.slug === params.slug && p.published)
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params
+  const post = allPosts.find((p) => p.slug === slug && p.published)
   if (!post) return {}
   return {
     title: post.title,
@@ -23,13 +22,13 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 
 type ReadingTime = { text?: string; words?: number; minutes?: number }
 
-export default function PostPage({ params }: { params: { slug: string } }) {
-  const post = allPosts.find((p) => p.slug === params.slug && p.published)
+export default async function PostPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const post = allPosts.find((p) => p.slug === slug && p.published)
   if (!post) {
     notFound()
     return null // for type narrowing; unreachable after notFound
   }
-  const MDXContent = useMDXComponent(post.body.code)
   const rt = post.readingTime as ReadingTime | undefined
   const readingTimeText = rt?.text ?? ''
   return (
@@ -38,7 +37,7 @@ export default function PostPage({ params }: { params: { slug: string } }) {
       <p className="m-0 text-sm text-neutral-400">
         {format(new Date(post.date), 'LLL d, yyyy')} • {readingTimeText}
       </p>
-      <MDXContent components={MDXComponents} />
+  <MDXRenderer code={post.body.code} />
     </article>
   )
 }

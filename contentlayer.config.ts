@@ -8,8 +8,8 @@ import readingTime from 'reading-time'
 
 const computedDate = {
   type: 'date',
-  resolve: (doc: any) => new Date(doc.date),
-}
+  resolve: (doc: { date: string }) => new Date(doc.date),
+} as const
 
 export const Project = defineDocumentType(() => ({
   name: 'Project',
@@ -29,11 +29,11 @@ export const Project = defineDocumentType(() => ({
     published: { type: 'boolean', default: true },
   },
   computedFields: {
-    url: { type: 'string', resolve: (doc) => `/projects/${doc.slug}` },
+  url: { type: 'string', resolve: (doc: any) => `/projects/${doc.slug}` },
     dateObj: computedDate,
     readingTime: {
       type: 'json',
-      resolve: (doc) => readingTime(doc.body.raw),
+  resolve: (doc: any) => readingTime(doc.body.raw),
     },
   },
 }))
@@ -53,11 +53,11 @@ export const Post = defineDocumentType(() => ({
     published: { type: 'boolean', default: true },
   },
   computedFields: {
-    url: { type: 'string', resolve: (doc) => `/blog/${doc.slug}` },
+  url: { type: 'string', resolve: (doc: any) => `/blog/${doc.slug}` },
     dateObj: computedDate,
     readingTime: {
       type: 'json',
-      resolve: (doc) => readingTime(doc.body.raw),
+  resolve: (doc: any) => readingTime(doc.body.raw),
     },
   },
 }))

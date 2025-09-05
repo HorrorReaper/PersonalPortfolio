@@ -4,10 +4,11 @@
   "private": true,
   "scripts": {
     "contentlayer": "contentlayer2 build",
-    "dev": "contentlayer2 build & next dev --turbopack",
+    "dev": "contentlayer2 build && next dev --turbopack",
     "build": "contentlayer2 build && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+  "postinstall": "contentlayer2 build"
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.5.16",
@@ -26,11 +27,10 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "autoprefixer": "^10.4.21",
-    "contentlayer": "^0.3.4",
-    "contentlayer2": "^0.5.8",
+  "contentlayer2": "^0.5.8",
     "eslint": "^9",
     "eslint-config-next": "15.4.6",
-    "next-contentlayer2": "^0.5.8",
+  "next-contentlayer2": "^0.5.8",
     "postcss": "^8.5.6",
     "reading-time": "^1.5.0",
     "rehype-autolink-headings": "^7.1.0",

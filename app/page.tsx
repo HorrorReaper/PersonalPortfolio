@@ -2,7 +2,7 @@ import Reveal from '@/components/motion/Reveal'
 import MagneticButton from '@/components/ui/MagneticButton'
 import Image from 'next/image'
 import Link from 'next/link'
-import { allProjects, allPosts } from 'contentlayer/generated'
+import { allProjects, allPosts, Project, Post } from 'contentlayer/generated'
 import AboutSection from '@/components/AboutSection'
 import ExperienceSection from '@/components/ExperienceSection'
 import ContactSection from '@/components/ContactSection'
@@ -21,14 +21,14 @@ function Socials() {
 }
 
 export default function HomePage() {
-  const featuredProjects = allProjects
-    .filter((p) => p.published && p.featured)
-    .sort((a, b) => +new Date(b.date) - +new Date(a.date))
+  const featuredProjects: Project[] = allProjects
+    .filter((p: Project) => p.published && p.featured)
+    .sort((a: Project, b: Project) => +new Date(b.date) - +new Date(a.date))
     .slice(0, 3)
 
-  const latestPosts = allPosts
-    .filter((p) => p.published)
-    .sort((a, b) => +new Date(b.date) - +new Date(a.date))
+  const latestPosts: Post[] = allPosts
+    .filter((p: Post) => p.published)
+    .sort((a: Post, b: Post) => +new Date(b.date) - +new Date(a.date))
     .slice(0, 3)
 
   return (
@@ -85,7 +85,7 @@ export default function HomePage() {
           </Reveal>
 
           <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {featuredProjects.map((p) => (
+              {featuredProjects.map((p: Project) => (
               <Reveal key={p.slug} y={20}>
                 <Link
                   href={p.url}
@@ -129,7 +129,7 @@ export default function HomePage() {
           </Reveal>
 
           <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {latestPosts.map((post, i) => (
+            {latestPosts.map((post: Post, i: number) => (
               <Reveal key={post.slug} delay={0.04 * i} y={16}>
                 <Link
                   href={post.url}

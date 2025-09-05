@@ -27,9 +27,9 @@ function useMouseParallax(strength = 20) {
 
 export default function AnimatedBackground({ className = '' }: { className?: string }) {
   const reduce = useReducedMotion()
-  const slow = { duration: 28, repeat: Infinity, ease: ['linear'] }
-  const slower = { duration: 36, repeat: Infinity, ease: ['linear'] }
-  const slowest = { duration: 42, repeat: Infinity, ease: ['linear'] }
+  const slow: import('framer-motion').Transition = { duration: 28, repeat: Infinity, ease: 'linear' }
+  const slower: import('framer-motion').Transition = { duration: 36, repeat: Infinity, ease: 'linear' }
+  const slowest: import('framer-motion').Transition = { duration: 42, repeat: Infinity, ease: 'linear' }
 
   const p1 = useMouseParallax(14)
   const p2 = useMouseParallax(10)

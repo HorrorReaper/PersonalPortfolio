@@ -45,8 +45,8 @@ export default function Starfield({
     const canvas = canvasRef.current
     if (!canvas) return
 
-    const ctx = canvas.getContext('2d', { alpha: true })
-    if (!ctx) return
+  const ctx = canvas.getContext('2d', { alpha: true })
+  if (!ctx) return
 
     // Respect reduced motion
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -68,12 +68,12 @@ export default function Starfield({
       const { innerWidth: w, innerHeight: h } = window
       width = w
       height = h
-
-      canvas.style.width = `${w}px`
-      canvas.style.height = `${h}px`
-      canvas.width = Math.floor(w * DPR)
-      canvas.height = Math.floor(h * DPR)
-      ctx.setTransform(DPR, 0, 0, DPR, 0, 0)
+  if (!canvas) return
+  canvas.style.width = `${w}px`
+  canvas.style.height = `${h}px`
+  canvas.width = Math.floor(w * DPR)
+  canvas.height = Math.floor(h * DPR)
+  ctx!.setTransform(DPR, 0, 0, DPR, 0, 0)
 
       // Rebuild stars based on area
       const desired = Math.min(maxStars, Math.floor(w * h * density))
@@ -142,7 +142,7 @@ export default function Starfield({
       if (!reduce) updateParallax()
 
       // Clear with transparent to let page bg show
-      ctx.clearRect(0, 0, width, height)
+  ctx!.clearRect(0, 0, width, height)
 
       // Draw stars by layer order (far to near)
       for (let layer = 0; layer < 3; layer++) {
@@ -171,15 +171,15 @@ export default function Starfield({
           )
 
           // Draw star
-          ctx.globalAlpha = alpha
-          ctx.fillStyle = color
-          ctx.beginPath()
-          ctx.arc(s.x + px / depth, s.y + py / depth, s.size, 0, Math.PI * 2)
-          ctx.fill()
+          ctx!.globalAlpha = alpha
+          ctx!.fillStyle = color
+          ctx!.beginPath()
+            ;(ctx as CanvasRenderingContext2D).arc(s.x + px / depth, s.y + py / depth, s.size, 0, Math.PI * 2)
+          ctx!.fill()
         }
       }
 
-      ctx.globalAlpha = 1
+  ctx!.globalAlpha = 1
       rafRef.current = requestAnimationFrame(frame)
     }
 

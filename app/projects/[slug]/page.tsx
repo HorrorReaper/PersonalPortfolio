@@ -2,17 +2,16 @@ import { allProjects } from 'contentlayer/generated'
 import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
 import Image from 'next/image'
-import { useMDXComponent } from 'next-contentlayer2/hooks'
-import { MDXComponents } from '@/components/MDXComponents'
-import type { Project } from 'contentlayer/generated'
+import { MDXRenderer } from '@/components/MDXRenderer'
 type ReadingTime = { text?: string; words?: number; minutes?: number }
 
 export async function generateStaticParams() {
   return allProjects.filter((p) => p.published).map((p) => ({ slug: p.slug }))
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const project = allProjects.find((p) => p.slug === params.slug && p.published)
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params
+  const project = allProjects.find((p) => p.slug === slug && p.published)
   if (!project) return {}
   return {
     title: project.title,
@@ -21,13 +20,13 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   }
 }
 
-export default function ProjectPage({ params }: { params: { slug: string } }) {
-  const project = allProjects.find((p) => p.slug === params.slug && p.published)
+export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const project = allProjects.find((p) => p.slug === slug && p.published)
   if (!project) {
     notFound()
     return null
   }
-  const MDXContent = useMDXComponent(project.body.code)
   const rt = project.readingTime as ReadingTime | undefined
   const readingTimeText = rt?.text ?? ''
   return (
@@ -56,7 +55,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
           )}
         </p>
       ) : null}
-      <MDXContent components={MDXComponents} />
+  <MDXRenderer code={project.body.code} />
     </article>
   )
 }
