@@ -4,6 +4,7 @@ import { Metadata } from 'next'
 import Image from 'next/image'
 import { useMDXComponent } from 'next-contentlayer2/hooks'
 import { MDXComponents } from '@/components/MDXComponents'
+import type { Project } from 'contentlayer/generated'
 
 export async function generateStaticParams() {
   return allProjects.filter((p) => p.published).map((p) => ({ slug: p.slug }))
@@ -20,11 +21,14 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 }
 
 export default function ProjectPage({ params }: { params: { slug: string } }) {
-  const project = allProjects.find((p) => p.slug === params.slug && p.published)
-  if (!project) return notFound()
-
-  const MDX = useMDXComponent(project.body.code)
-
+  const project: Project | undefined = allProjects.find((p) => p.slug === params.slug && p.published)
+  if (!project) {
+    notFound()
+  }
+  const MDXContent = useMDXComponent(project.body.code)
+  const readingTimeText = typeof project.readingTime === 'object' && project.readingTime && 'text' in project.readingTime
+    ? (project.readingTime as { text?: string }).text ?? ''
+    : ''
   return (
     <article className="container mx-auto max-w-3xl px-4 py-16 prose dark:prose-invert">
       <h1>{project.title}</h1>
@@ -33,10 +37,8 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
           <Image src={project.cover} alt={project.title} fill className="object-cover rounded-xl" />
         </div>
       )}
-
-      {/* Meta */}
       <p className="m-0 text-sm text-neutral-400">
-        {new Date(project.date).toLocaleDateString()} • {(project.readingTime?.text as any) ?? ''}
+        {new Date(project.date).toLocaleDateString()} • {readingTimeText}
       </p>
       {project.liveUrl || project.repoUrl ? (
         <p className="mt-2 text-sm">
@@ -53,8 +55,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
           )}
         </p>
       ) : null}
-
-      <MDX components={MDXComponents as any} />
+      <MDXContent components={MDXComponents} />
     </article>
   )
 }
