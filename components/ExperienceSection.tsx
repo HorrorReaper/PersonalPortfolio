@@ -1,8 +1,10 @@
-'use client'
+"use client"
 
 import Link from 'next/link'
 import Reveal from '@/components/motion/Reveal'
 import MagneticButton from '@/components/ui/MagneticButton'
+import { motion, useScroll, useTransform } from 'framer-motion'
+import { useRef, useEffect, useState } from 'react'
 
 export type ExperienceItem = {
   role: string
@@ -71,6 +73,26 @@ function parseYM(iso: string) {
 }
 
 export default function ExperienceSection({ items = defaultItems }: { items?: ExperienceItem[] }) {
+  // Scroll-linked car animation state
+  const timelineRef = useRef<HTMLDivElement | null>(null)
+  const [trackHeight, setTrackHeight] = useState(0)
+  useEffect(() => {
+    function measure() {
+      if (timelineRef.current) setTrackHeight(timelineRef.current.offsetHeight)
+    }
+    measure()
+    window.addEventListener('resize', measure)
+    return () => window.removeEventListener('resize', measure)
+  }, [])
+  // Scroll progress relative to the timeline container
+  // Scroll progress: start when top of timeline hits center, finish when bottom hits center
+  const { scrollYProgress } = useScroll({ target: timelineRef, offset: ['start center', 'end center'] })
+  // Size of the moving dot (in px) used to compute max travel distance
+  const dotSize = 16
+  const dotY = useTransform(scrollYProgress, (v) => v * Math.max(0, trackHeight - dotSize))
+  const progressHeight = useTransform(scrollYProgress, (v) => `${v * 100}%`)
+  const progressWidth = useTransform(scrollYProgress, (v) => `${2 + (6 - 2) * v}px`) // grow 2px -> 6px
+
   return (
     <section id="experience" className="mx-auto max-w-6xl px-4 py-16">
       <Reveal>
@@ -80,9 +102,22 @@ export default function ExperienceSection({ items = defaultItems }: { items?: Ex
         <h2 className="mt-2 text-3xl sm:text-4xl font-bold">Work Experience</h2>
       </Reveal>
 
-      <div className="mt-8 relative">
-        {/* Timeline rail */}
-        <div aria-hidden className="absolute left-[13px] top-0 bottom-0 w-px bg-white/10" />
+      <div ref={timelineRef} className="mt-8 relative">
+        {/* Timeline rail with progress overlay */}
+        <div aria-hidden className="absolute left-[13px] top-0 bottom-0 w-px bg-white/10 overflow-visible">
+          <motion.div
+            className="absolute left-1/2 top-0 -translate-x-1/2 rounded-full bg-gradient-to-b from-blue-400 via-purple-400 to-pink-500 shadow-[0_0_6px_2px_rgba(147,197,253,0.35)]"
+            style={{ height: progressHeight, width: progressWidth }}
+          />
+        </div>
+        {/* Moving dot that follows scroll */}
+        <motion.div
+          aria-hidden
+          style={{ y: dotY }}
+          className="pointer-events-none absolute left-[13px] top-0 z-10 -translate-x-1/2"
+        >
+          <span className="block h-4 w-4 -translate-x-[1px] rounded-full bg-gradient-to-br from-blue-400 via-purple-400 to-pink-500 ring-2 ring-black/40 shadow-md" />
+        </motion.div>
         <ul className="space-y-8">
           {items.map((job, i) => (
             <Reveal key={`${job.company}-${job.role}-${i}`} delay={0.04 * i} y={20}>
