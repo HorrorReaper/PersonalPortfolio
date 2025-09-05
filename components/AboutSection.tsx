@@ -19,7 +19,7 @@ export default function AboutSection() {
           <div className="relative mx-auto h-60 w-60 overflow-hidden rounded-2xl border border-white/10 bg-white/5 shadow-lg">
             {/* Replace with your image: put /public/images/Me.jpeg */}
             <Image
-              src="public/images/me.jpeg"
+              src="/images/Me.jpeg" /* must start with / and match file case exactly */
               alt="Patrick Eger portrait"
               fill
               className="object-cover"
