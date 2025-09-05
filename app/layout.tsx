@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import PageTransition from '@/components/motion/PageTransition'
-import AnimatedBackground from '@/components/AnimatedBackground'
 import Starfield from '@/components/Starfield'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
@@ -28,8 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <Navbar />
-        <PageTransition>
-          {/* <AnimatedBackground /> */}
+  <PageTransition>
           <Starfield density={0.00012} maxStars={700} speed={1} parallax={12} color="#ffffff" />
           {children}
           </PageTransition>

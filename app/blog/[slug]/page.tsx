@@ -21,16 +21,17 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   }
 }
 
+type ReadingTime = { text?: string; words?: number; minutes?: number }
+
 export default function PostPage({ params }: { params: { slug: string } }) {
-  const post: Post | undefined = allPosts.find((p) => p.slug === params.slug && p.published)
+  const post = allPosts.find((p) => p.slug === params.slug && p.published)
   if (!post) {
     notFound()
+    return null // for type narrowing; unreachable after notFound
   }
-  // Hook must run unconditionally – after possible notFound() which throws
   const MDXContent = useMDXComponent(post.body.code)
-  const readingTimeText = typeof post.readingTime === 'object' && post.readingTime && 'text' in post.readingTime
-    ? (post.readingTime as { text?: string }).text ?? ''
-    : ''
+  const rt = post.readingTime as ReadingTime | undefined
+  const readingTimeText = rt?.text ?? ''
   return (
     <article className="container mx-auto max-w-3xl px-4 py-16 prose dark:prose-invert">
       <h1>{post.title}</h1>

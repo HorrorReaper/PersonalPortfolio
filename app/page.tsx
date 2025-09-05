@@ -138,7 +138,7 @@ export default function HomePage() {
                   <h3 className="font-medium">{post.title}</h3>
                   <p className="text-sm text-neutral-300 mt-1">{post.summary}</p>
                   <div className="mt-2 text-xs text-neutral-400">
-                    {new Date(post.date).toLocaleDateString()} • {(typeof post.readingTime === 'object' && post.readingTime && 'text' in post.readingTime ? (post.readingTime as { text?: string }).text : '') || ''}
+                    {new Date(post.date).toLocaleDateString()} • {(post.readingTime as { text?: string } | undefined)?.text ?? ''}
                   </div>
                   <span className="text-blue-300 hover:text-blue-200 inline-block mt-2 text-sm">Read post →</span>
                 </Link>

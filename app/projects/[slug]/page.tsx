@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { useMDXComponent } from 'next-contentlayer2/hooks'
 import { MDXComponents } from '@/components/MDXComponents'
 import type { Project } from 'contentlayer/generated'
+type ReadingTime = { text?: string; words?: number; minutes?: number }
 
 export async function generateStaticParams() {
   return allProjects.filter((p) => p.published).map((p) => ({ slug: p.slug }))
@@ -21,14 +22,14 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 }
 
 export default function ProjectPage({ params }: { params: { slug: string } }) {
-  const project: Project | undefined = allProjects.find((p) => p.slug === params.slug && p.published)
+  const project = allProjects.find((p) => p.slug === params.slug && p.published)
   if (!project) {
     notFound()
+    return null
   }
   const MDXContent = useMDXComponent(project.body.code)
-  const readingTimeText = typeof project.readingTime === 'object' && project.readingTime && 'text' in project.readingTime
-    ? (project.readingTime as { text?: string }).text ?? ''
-    : ''
+  const rt = project.readingTime as ReadingTime | undefined
+  const readingTimeText = rt?.text ?? ''
   return (
     <article className="container mx-auto max-w-3xl px-4 py-16 prose dark:prose-invert">
       <h1>{project.title}</h1>
