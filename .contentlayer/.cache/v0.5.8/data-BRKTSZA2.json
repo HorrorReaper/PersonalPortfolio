@@ -85,6 +85,53 @@
       "documentHash": "1754648392730",
       "hasWarnings": false,
       "documentTypeName": "Project"
+    },
+    "projects/schuster-landing.mdx": {
+      "document": {
+        "title": "Schuster Landing Page",
+        "slug": "schuster-landing",
+        "summary": "Landing page for a small business owner with the help of lovable.dev",
+        "date": "2025-11-25T00:00:00.000Z",
+        "tags": [
+          "Next.js",
+          "Landing",
+          "Lovable"
+        ],
+        "stack": [
+          "Tailwind",
+          "React",
+          "TypeScript"
+        ],
+        "repoUrl": "https://github.com/yourname/analytics-dashboard",
+        "liveUrl": "https://fliesen-schuster-landing.lovable.app/",
+        "cover": "/images/posts/Schuster.png\r",
+        "featured": false,
+        "published": true,
+        "body": {
+          "raw": "\r\n## Overview\r\nI built a nice landing page for a small business owner\r\n\r\n\r\n## Outcomes\r\n- Nice Landing page\r\n",
+          "code": "var Component=(()=>{var u=Object.create;var s=Object.defineProperty;var m=Object.getOwnPropertyDescriptor;var p=Object.getOwnPropertyNames;var g=Object.getPrototypeOf,v=Object.prototype.hasOwnProperty;var f=(n,e)=>()=>(e||n((e={exports:{}}).exports,e),e.exports),x=(n,e)=>{for(var a in e)s(n,a,{get:e[a],enumerable:!0})},l=(n,e,a,i)=>{if(e&&typeof e==\"object\"||typeof e==\"function\")for(let r of p(e))!v.call(n,r)&&r!==a&&s(n,r,{get:()=>e[r],enumerable:!(i=m(e,r))||i.enumerable});return n};var b=(n,e,a)=>(a=n!=null?u(g(n)):{},l(e||!n||!n.__esModule?s(a,\"default\",{value:n,enumerable:!0}):a,n)),w=n=>l(s({},\"__esModule\",{value:!0}),n);var c=f((y,o)=>{o.exports=_jsx_runtime});var j={};x(j,{default:()=>d,frontmatter:()=>_});var t=b(c()),_={title:\"Schuster Landing Page\",slug:\"schuster-landing\",summary:\"Landing page for a small business owner with the help of lovable.dev\",date:\"2025-11-25\",tags:[\"Next.js\",\"Landing\",\"Lovable\"],stack:[\"Tailwind\",\"React\",\"TypeScript\"],repoUrl:\"https://github.com/yourname/analytics-dashboard\",liveUrl:\"https://fliesen-schuster-landing.lovable.app/\",cover:\"/images/posts/Schuster.png\"};function h(n){let e={a:\"a\",h2:\"h2\",li:\"li\",p:\"p\",ul:\"ul\",...n.components};return(0,t.jsxs)(t.Fragment,{children:[(0,t.jsx)(e.h2,{id:\"overview\",children:(0,t.jsx)(e.a,{href:\"#overview\",children:\"Overview\"})}),`\n`,(0,t.jsx)(e.p,{children:\"I built a nice landing page for a small business owner\"}),`\n`,(0,t.jsx)(e.h2,{id:\"outcomes\",children:(0,t.jsx)(e.a,{href:\"#outcomes\",children:\"Outcomes\"})}),`\n`,(0,t.jsxs)(e.ul,{children:[`\n`,(0,t.jsx)(e.li,{children:\"Nice Landing page\"}),`\n`]})]})}function d(n={}){let{wrapper:e}=n.components||{};return e?(0,t.jsx)(e,{...n,children:(0,t.jsx)(h,{...n})}):h(n)}return w(j);})();\n;return Component;"
+        },
+        "_id": "projects/schuster-landing.mdx",
+        "_raw": {
+          "sourceFilePath": "projects/schuster-landing.mdx",
+          "sourceFileName": "schuster-landing.mdx",
+          "sourceFileDir": "projects",
+          "contentType": "mdx",
+          "flattenedPath": "projects/schuster-landing"
+        },
+        "type": "Project",
+        "url": "/projects/schuster-landing",
+        "dateObj": "2025-11-25T00:00:00.000Z",
+        "readingTime": {
+          "text": "1 min read",
+          "minutes": 0.095,
+          "time": 5700,
+          "words": 19
+        }
+      },
+      "documentHash": "1764056894491",
+      "hasWarnings": false,
+      "documentTypeName": "Project"
     }
   }
 }
