@@ -38,16 +38,16 @@ export default function HomePage() {
         {/* Hero */}
         <section className="mx-auto max-w-6xl px-4 pt-24 pb-14">
           <Reveal>
-            <p className="text-sm uppercase tracking-widest text-neutral-300">Web Developer • UI Engineering</p>
+            <p className="text-sm uppercase tracking-widest text-neutral-300">Web Developer • AI Automation • Online Marketing • Writer</p>
           </Reveal>
           <Reveal delay={0.06}>
             <h1 className="mt-4 text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight">
-              I build <span className="text-gradient">fast, elegant</span> web experiences.
+              I am a  <span className="text-gradient">business informatics</span> student.
             </h1>
           </Reveal>
           <Reveal delay={0.12}>
             <p className="mt-5 max-w-2xl text-neutral-300">
-              I’m Patrick Eger, focused on delightful UX, clean architecture, and scalable frontends with React and Next.js.
+              I’m Patrick Eger, focused on different projects in the real of web-developement, AI-Automation and Online-Marketing.
             </p>
           </Reveal>
           <Reveal delay={0.18}>

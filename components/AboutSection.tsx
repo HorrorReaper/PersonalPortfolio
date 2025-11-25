@@ -48,9 +48,8 @@ export default function AboutSection() {
 
           <Reveal delay={0.12}>
             <p className="mt-4 text-neutral-300">
-              I specialize in Next.js, TypeScript, and motion design. I care about clean architecture,
-              great UX, and performance. Recently, I’ve led projects focused on design systems, complex
-              data UIs, and edge-rendered content sites.
+              I specialize in Web-Developement, AI-Automation and Online-Marketing. I care about clean architecture,
+              great UX, and performance. Recently, I’ve build my own projects and led my own blog.
             </p>
           </Reveal>
 
@@ -59,15 +58,11 @@ export default function AboutSection() {
             <ul className="mt-4 grid gap-2 text-sm text-neutral-300">
               <li className="flex items-start gap-2">
                 <span className="mt-1 h-1.5 w-1.5 rounded-full bg-blue-400" />
-                5+ years building production React/Next.js apps
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="mt-1 h-1.5 w-1.5 rounded-full bg-purple-400" />
-                Performance wins: -40% LCP, +30% time-on-page on recent projects
+                5+ years building Web-Development projects
               </li>
               <li className="flex items-start gap-2">
                 <span className="mt-1 h-1.5 w-1.5 rounded-full bg-pink-400" />
-                Open source and writing: posts on animation, architecture, and tooling
+                Open source and writing: posts on self-improvement, dev, and productivity
               </li>
             </ul>
           </Reveal>
@@ -100,7 +95,7 @@ export default function AboutSection() {
                 <Link href="/projects">View Projects →</Link>
               </MagneticButton>
               <MagneticButton className="border border-white/10 px-4 py-2 text-sm font-medium rounded-md hover:bg-white/5">
-                <Link href="/contact">Contact me</Link>
+                <Link href="#contact">Contact me</Link>
               </MagneticButton>
               <a
                 href="/YourName_CV.pdf"

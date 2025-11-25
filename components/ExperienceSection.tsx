@@ -19,32 +19,30 @@ export type ExperienceItem = {
 
 const defaultItems: ExperienceItem[] = [
   {
-    role: 'Senior Frontend Engineer',
-    company: 'Acme Corp',
-    url: 'https://acme.com',
-    location: 'Remote',
-    start: '2023-01',
-    end: 'Present',
+    role: 'Working Student IT-Systemadministration',
+    company: 'Dresden-IT',
+    url: 'https://dresden-it.de',
+    location: 'Hybrid',
+    start: '2024-09',
+    end: '2025-09',
     achievements: [
-      'Led a design system rebuild used across 5 product teams',
-      'Cut LCP by ~40% and improved Core Web Vitals to all green',
-      'Shipped animated dashboards and complex data tables',
+      'Administration and support of client systems and networks',
+      'Build own solutions with PowerShell to automate tasks',
     ],
-    stack: ['Next.js', 'TypeScript', 'Tailwind', 'Framer Motion', 'Playwright'],
+    stack: ['PowerShell', 'M365'],
   },
   {
-    role: 'Frontend Engineer',
-    company: 'Globex',
-    url: 'https://globex.com',
-    location: 'Berlin, DE',
-    start: '2021-03',
-    end: '2022-12',
+    role: 'Online Marketing',
+    company: 'AE-Werbung Meusegast',
+    url: 'https://ae-werbung-meusegast.de',
+    location: 'Dresden, DE',
+    start: '2022-11',
+    end: '2024-08',
     achievements: [
-      'Built the marketing site platform with MDX and CMS',
-      'Implemented A/B testing and analytics pipeline',
-      'Mentored 2 junior devs through production launches',
+      'Built the Landing Page with HTML, CSS and JavaScript',
+      'Managed the Instagram account and created content',
     ],
-    stack: ['React', 'Node', 'MDX', 'Vercel', 'Cypress'],
+    stack: ['HTML', 'CSS', 'JavaScript', 'Instagram', 'Canva'],
   },
 ]
 
@@ -123,10 +121,6 @@ export default function ExperienceSection({ items = defaultItems }: { items?: Ex
             <Reveal key={`${job.company}-${job.role}-${i}`} delay={0.04 * i} y={20}>
               <li className="relative pl-10">
                 {/* Timeline dot */}
-                <span
-                  aria-hidden
-                  className="absolute left-0 top-2 h-3.5 w-3.5 rounded-full bg-gradient-to-br from-blue-400 to-purple-400 ring-4 ring-black/40"
-                />
                 <article className="rounded-xl border border-white/10 bg-white/5 p-4 hover:bg-white/[0.07] transition">
                   <header className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
                     <h3 className="text-lg font-semibold">

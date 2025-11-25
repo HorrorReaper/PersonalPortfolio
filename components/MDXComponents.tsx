@@ -7,8 +7,15 @@ type AnchorProps = React.ComponentProps<'a'>
 type ImgProps = React.ComponentProps<'img'>
 type PreProps = React.ComponentProps<'pre'>
 type CodeProps = React.ComponentProps<'code'>
+type HeadingProps = React.ComponentProps<'h2'>
 
 export const MDXComponents = {
+  h2: (props: HeadingProps) => (
+    <h2 {...props} className={`mt-10 scroll-mt-20 text-2xl font-semibold border-l-4 border-blue-500 pl-4 ${props.className ?? ''}`} />
+  ),
+  h3: (props: HeadingProps) => (
+    <h3 {...props} className={`mt-8 scroll-mt-20 text-xl font-semibold text-neutral-200 ${props.className ?? ''}`} />
+  ),
   a: (props: AnchorProps) => {
     const { href = '#', children, className, ...rest } = props
     // If it's an external link keep native <a>
