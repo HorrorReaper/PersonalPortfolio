@@ -26,6 +26,11 @@ export default function ProjectsPage() {
       cover: p.cover,
       date: p.date,
     }))
+  
+  // Memoize base to avoid creating a new array on every render, which would
+  // cause `ProjectsFilter` to see a new `projects` prop and trigger a loop
+  // when it calls `onResults` (which updates parent state).
+  const memoBase = React.useMemo(() => base, [allProjects])
 
   const [items, setItems] = React.useState<ProjectLike[]>(base)
 
@@ -102,7 +107,7 @@ export default function ProjectsPage() {
                 <h3 className="font-medium">{p.title}</h3>
                 <p className="text-sm text-neutral-300 mt-1">{p.summary}</p>
                 <div className="mt-3 flex flex-wrap gap-1">
-                  {[...(p.stack ?? []), ...(p.tags ?? [])].slice(0, 6).map((t) => (
+                  {Array.from(new Set([...(p.stack ?? []), ...(p.tags ?? [])])).slice(0, 6).map((t) => (
                     <span key={t} className="text-[11px] px-2 py-0.5 rounded bg-white/5 border border-white/10">
                       {t}
                     </span>
