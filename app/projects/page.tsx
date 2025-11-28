@@ -32,7 +32,7 @@ export default function ProjectsPage() {
   // when it calls `onResults` (which updates parent state).
   const memoBase = React.useMemo(() => base, [allProjects])
 
-  const [items, setItems] = React.useState<ProjectLike[]>(base)
+  const [items, setItems] = React.useState<ProjectLike[]>(memoBase)
 
   /*return (
     <section className="container mx-auto max-w-6xl px-4 py-16">
@@ -80,7 +80,7 @@ export default function ProjectsPage() {
       </Reveal>
 
       <Reveal delay={0.06}>
-        <ProjectsFilter projects={base} onResults={setItems} className="mt-6" />
+        <ProjectsFilter projects={memoBase} onResults={setItems} className="mt-6" />
       </Reveal>
 
       <StaggerOnScroll className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

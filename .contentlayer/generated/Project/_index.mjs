@@ -2,6 +2,7 @@
 
 import projects__firstProjectMdx from './projects__first-project.mdx.json' with { type: 'json' }
 import projects__focusChromeExtentionMdx from './projects__focus-chrome-extention.mdx.json' with { type: 'json' }
+import projects__iwsLandingPageMdx from './projects__iws-landing-page.mdx.json' with { type: 'json' }
 import projects__schusterLandingMdx from './projects__schuster-landing.mdx.json' with { type: 'json' }
 
-export const allProjects = [projects__firstProjectMdx, projects__focusChromeExtentionMdx, projects__schusterLandingMdx]
+export const allProjects = [projects__firstProjectMdx, projects__focusChromeExtentionMdx, projects__iwsLandingPageMdx, projects__schusterLandingMdx]
