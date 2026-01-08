@@ -15,11 +15,11 @@
   ],
   "repoUrl": "https://github.com/yourname/analytics-dashboard",
   "liveUrl": "https://iws-region-stark.lovable.app/",
-  "cover": "/images/posts/Iws.png\r",
+  "cover": "/images/posts/Iws.png",
   "featured": false,
   "published": true,
   "body": {
-    "raw": "\r\n## Overview\r\nI built a nice landing page for a small business owner\r\n\r\n\r\n## Outcomes\r\n- Nice Landing page\r\n",
+    "raw": "\n## Overview\nI built a nice landing page for a small business owner\n\n\n## Outcomes\n- Nice Landing page\n",
     "code": "var Component=(()=>{var u=Object.create;var r=Object.defineProperty;var m=Object.getOwnPropertyDescriptor;var p=Object.getOwnPropertyNames;var g=Object.getPrototypeOf,v=Object.prototype.hasOwnProperty;var w=(n,e)=>()=>(e||n((e={exports:{}}).exports,e),e.exports),f=(n,e)=>{for(var a in e)r(n,a,{get:e[a],enumerable:!0})},o=(n,e,a,s)=>{if(e&&typeof e==\"object\"||typeof e==\"function\")for(let i of p(e))!v.call(n,i)&&i!==a&&r(n,i,{get:()=>e[i],enumerable:!(s=m(e,i))||s.enumerable});return n};var x=(n,e,a)=>(a=n!=null?u(g(n)):{},o(e||!n||!n.__esModule?r(a,\"default\",{value:n,enumerable:!0}):a,n)),b=n=>o(r({},\"__esModule\",{value:!0}),n);var c=w((y,l)=>{l.exports=_jsx_runtime});var j={};f(j,{default:()=>h,frontmatter:()=>_});var t=x(c()),_={title:\"IWS Landing Page\",slug:\"iws-landing\",summary:\"Landing page for a small business owner with the help of lovable.dev\",date:\"2025-11-25\",tags:[\"Next.js\",\"Landing\",\"Lovable\"],stack:[\"Tailwind\",\"React\",\"TypeScript\"],repoUrl:\"https://github.com/yourname/analytics-dashboard\",liveUrl:\"https://iws-region-stark.lovable.app/\",cover:\"/images/posts/Iws.png\"};function d(n){let e={a:\"a\",h2:\"h2\",li:\"li\",p:\"p\",ul:\"ul\",...n.components};return(0,t.jsxs)(t.Fragment,{children:[(0,t.jsx)(e.h2,{id:\"overview\",children:(0,t.jsx)(e.a,{href:\"#overview\",children:\"Overview\"})}),`\n`,(0,t.jsx)(e.p,{children:\"I built a nice landing page for a small business owner\"}),`\n`,(0,t.jsx)(e.h2,{id:\"outcomes\",children:(0,t.jsx)(e.a,{href:\"#outcomes\",children:\"Outcomes\"})}),`\n`,(0,t.jsxs)(e.ul,{children:[`\n`,(0,t.jsx)(e.li,{children:\"Nice Landing page\"}),`\n`]})]})}function h(n={}){let{wrapper:e}=n.components||{};return e?(0,t.jsx)(e,{...n,children:(0,t.jsx)(d,{...n})}):d(n)}return b(j);})();\n;return Component;"
   },
   "_id": "projects/iws-landing-page.mdx",

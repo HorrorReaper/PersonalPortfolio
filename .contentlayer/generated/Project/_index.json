@@ -58,11 +58,11 @@
     ],
     "repoUrl": "https://github.com/HorrorReaper/Chrome-Focus-Etention",
     "liveUrl": "https://analytics.example.com",
-    "cover": "/images/posts/Focus.jpg\r",
+    "cover": "/images/posts/Focus.jpg",
     "featured": false,
     "published": true,
     "body": {
-      "raw": "\r\n## Overview\r\nI built a chrome extention, which blocks every website except the ones you whitelist. It has also a nice screen like momentum, where you can completely focus on your tasks\r\n\r\n- block every website\r\n- whitelist websites\r\n- clean and modern starting screen\r\n- challenges you have to do in order to unlock websites for a few minutes\r\n\r\n## Outcomes\r\n- nice chrome extention\r\n",
+      "raw": "\n## Overview\nI built a chrome extention, which blocks every website except the ones you whitelist. It has also a nice screen like momentum, where you can completely focus on your tasks\n\n- block every website\n- whitelist websites\n- clean and modern starting screen\n- challenges you have to do in order to unlock websites for a few minutes\n\n## Outcomes\n- nice chrome extention\n",
       "code": "var Component=(()=>{var u=Object.create;var r=Object.defineProperty;var d=Object.getOwnPropertyDescriptor;var p=Object.getOwnPropertyNames;var x=Object.getPrototypeOf,w=Object.prototype.hasOwnProperty;var v=(n,e)=>()=>(e||n((e={exports:{}}).exports,e),e.exports),f=(n,e)=>{for(var o in e)r(n,o,{get:e[o],enumerable:!0})},s=(n,e,o,c)=>{if(e&&typeof e==\"object\"||typeof e==\"function\")for(let i of p(e))!w.call(n,i)&&i!==o&&r(n,i,{get:()=>e[i],enumerable:!(c=d(e,i))||c.enumerable});return n};var b=(n,e,o)=>(o=n!=null?u(x(n)):{},s(e||!n||!n.__esModule?r(o,\"default\",{value:n,enumerable:!0}):o,n)),y=n=>s(r({},\"__esModule\",{value:!0}),n);var h=v((j,l)=>{l.exports=_jsx_runtime});var k={};f(k,{default:()=>m,frontmatter:()=>g});var t=b(h()),g={title:\"Focus Chrome Extention\",slug:\"focus-chrome-extention\",summary:\"A chrome extention, which blocks websites\",date:\"2025-05-20\",tags:[\"JavaScript\",\"Chrome Extention\"],stack:[\"JavaScript\",\"HTML\",\"CSS\"],repoUrl:\"https://github.com/HorrorReaper/Chrome-Focus-Etention\",liveUrl:\"https://analytics.example.com\",cover:\"/images/posts/Focus.jpg\"};function a(n){let e={a:\"a\",h2:\"h2\",li:\"li\",p:\"p\",ul:\"ul\",...n.components};return(0,t.jsxs)(t.Fragment,{children:[(0,t.jsx)(e.h2,{id:\"overview\",children:(0,t.jsx)(e.a,{href:\"#overview\",children:\"Overview\"})}),`\n`,(0,t.jsx)(e.p,{children:\"I built a chrome extention, which blocks every website except the ones you whitelist. It has also a nice screen like momentum, where you can completely focus on your tasks\"}),`\n`,(0,t.jsxs)(e.ul,{children:[`\n`,(0,t.jsx)(e.li,{children:\"block every website\"}),`\n`,(0,t.jsx)(e.li,{children:\"whitelist websites\"}),`\n`,(0,t.jsx)(e.li,{children:\"clean and modern starting screen\"}),`\n`,(0,t.jsx)(e.li,{children:\"challenges you have to do in order to unlock websites for a few minutes\"}),`\n`]}),`\n`,(0,t.jsx)(e.h2,{id:\"outcomes\",children:(0,t.jsx)(e.a,{href:\"#outcomes\",children:\"Outcomes\"})}),`\n`,(0,t.jsxs)(e.ul,{children:[`\n`,(0,t.jsx)(e.li,{children:\"nice chrome extention\"}),`\n`]})]})}function m(n={}){let{wrapper:e}=n.components||{};return e?(0,t.jsx)(e,{...n,children:(0,t.jsx)(a,{...n})}):a(n)}return y(k);})();\n;return Component;"
     },
     "_id": "projects/focus-chrome-extention.mdx",
@@ -100,11 +100,11 @@
     ],
     "repoUrl": "https://github.com/yourname/analytics-dashboard",
     "liveUrl": "https://iws-region-stark.lovable.app/",
-    "cover": "/images/posts/Iws.png\r",
+    "cover": "/images/posts/Iws.png",
     "featured": false,
     "published": true,
     "body": {
-      "raw": "\r\n## Overview\r\nI built a nice landing page for a small business owner\r\n\r\n\r\n## Outcomes\r\n- Nice Landing page\r\n",
+      "raw": "\n## Overview\nI built a nice landing page for a small business owner\n\n\n## Outcomes\n- Nice Landing page\n",
       "code": "var Component=(()=>{var u=Object.create;var r=Object.defineProperty;var m=Object.getOwnPropertyDescriptor;var p=Object.getOwnPropertyNames;var g=Object.getPrototypeOf,v=Object.prototype.hasOwnProperty;var w=(n,e)=>()=>(e||n((e={exports:{}}).exports,e),e.exports),f=(n,e)=>{for(var a in e)r(n,a,{get:e[a],enumerable:!0})},o=(n,e,a,s)=>{if(e&&typeof e==\"object\"||typeof e==\"function\")for(let i of p(e))!v.call(n,i)&&i!==a&&r(n,i,{get:()=>e[i],enumerable:!(s=m(e,i))||s.enumerable});return n};var x=(n,e,a)=>(a=n!=null?u(g(n)):{},o(e||!n||!n.__esModule?r(a,\"default\",{value:n,enumerable:!0}):a,n)),b=n=>o(r({},\"__esModule\",{value:!0}),n);var c=w((y,l)=>{l.exports=_jsx_runtime});var j={};f(j,{default:()=>h,frontmatter:()=>_});var t=x(c()),_={title:\"IWS Landing Page\",slug:\"iws-landing\",summary:\"Landing page for a small business owner with the help of lovable.dev\",date:\"2025-11-25\",tags:[\"Next.js\",\"Landing\",\"Lovable\"],stack:[\"Tailwind\",\"React\",\"TypeScript\"],repoUrl:\"https://github.com/yourname/analytics-dashboard\",liveUrl:\"https://iws-region-stark.lovable.app/\",cover:\"/images/posts/Iws.png\"};function d(n){let e={a:\"a\",h2:\"h2\",li:\"li\",p:\"p\",ul:\"ul\",...n.components};return(0,t.jsxs)(t.Fragment,{children:[(0,t.jsx)(e.h2,{id:\"overview\",children:(0,t.jsx)(e.a,{href:\"#overview\",children:\"Overview\"})}),`\n`,(0,t.jsx)(e.p,{children:\"I built a nice landing page for a small business owner\"}),`\n`,(0,t.jsx)(e.h2,{id:\"outcomes\",children:(0,t.jsx)(e.a,{href:\"#outcomes\",children:\"Outcomes\"})}),`\n`,(0,t.jsxs)(e.ul,{children:[`\n`,(0,t.jsx)(e.li,{children:\"Nice Landing page\"}),`\n`]})]})}function h(n={}){let{wrapper:e}=n.components||{};return e?(0,t.jsx)(e,{...n,children:(0,t.jsx)(d,{...n})}):d(n)}return b(j);})();\n;return Component;"
     },
     "_id": "projects/iws-landing-page.mdx",
@@ -142,11 +142,11 @@
     ],
     "repoUrl": "https://github.com/yourname/analytics-dashboard",
     "liveUrl": "https://fliesen-schuster-landing.lovable.app/",
-    "cover": "/images/posts/Schuster.png\r",
+    "cover": "/images/posts/Schuster.png",
     "featured": false,
     "published": true,
     "body": {
-      "raw": "\r\n## Overview\r\nI built a nice landing page for a small business owner\r\n\r\n\r\n## Outcomes\r\n- Nice Landing page\r\n",
+      "raw": "\n## Overview\nI built a nice landing page for a small business owner\n\n\n## Outcomes\n- Nice Landing page\n",
       "code": "var Component=(()=>{var u=Object.create;var s=Object.defineProperty;var m=Object.getOwnPropertyDescriptor;var p=Object.getOwnPropertyNames;var g=Object.getPrototypeOf,v=Object.prototype.hasOwnProperty;var f=(n,e)=>()=>(e||n((e={exports:{}}).exports,e),e.exports),x=(n,e)=>{for(var a in e)s(n,a,{get:e[a],enumerable:!0})},l=(n,e,a,i)=>{if(e&&typeof e==\"object\"||typeof e==\"function\")for(let r of p(e))!v.call(n,r)&&r!==a&&s(n,r,{get:()=>e[r],enumerable:!(i=m(e,r))||i.enumerable});return n};var b=(n,e,a)=>(a=n!=null?u(g(n)):{},l(e||!n||!n.__esModule?s(a,\"default\",{value:n,enumerable:!0}):a,n)),w=n=>l(s({},\"__esModule\",{value:!0}),n);var c=f((y,o)=>{o.exports=_jsx_runtime});var j={};x(j,{default:()=>d,frontmatter:()=>_});var t=b(c()),_={title:\"Schuster Landing Page\",slug:\"schuster-landing\",summary:\"Landing page for a small business owner with the help of lovable.dev\",date:\"2025-11-25\",tags:[\"Next.js\",\"Landing\",\"Lovable\"],stack:[\"Tailwind\",\"React\",\"TypeScript\"],repoUrl:\"https://github.com/yourname/analytics-dashboard\",liveUrl:\"https://fliesen-schuster-landing.lovable.app/\",cover:\"/images/posts/Schuster.png\"};function h(n){let e={a:\"a\",h2:\"h2\",li:\"li\",p:\"p\",ul:\"ul\",...n.components};return(0,t.jsxs)(t.Fragment,{children:[(0,t.jsx)(e.h2,{id:\"overview\",children:(0,t.jsx)(e.a,{href:\"#overview\",children:\"Overview\"})}),`\n`,(0,t.jsx)(e.p,{children:\"I built a nice landing page for a small business owner\"}),`\n`,(0,t.jsx)(e.h2,{id:\"outcomes\",children:(0,t.jsx)(e.a,{href:\"#outcomes\",children:\"Outcomes\"})}),`\n`,(0,t.jsxs)(e.ul,{children:[`\n`,(0,t.jsx)(e.li,{children:\"Nice Landing page\"}),`\n`]})]})}function d(n={}){let{wrapper:e}=n.components||{};return e?(0,t.jsx)(e,{...n,children:(0,t.jsx)(h,{...n})}):h(n)}return w(j);})();\n;return Component;"
     },
     "_id": "projects/schuster-landing.mdx",
