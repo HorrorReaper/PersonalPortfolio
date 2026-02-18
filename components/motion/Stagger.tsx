@@ -48,8 +48,7 @@ export default function StaggerOnScroll({
       className={className}
       variants={container}
       initial="hidden"
-      whileInView="show"
-      viewport={{ once, amount }}
+      animate="show"
     >
       {React.Children.map(children, (c, i) => (
         <motion.div variants={child} key={i}>
