@@ -1,27 +1,25 @@
 {
-  "title": "Analytics Dashboard",
-  "slug": "analytics-dashboard",
-  "summary": "Realtime charts, role-based access, and integrations.",
+  "title": "AE-Werbung Meusegast",
+  "slug": "ae-werbung",
+  "summary": "Landing Page for a local marketing business",
   "date": "2025-05-20T00:00:00.000Z",
   "tags": [
-    "Next.js",
-    "Charts",
-    "Auth"
+    "Landing Page",
+    "CSS",
+    "HTML"
   ],
   "stack": [
-    "Next.js",
-    "React",
-    "PostgreSQL",
-    "Tailwind"
+    "HTML",
+    "CSS",
+    "JavaScript"
   ],
-  "repoUrl": "https://github.com/yourname/analytics-dashboard",
-  "liveUrl": "https://analytics.example.com",
-  "cover": "/images/posts/transitions.jpg",
+  "liveUrl": "https://www.ae-werbung-meusegast.de/",
+  "cover": "/images/posts/ae-werbung.png",
   "featured": true,
   "published": true,
   "body": {
-    "raw": "\n## Overview\nI built a performant dashboard with realtime metrics, row-level security, and a modular widget system.\n\n- Server components for data-heavy views\n- Streaming and Suspense for fast TTFB\n- Framer Motion for micro-interactions\n\n## Outcomes\n- 1.7s → 0.9s LCP\n- 30% time-on-page increase\n",
-    "code": "var Component=(()=>{var m=Object.create;var i=Object.defineProperty;var u=Object.getOwnPropertyDescriptor;var p=Object.getOwnPropertyNames;var f=Object.getPrototypeOf,g=Object.prototype.hasOwnProperty;var v=(t,e)=>()=>(e||t((e={exports:{}}).exports,e),e.exports),x=(t,e)=>{for(var r in e)i(t,r,{get:e[r],enumerable:!0})},o=(t,e,r,s)=>{if(e&&typeof e==\"object\"||typeof e==\"function\")for(let a of p(e))!g.call(t,a)&&a!==r&&i(t,a,{get:()=>e[a],enumerable:!(s=u(e,a))||s.enumerable});return t};var y=(t,e,r)=>(r=t!=null?m(f(t)):{},o(e||!t||!t.__esModule?i(r,\"default\",{value:t,enumerable:!0}):r,t)),w=t=>o(i({},\"__esModule\",{value:!0}),t);var c=v((C,l)=>{l.exports=_jsx_runtime});var j={};x(j,{default:()=>h,frontmatter:()=>b});var n=y(c()),b={title:\"Analytics Dashboard\",slug:\"analytics-dashboard\",summary:\"Realtime charts, role-based access, and integrations.\",date:\"2025-05-20\",tags:[\"Next.js\",\"Charts\",\"Auth\"],stack:[\"Next.js\",\"React\",\"PostgreSQL\",\"Tailwind\"],repoUrl:\"https://github.com/yourname/analytics-dashboard\",liveUrl:\"https://analytics.example.com\",cover:\"/images/posts/transitions.jpg\",featured:!0,published:!0};function d(t){let e={a:\"a\",h2:\"h2\",li:\"li\",p:\"p\",ul:\"ul\",...t.components};return(0,n.jsxs)(n.Fragment,{children:[(0,n.jsx)(e.h2,{id:\"overview\",children:(0,n.jsx)(e.a,{href:\"#overview\",children:\"Overview\"})}),`\n`,(0,n.jsx)(e.p,{children:\"I built a performant dashboard with realtime metrics, row-level security, and a modular widget system.\"}),`\n`,(0,n.jsxs)(e.ul,{children:[`\n`,(0,n.jsx)(e.li,{children:\"Server components for data-heavy views\"}),`\n`,(0,n.jsx)(e.li,{children:\"Streaming and Suspense for fast TTFB\"}),`\n`,(0,n.jsx)(e.li,{children:\"Framer Motion for micro-interactions\"}),`\n`]}),`\n`,(0,n.jsx)(e.h2,{id:\"outcomes\",children:(0,n.jsx)(e.a,{href:\"#outcomes\",children:\"Outcomes\"})}),`\n`,(0,n.jsxs)(e.ul,{children:[`\n`,(0,n.jsx)(e.li,{children:\"1.7s \\u2192 0.9s LCP\"}),`\n`,(0,n.jsx)(e.li,{children:\"30% time-on-page increase\"}),`\n`]})]})}function h(t={}){let{wrapper:e}=t.components||{};return e?(0,n.jsx)(e,{...t,children:(0,n.jsx)(d,{...t})}):d(t)}return w(j);})();\n;return Component;"
+    "raw": "\n## Overview\nI built a landing page for a small business owner in germany\n\n",
+    "code": "var Component=(()=>{var m=Object.create;var s=Object.defineProperty;var d=Object.getOwnPropertyDescriptor;var p=Object.getOwnPropertyNames;var h=Object.getPrototypeOf,w=Object.prototype.hasOwnProperty;var f=(e,n)=>()=>(n||e((n={exports:{}}).exports,n),n.exports),v=(e,n)=>{for(var a in n)s(e,a,{get:n[a],enumerable:!0})},o=(e,n,a,i)=>{if(n&&typeof n==\"object\"||typeof n==\"function\")for(let r of p(n))!w.call(e,r)&&r!==a&&s(e,r,{get:()=>n[r],enumerable:!(i=d(n,r))||i.enumerable});return e};var x=(e,n,a)=>(a=e!=null?m(h(e)):{},o(n||!e||!e.__esModule?s(a,\"default\",{value:e,enumerable:!0}):a,e)),b=e=>o(s({},\"__esModule\",{value:!0}),e);var g=f((L,u)=>{u.exports=_jsx_runtime});var M={};v(M,{default:()=>l,frontmatter:()=>_});var t=x(g()),_={title:\"AE-Werbung Meusegast\",slug:\"ae-werbung\",summary:\"Landing Page for a local marketing business\",date:\"2025-05-20\",tags:[\"Landing Page\",\"CSS\",\"HTML\"],stack:[\"HTML\",\"CSS\",\"JavaScript\"],liveUrl:\"https://www.ae-werbung-meusegast.de/\",cover:\"/images/posts/ae-werbung.png\",featured:!0,published:!0};function c(e){let n={a:\"a\",h2:\"h2\",p:\"p\",...e.components};return(0,t.jsxs)(t.Fragment,{children:[(0,t.jsx)(n.h2,{id:\"overview\",children:(0,t.jsx)(n.a,{href:\"#overview\",children:\"Overview\"})}),`\n`,(0,t.jsx)(n.p,{children:\"I built a landing page for a small business owner in germany\"})]})}function l(e={}){let{wrapper:n}=e.components||{};return n?(0,t.jsx)(n,{...e,children:(0,t.jsx)(c,{...e})}):c(e)}return b(M);})();\n;return Component;"
   },
   "_id": "projects/first-project.mdx",
   "_raw": {
@@ -32,12 +30,12 @@
     "flattenedPath": "projects/first-project"
   },
   "type": "Project",
-  "url": "/projects/analytics-dashboard",
+  "url": "/projects/ae-werbung",
   "dateObj": "2025-05-20T00:00:00.000Z",
   "readingTime": {
     "text": "1 min read",
-    "minutes": 0.23,
-    "time": 13800,
-    "words": 46
+    "minutes": 0.07,
+    "time": 4200,
+    "words": 14
   }
 }

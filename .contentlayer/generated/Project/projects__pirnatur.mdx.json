@@ -1,0 +1,38 @@
+{
+  "title": "Pirnatur UG",
+  "slug": "pirnatur",
+  "summary": "Landing Page for a local business with WordPress",
+  "date": "2025-01-20T00:00:00.000Z",
+  "tags": [
+    "Landing Page",
+    "WordPress"
+  ],
+  "stack": [
+    "WordPress"
+  ],
+  "liveUrl": "https://pirnatur.de/",
+  "cover": "/images/posts/Pirnatur.png",
+  "featured": true,
+  "published": true,
+  "body": {
+    "raw": "\n## Overview\nI built a landing page for a local business with WordPress\n\n",
+    "code": "var Component=(()=>{var h=Object.create;var a=Object.defineProperty;var p=Object.getOwnPropertyDescriptor;var g=Object.getOwnPropertyNames;var m=Object.getPrototypeOf,f=Object.prototype.hasOwnProperty;var x=(e,r)=>()=>(r||e((r={exports:{}}).exports,r),r.exports),v=(e,r)=>{for(var n in r)a(e,n,{get:r[n],enumerable:!0})},o=(e,r,n,i)=>{if(r&&typeof r==\"object\"||typeof r==\"function\")for(let s of g(r))!f.call(e,s)&&s!==n&&a(e,s,{get:()=>r[s],enumerable:!(i=p(r,s))||i.enumerable});return e};var P=(e,r,n)=>(n=e!=null?h(m(e)):{},o(r||!e||!e.__esModule?a(n,\"default\",{value:e,enumerable:!0}):n,e)),_=e=>o(a({},\"__esModule\",{value:!0}),e);var d=x((W,u)=>{u.exports=_jsx_runtime});var j={};v(j,{default:()=>l,frontmatter:()=>w});var t=P(d()),w={title:\"Pirnatur UG\",slug:\"pirnatur\",summary:\"Landing Page for a local business with WordPress\",date:\"2025-01-20\",tags:[\"Landing Page\",\"WordPress\"],stack:[\"WordPress\"],liveUrl:\"https://pirnatur.de/\",cover:\"/images/posts/Pirnatur.png\",featured:!0,published:!0};function c(e){let r={a:\"a\",h2:\"h2\",p:\"p\",...e.components};return(0,t.jsxs)(t.Fragment,{children:[(0,t.jsx)(r.h2,{id:\"overview\",children:(0,t.jsx)(r.a,{href:\"#overview\",children:\"Overview\"})}),`\n`,(0,t.jsx)(r.p,{children:\"I built a landing page for a local business with WordPress\"})]})}function l(e={}){let{wrapper:r}=e.components||{};return r?(0,t.jsx)(r,{...e,children:(0,t.jsx)(c,{...e})}):c(e)}return _(j);})();\n;return Component;"
+  },
+  "_id": "projects/pirnatur.mdx",
+  "_raw": {
+    "sourceFilePath": "projects/pirnatur.mdx",
+    "sourceFileName": "pirnatur.mdx",
+    "sourceFileDir": "projects",
+    "contentType": "mdx",
+    "flattenedPath": "projects/pirnatur"
+  },
+  "type": "Project",
+  "url": "/projects/pirnatur",
+  "dateObj": "2025-01-20T00:00:00.000Z",
+  "readingTime": {
+    "text": "1 min read",
+    "minutes": 0.065,
+    "time": 3900,
+    "words": 13
+  }
+}

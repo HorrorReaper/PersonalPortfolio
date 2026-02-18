@@ -47,7 +47,7 @@ export default function HomePage() {
           </Reveal>
           <Reveal delay={0.12}>
             <p className="mt-5 max-w-2xl text-neutral-300">
-              I’m Patrick Eger, focused on different projects in the real of web-developement, AI-Automation and Online-Marketing.
+              I’m Patrick Eger, focused on different projects in the realm of web-developement, AI-Automation and Online-Marketing.
             </p>
           </Reveal>
           <Reveal delay={0.18}>
@@ -62,12 +62,6 @@ export default function HomePage() {
               <MagneticButton className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 text-sm font-medium rounded-md">
                 <Link href="/projects">View Projects →</Link>
               </MagneticButton>
-              <MagneticButton className="border border-white/10 px-4 py-2 text-sm font-medium rounded-md hover:bg-white/5">
-                <Link href="/blog">Read the Blog</Link>
-              </MagneticButton>
-              <a href="/YourName_CV.pdf" className="inline-flex items-center rounded-md border border-white/10 hover:bg-white/5 px-4 py-2 text-sm font-medium">
-                Download CV
-              </a>
             </div>
           </Reveal>
           <Reveal delay={0.3}>
@@ -123,7 +117,7 @@ export default function HomePage() {
         </section>
 
         {/* Latest writing */}
-        <section className="mx-auto max-w-6xl px-4 pb-16">
+        {/*<section className="mx-auto max-w-6xl px-4 pb-16">
           <Reveal>
             <h2 className="text-2xl font-semibold">Latest Writing</h2>
           </Reveal>
@@ -153,7 +147,7 @@ export default function HomePage() {
               </Link>
             </div>
           </Reveal>
-        </section>
+        </section>*/}
         <ContactSection />
       </main>
     </div>

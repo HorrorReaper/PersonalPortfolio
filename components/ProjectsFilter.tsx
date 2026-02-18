@@ -29,13 +29,13 @@ export default function ProjectsFilter({ projects, initialQuery = '', className,
   // Collect all tags/stacks for chips
   const allTags = useMemo(() => {
     const set = new Set<string>()
-    projects.forEach(p => (p.tags ?? []).forEach(t => set.add(t)))
+    projects.forEach(p => (p.tags ?? []).forEach(t => set.add(String(t).toLowerCase())))
     return Array.from(set).sort()
   }, [projects])
 
   const allStack = useMemo(() => {
     const set = new Set<string>()
-    projects.forEach(p => (p.stack ?? []).forEach(t => set.add(t)))
+    projects.forEach(p => (p.stack ?? []).forEach(t => set.add(String(t).toLowerCase())))
     return Array.from(set).sort()
   }, [projects])
 
@@ -45,17 +45,18 @@ export default function ProjectsFilter({ projects, initialQuery = '', className,
     return projects.filter(p => {
       // text search
       const matchesText = q.length === 0
-        || p.title.toLowerCase().includes(q)
-        || p.summary.toLowerCase().includes(q)
+        || String(p.title ?? '').toLowerCase().includes(q)
+        || String(p.summary ?? '').toLowerCase().includes(q)
 
       // tags/stack filter (project must include ALL active tags)
-      const tags = new Set([...(p.tags ?? []), ...(p.stack ?? [])].map(s => s.toLowerCase()))
+      const source = showTags === 'tags' ? (p.tags ?? []) : (p.stack ?? [])
+      const tags = new Set(source.map(s => String(s ?? '').toLowerCase()))
       const matchesTags = activeTags.length === 0
         || activeTags.every(t => tags.has(t.toLowerCase()))
 
       return matchesText && matchesTags
     })
-  }, [projects, query, activeTags])
+  }, [projects, query, activeTags, showTags])
 
   useEffect(() => {
     onResults?.(results)
@@ -63,10 +64,12 @@ export default function ProjectsFilter({ projects, initialQuery = '', className,
 
   // helpers
   function toggleTag(tag: string) {
-    setActiveTags(prev => prev.includes(tag) ? prev.filter(t => t !== tag) : [...prev, tag])
+    const key = tag.toLowerCase()
+    setActiveTags(prev => prev.includes(key) ? prev.filter(t => t !== key) : [...prev, key])
   }
   function clearFilters() {
     setActiveTags([])
+    setDraft('')
     setQuery('')
   }
 
@@ -77,6 +80,12 @@ export default function ProjectsFilter({ projects, initialQuery = '', className,
     return () => clearTimeout(id)
   }, [draft])
 
+  // sync external initialQuery changes
+  useEffect(() => {
+    setQuery(initialQuery)
+    setDraft(initialQuery)
+  }, [initialQuery])
+
   return (
     <div className={clsx('rounded-xl border border-white/10 bg-white/5 p-4', className)}>
       {/* Search + counts */}
@@ -86,7 +95,12 @@ export default function ProjectsFilter({ projects, initialQuery = '', className,
           <input
             id="project-search"
             value={draft}
-            onChange={(e) => setDraft(e.target.value)}
+            onChange={(e) => {
+              const v = e.target.value
+              setDraft(v)
+              // if the input is empty or only whitespace, update query immediately (avoid debounce)
+              if (v.trim() === '') setQuery('')
+            }}
             placeholder="Type to search by title or summary…"
             className="mt-1 w-full rounded-md border border-white/10 bg-white/5 px-3 py-2 outline-none placeholder:text-neutral-400 focus:border-white/20"
           />

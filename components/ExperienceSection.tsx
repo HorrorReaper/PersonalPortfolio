@@ -2,7 +2,6 @@
 
 import Link from 'next/link'
 import Reveal from '@/components/motion/Reveal'
-import MagneticButton from '@/components/ui/MagneticButton'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef, useEffect, useState } from 'react'
 
@@ -174,17 +173,6 @@ export default function ExperienceSection({ items = defaultItems }: { items?: Ex
         </ul>
       </div>
 
-      {/* CTA row */}
-      <Reveal delay={0.2}>
-        <div className="mt-8 flex flex-wrap items-center gap-3">
-          <MagneticButton className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 text-sm font-medium rounded-md">
-            <Link href="/YourName_CV.pdf">Download CV</Link>
-          </MagneticButton>
-          <MagneticButton className="border border-white/10 px-4 py-2 text-sm font-medium rounded-md hover:bg-white/5">
-            <Link href="/about">More about me</Link>
-          </MagneticButton>
-        </div>
-      </Reveal>
     </section>
   )
 }

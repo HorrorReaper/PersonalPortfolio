@@ -1,0 +1,41 @@
+{
+  "title": "Kathrins Gewichtscoaching",
+  "slug": "kathrin",
+  "summary": "Landing Page for a local fitness trainer",
+  "date": "2025-05-20T00:00:00.000Z",
+  "tags": [
+    "Landing Page",
+    "CSS",
+    "HTML"
+  ],
+  "stack": [
+    "HTML",
+    "CSS",
+    "JavaScript"
+  ],
+  "liveUrl": "https://kathrins-gewichtscoaching-pirna.de/",
+  "cover": "/images/posts/kathrin.png",
+  "featured": true,
+  "published": true,
+  "body": {
+    "raw": "\n## Overview\nI built a landing page for a fitness and nutrition trainer\n\n",
+    "code": "var Component=(()=>{var l=Object.create;var i=Object.defineProperty;var u=Object.getOwnPropertyDescriptor;var p=Object.getOwnPropertyNames;var m=Object.getPrototypeOf,f=Object.prototype.hasOwnProperty;var v=(t,e)=>()=>(e||t((e={exports:{}}).exports,e),e.exports),x=(t,e)=>{for(var r in e)i(t,r,{get:e[r],enumerable:!0})},o=(t,e,r,s)=>{if(e&&typeof e==\"object\"||typeof e==\"function\")for(let a of p(e))!f.call(t,a)&&a!==r&&i(t,a,{get:()=>e[a],enumerable:!(s=u(e,a))||s.enumerable});return t};var _=(t,e,r)=>(r=t!=null?l(m(t)):{},o(e||!t||!t.__esModule?i(r,\"default\",{value:t,enumerable:!0}):r,t)),w=t=>o(i({},\"__esModule\",{value:!0}),t);var h=v((S,c)=>{c.exports=_jsx_runtime});var L={};x(L,{default:()=>g,frontmatter:()=>j});var n=_(h()),j={title:\"Kathrins Gewichtscoaching\",slug:\"kathrin\",summary:\"Landing Page for a local fitness trainer\",date:\"2025-05-20\",tags:[\"Landing Page\",\"CSS\",\"HTML\"],stack:[\"HTML\",\"CSS\",\"JavaScript\"],liveUrl:\"https://kathrins-gewichtscoaching-pirna.de/\",cover:\"/images/posts/kathrin.png\",featured:!0,published:!0};function d(t){let e={a:\"a\",h2:\"h2\",p:\"p\",...t.components};return(0,n.jsxs)(n.Fragment,{children:[(0,n.jsx)(e.h2,{id:\"overview\",children:(0,n.jsx)(e.a,{href:\"#overview\",children:\"Overview\"})}),`\n`,(0,n.jsx)(e.p,{children:\"I built a landing page for a fitness and nutrition trainer\"})]})}function g(t={}){let{wrapper:e}=t.components||{};return e?(0,n.jsx)(e,{...t,children:(0,n.jsx)(d,{...t})}):d(t)}return w(L);})();\n;return Component;"
+  },
+  "_id": "projects/kathrin.mdx",
+  "_raw": {
+    "sourceFilePath": "projects/kathrin.mdx",
+    "sourceFileName": "kathrin.mdx",
+    "sourceFileDir": "projects",
+    "contentType": "mdx",
+    "flattenedPath": "projects/kathrin"
+  },
+  "type": "Project",
+  "url": "/projects/kathrin",
+  "dateObj": "2025-05-20T00:00:00.000Z",
+  "readingTime": {
+    "text": "1 min read",
+    "minutes": 0.065,
+    "time": 3900,
+    "words": 13
+  }
+}

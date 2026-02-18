@@ -7,7 +7,7 @@ import MagneticButton from '@/components/ui/MagneticButton'
 const skills = {
   Frontend: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'HTML/CSS', 'JavaScript'],
   Backend: ['Node.js', 'PostgreSQL', 'Prisma', 'Rest API', 'MySQL'],
-  Tools: ['Vercel', 'Git/GitHub', 'Figma'],
+  Tools: ['Vercel', 'Git/GitHub', 'Figma', 'Framer'],
 }
 
 export default function AboutSection() {
@@ -49,7 +49,7 @@ export default function AboutSection() {
           <Reveal delay={0.12}>
             <p className="mt-4 text-neutral-300">
               I specialize in Web-Developement, AI-Automation and Online-Marketing. I care about clean architecture,
-              great UX, and performance. Recently, I’ve build my own projects and led my own blog.
+              great UX, and performance. Recently, I’ve build my own projects and projects for some clients.
             </p>
           </Reveal>
 
@@ -97,12 +97,7 @@ export default function AboutSection() {
               <MagneticButton className="border border-white/10 px-4 py-2 text-sm font-medium rounded-md hover:bg-white/5">
                 <Link href="#contact">Contact me</Link>
               </MagneticButton>
-              <a
-                href="/YourName_CV.pdf"
-                className="inline-flex items-center rounded-md border border-white/10 hover:bg-white/5 px-4 py-2 text-sm font-medium"
-              >
-                Download CV
-              </a>
+
             </div>
           </Reveal>
         </div>
