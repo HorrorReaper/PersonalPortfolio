@@ -50,13 +50,13 @@ export default function HomePage() {
               I’m a business informatics student from Germany, focused on different projects in the realm of web-developement, AI-Automation and Online-Marketing.
             </p>
           </Reveal>
-          <Reveal delay={0.18}>
+          {/*<Reveal delay={0.18}>
             <div className="mt-6 flex flex-wrap items-center gap-2">
               {roles.map((r) => (
                 <span key={r} className="text-xs px-2 py-1 rounded-full border border-white/10 text-neutral-300">{r}</span>
               ))}
             </div>
-          </Reveal>
+          </Reveal>*/}
           <Reveal delay={0.24}>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <MagneticButton className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 text-sm font-medium rounded-md">

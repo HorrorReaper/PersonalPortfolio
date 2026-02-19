@@ -48,7 +48,7 @@ export default function AboutSection() {
 
           <Reveal delay={0.12}>
             <p className="mt-4 text-neutral-300">
-              I specialize in Web-Development, AI-Automation and Online-Marketing. I care about consistent designs,
+               I care about consistent designs,
               great User Experience, and performance. Recently, I’ve build my own projects, like the chrome extension and projects for some clients.
             </p>
           </Reveal>
