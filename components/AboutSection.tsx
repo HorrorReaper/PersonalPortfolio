@@ -42,7 +42,7 @@ export default function AboutSection() {
 
           <Reveal delay={0.06}>
             <h2 className="mt-2 text-3xl sm:text-4xl font-bold">
-              I’m Patrick Eger — I love building things.
+              I’m Patrick Eger, I love building things.
             </h2>
           </Reveal>
 
