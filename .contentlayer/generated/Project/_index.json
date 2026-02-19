@@ -18,8 +18,8 @@
     "featured": true,
     "published": true,
     "body": {
-      "raw": "\n## Overview\nI built a landing page for a fictional protein bar manufacturer, which I coded myself\n\n<iframe src=\"/projects/barboost/index.html\" style={{width: '100%', height: 480, border: 0, borderRadius: 8}}></iframe>\n\n",
-      "code": "var Component=(()=>{var m=Object.create;var o=Object.defineProperty;var h=Object.getOwnPropertyDescriptor;var f=Object.getOwnPropertyNames;var p=Object.getPrototypeOf,g=Object.prototype.hasOwnProperty;var b=(e,t)=>()=>(t||e((t={exports:{}}).exports,t),t.exports),x=(e,t)=>{for(var a in t)o(e,a,{get:t[a],enumerable:!0})},s=(e,t,a,i)=>{if(t&&typeof t==\"object\"||typeof t==\"function\")for(let n of f(t))!g.call(e,n)&&n!==a&&o(e,n,{get:()=>t[n],enumerable:!(i=h(t,n))||i.enumerable});return e};var v=(e,t,a)=>(a=e!=null?m(p(e)):{},s(t||!e||!e.__esModule?o(a,\"default\",{value:e,enumerable:!0}):a,e)),j=e=>s(o({},\"__esModule\",{value:!0}),e);var d=b((M,c)=>{c.exports=_jsx_runtime});var w={};x(w,{default:()=>u,frontmatter:()=>_});var r=v(d()),_={title:\"BarBoost\",slug:\"bar-boost\",summary:\"Landing Page for a fictional protein bar manufacturer\",date:\"2026-02-10\",tags:[\"HTML\",\"Landing Page\"],stack:[\"HTML\",\"CSS\",\"JavaScript\"],liveUrl:\"/projects/barboost/index.html\",cover:\"/images/posts/BarBoost.png\",featured:!0,published:!0};function l(e){let t={a:\"a\",h2:\"h2\",p:\"p\",...e.components};return(0,r.jsxs)(r.Fragment,{children:[(0,r.jsx)(t.h2,{id:\"overview\",children:(0,r.jsx)(t.a,{href:\"#overview\",children:\"Overview\"})}),`\n`,(0,r.jsx)(t.p,{children:\"I built a landing page for a fictional protein bar manufacturer, which I coded myself\"}),`\n`,(0,r.jsx)(\"iframe\",{src:\"/projects/barboost/index.html\",style:{width:\"100%\",height:480,border:0,borderRadius:8}})]})}function u(e={}){let{wrapper:t}=e.components||{};return t?(0,r.jsx)(t,{...e,children:(0,r.jsx)(l,{...e})}):l(e)}return j(w);})();\n;return Component;"
+      "raw": "\n## The Challenge\n„Design and develop a landing page for a fictional premium protein bar brand that communicates natural ingredients, trust and sustainability, which targets health-conscious consumers aged 20–35.\"\n\n## My Approach\n- Research: Analysing successful B2C-Food-Brands like RXBar or Clif Bar, what worked on their website, like colors, layout and conversion-elements?\n- Design: Light, natural color scheme (shades of green + warm beige) instead of the typical dark fitness look, because the target group expects trust and naturalness, not aggression.\n- Structure: Conversion-optimized page structure: Hero → Trust → Products → Nutritional values → Social proof → Newsletter → Footer\n\n## Key Features\n- Fully responsive (mobile first)\n- Scroll-triggered animations\n- Interactive nutritional information display\n- Conversion-optimized CTA placement\n- Performance-optimized (lazy loading, WebP)\n\n<iframe src=\"/projects/barboost/index.html\" style={{width: '100%', height: 480, border: 0, borderRadius: 8}}></iframe>\n\n",
+      "code": "var Component=(()=>{var u=Object.create;var a=Object.defineProperty;var m=Object.getOwnPropertyDescriptor;var p=Object.getOwnPropertyNames;var g=Object.getPrototypeOf,f=Object.prototype.hasOwnProperty;var b=(r,e)=>()=>(e||r((e={exports:{}}).exports,e),e.exports),y=(r,e)=>{for(var t in e)a(r,t,{get:e[t],enumerable:!0})},l=(r,e,t,o)=>{if(e&&typeof e==\"object\"||typeof e==\"function\")for(let i of p(e))!f.call(r,i)&&i!==t&&a(r,i,{get:()=>e[i],enumerable:!(o=m(e,i))||o.enumerable});return r};var x=(r,e,t)=>(t=r!=null?u(g(r)):{},l(e||!r||!r.__esModule?a(t,\"default\",{value:r,enumerable:!0}):t,r)),v=r=>l(a({},\"__esModule\",{value:!0}),r);var c=b((B,s)=>{s.exports=_jsx_runtime});var k={};y(k,{default:()=>h,frontmatter:()=>C});var n=x(c()),C={title:\"BarBoost\",slug:\"bar-boost\",summary:\"Landing Page for a fictional protein bar manufacturer\",date:\"2026-02-10\",tags:[\"HTML\",\"Landing Page\"],stack:[\"HTML\",\"CSS\",\"JavaScript\"],liveUrl:\"/projects/barboost/index.html\",cover:\"/images/posts/BarBoost.png\",featured:!0,published:!0};function d(r){let e={a:\"a\",h2:\"h2\",li:\"li\",p:\"p\",ul:\"ul\",...r.components};return(0,n.jsxs)(n.Fragment,{children:[(0,n.jsx)(e.h2,{id:\"the-challenge\",children:(0,n.jsx)(e.a,{href:\"#the-challenge\",children:\"The Challenge\"})}),`\n`,(0,n.jsx)(e.p,{children:'\\u201EDesign and develop a landing page for a fictional premium protein bar brand that communicates natural ingredients, trust and sustainability, which targets health-conscious consumers aged 20\\u201335.\"'}),`\n`,(0,n.jsx)(e.h2,{id:\"my-approach\",children:(0,n.jsx)(e.a,{href:\"#my-approach\",children:\"My Approach\"})}),`\n`,(0,n.jsxs)(e.ul,{children:[`\n`,(0,n.jsx)(e.li,{children:\"Research: Analysing successful B2C-Food-Brands like RXBar or Clif Bar, what worked on their website, like colors, layout and conversion-elements?\"}),`\n`,(0,n.jsx)(e.li,{children:\"Design: Light, natural color scheme (shades of green + warm beige) instead of the typical dark fitness look, because the target group expects trust and naturalness, not aggression.\"}),`\n`,(0,n.jsx)(e.li,{children:\"Structure: Conversion-optimized page structure: Hero \\u2192 Trust \\u2192 Products \\u2192 Nutritional values \\u2192 Social proof \\u2192 Newsletter \\u2192 Footer\"}),`\n`]}),`\n`,(0,n.jsx)(e.h2,{id:\"key-features\",children:(0,n.jsx)(e.a,{href:\"#key-features\",children:\"Key Features\"})}),`\n`,(0,n.jsxs)(e.ul,{children:[`\n`,(0,n.jsx)(e.li,{children:\"Fully responsive (mobile first)\"}),`\n`,(0,n.jsx)(e.li,{children:\"Scroll-triggered animations\"}),`\n`,(0,n.jsx)(e.li,{children:\"Interactive nutritional information display\"}),`\n`,(0,n.jsx)(e.li,{children:\"Conversion-optimized CTA placement\"}),`\n`,(0,n.jsx)(e.li,{children:\"Performance-optimized (lazy loading, WebP)\"}),`\n`]}),`\n`,(0,n.jsx)(\"iframe\",{src:\"/projects/barboost/index.html\",style:{width:\"100%\",height:480,border:0,borderRadius:8}})]})}function h(r={}){let{wrapper:e}=r.components||{};return e?(0,n.jsx)(e,{...r,children:(0,n.jsx)(d,{...r})}):d(r)}return v(k);})();\n;return Component;"
     },
     "_id": "projects/barboost.mdx",
     "_raw": {
@@ -34,9 +34,9 @@
     "dateObj": "2026-02-10T00:00:00.000Z",
     "readingTime": {
       "text": "1 min read",
-      "minutes": 0.135,
-      "time": 8100,
-      "words": 27
+      "minutes": 0.68,
+      "time": 40800,
+      "words": 136
     }
   },
   {
@@ -198,6 +198,46 @@
       "minutes": 0.33,
       "time": 19800,
       "words": 66
+    }
+  },
+  {
+    "title": "IronBite",
+    "slug": "iron-bite",
+    "summary": "Landing Page for a fictional protein bar manufacturer",
+    "date": "2026-02-10T00:00:00.000Z",
+    "tags": [
+      "HTML",
+      "Landing Page"
+    ],
+    "stack": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "liveUrl": "/projects/ironbite/index.html",
+    "cover": "/images/posts/Ironbite.png",
+    "featured": true,
+    "published": true,
+    "body": {
+      "raw": "\n## The Challenge\n„Design and develop a bold, high-energy landing page for a fictional premium protein bar brand – targeting Gen Z fitness enthusiasts and gym-goers aged 16–28 who resonate with influencer-driven brands like Feastables or Prime.\"\n\n## My Approach\n- Research: Analysed top-performing Gen Z food & fitness brands (Feastables, Prime, Barebells, Grenade) – identifying patterns: dark themes, oversized typography, neon accents, aggressive CTAs\n- Design: Dark theme with vibrant neon-green accents – because the target audience associates dark, bold aesthetics with premium fitness products and energy\n- Structure: Impact-first page architecture: Full-screen Hero → Bold Product Grid → Nutrition Facts → Social Proof → Reviews → CTA\n\n## Key Features\n- Dark UI with neon-green accent color for high contrast and visual impact\n- Fully responsive layout (Mobile First)\n- Scroll-triggered animations and staggered fade-ins\n- Floating product image animation in the Hero section\n- Marquee trust bar with continuous scroll\n- Counter animations for social proof numbers\n- Conversion-optimized CTA placement throughout the page\n\n<iframe src=\"/projects/ironbite/index.html\" style={{width: '100%', height: 480, border: 0, borderRadius: 8}}></iframe>\n\n",
+      "code": "var Component=(()=>{var u=Object.create;var a=Object.defineProperty;var g=Object.getOwnPropertyDescriptor;var p=Object.getOwnPropertyNames;var m=Object.getPrototypeOf,f=Object.prototype.hasOwnProperty;var b=(r,e)=>()=>(e||r((e={exports:{}}).exports,e),e.exports),y=(r,e)=>{for(var i in e)a(r,i,{get:e[i],enumerable:!0})},s=(r,e,i,o)=>{if(e&&typeof e==\"object\"||typeof e==\"function\")for(let t of p(e))!f.call(r,t)&&t!==i&&a(r,t,{get:()=>e[t],enumerable:!(o=g(e,t))||o.enumerable});return r};var v=(r,e,i)=>(i=r!=null?u(m(r)):{},s(e||!r||!r.__esModule?a(i,\"default\",{value:r,enumerable:!0}):i,r)),x=r=>s(a({},\"__esModule\",{value:!0}),r);var c=b((k,l)=>{l.exports=_jsx_runtime});var w={};y(w,{default:()=>h,frontmatter:()=>F});var n=v(c()),F={title:\"IronBite\",slug:\"iron-bite\",summary:\"Landing Page for a fictional protein bar manufacturer\",date:\"2026-02-10\",tags:[\"HTML\",\"Landing Page\"],stack:[\"HTML\",\"CSS\",\"JavaScript\"],liveUrl:\"/projects/ironbite/index.html\",cover:\"/images/posts/Ironbite.png\",featured:!0,published:!0};function d(r){let e={a:\"a\",h2:\"h2\",li:\"li\",p:\"p\",ul:\"ul\",...r.components};return(0,n.jsxs)(n.Fragment,{children:[(0,n.jsx)(e.h2,{id:\"the-challenge\",children:(0,n.jsx)(e.a,{href:\"#the-challenge\",children:\"The Challenge\"})}),`\n`,(0,n.jsx)(e.p,{children:'\\u201EDesign and develop a bold, high-energy landing page for a fictional premium protein bar brand \\u2013 targeting Gen Z fitness enthusiasts and gym-goers aged 16\\u201328 who resonate with influencer-driven brands like Feastables or Prime.\"'}),`\n`,(0,n.jsx)(e.h2,{id:\"my-approach\",children:(0,n.jsx)(e.a,{href:\"#my-approach\",children:\"My Approach\"})}),`\n`,(0,n.jsxs)(e.ul,{children:[`\n`,(0,n.jsx)(e.li,{children:\"Research: Analysed top-performing Gen Z food & fitness brands (Feastables, Prime, Barebells, Grenade) \\u2013 identifying patterns: dark themes, oversized typography, neon accents, aggressive CTAs\"}),`\n`,(0,n.jsx)(e.li,{children:\"Design: Dark theme with vibrant neon-green accents \\u2013 because the target audience associates dark, bold aesthetics with premium fitness products and energy\"}),`\n`,(0,n.jsx)(e.li,{children:\"Structure: Impact-first page architecture: Full-screen Hero \\u2192 Bold Product Grid \\u2192 Nutrition Facts \\u2192 Social Proof \\u2192 Reviews \\u2192 CTA\"}),`\n`]}),`\n`,(0,n.jsx)(e.h2,{id:\"key-features\",children:(0,n.jsx)(e.a,{href:\"#key-features\",children:\"Key Features\"})}),`\n`,(0,n.jsxs)(e.ul,{children:[`\n`,(0,n.jsx)(e.li,{children:\"Dark UI with neon-green accent color for high contrast and visual impact\"}),`\n`,(0,n.jsx)(e.li,{children:\"Fully responsive layout (Mobile First)\"}),`\n`,(0,n.jsx)(e.li,{children:\"Scroll-triggered animations and staggered fade-ins\"}),`\n`,(0,n.jsx)(e.li,{children:\"Floating product image animation in the Hero section\"}),`\n`,(0,n.jsx)(e.li,{children:\"Marquee trust bar with continuous scroll\"}),`\n`,(0,n.jsx)(e.li,{children:\"Counter animations for social proof numbers\"}),`\n`,(0,n.jsx)(e.li,{children:\"Conversion-optimized CTA placement throughout the page\"}),`\n`]}),`\n`,(0,n.jsx)(\"iframe\",{src:\"/projects/ironbite/index.html\",style:{width:\"100%\",height:480,border:0,borderRadius:8}})]})}function h(r={}){let{wrapper:e}=r.components||{};return e?(0,n.jsx)(e,{...r,children:(0,n.jsx)(d,{...r})}):d(r)}return x(w);})();\n;return Component;"
+    },
+    "_id": "projects/ironbite.mdx",
+    "_raw": {
+      "sourceFilePath": "projects/ironbite.mdx",
+      "sourceFileName": "ironbite.mdx",
+      "sourceFileDir": "projects",
+      "contentType": "mdx",
+      "flattenedPath": "projects/ironbite"
+    },
+    "type": "Project",
+    "url": "/projects/iron-bite",
+    "dateObj": "2026-02-10T00:00:00.000Z",
+    "readingTime": {
+      "text": "1 min read",
+      "minutes": 0.885,
+      "time": 53100,
+      "words": 177
     }
   },
   {

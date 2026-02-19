@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IRON BITE – Fuel Your Grind</title>
+  <meta name="description" content="IRON BITE – Der Proteinriegel, der nicht nach Pappe schmeckt. 32g Protein. Zero Kompromisse. Made in Germany." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bg: '#0A0A0A',
+            'bg-2': '#141414',
+            'bg-card': '#1A1A1A',
+            accent: '#FF6B00',
+            'accent-hover': '#FF8533',
+            'accent-dark': '#CC5500',
+            'text-muted': '#A0A0A0',
+            trust: '#22C55E',
+          },
+          fontFamily: {
+            grotesk: ['Space Grotesk', 'sans-serif'],
+            inter: ['Inter', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background-color: #0A0A0A; color: #fff; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+
+    /* ── Grain Overlay ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: 0.35;
+    }
+
+    /* ── Typography ── */
+    .font-grotesk { font-family: 'Space Grotesk', sans-serif; }
+    h1,h2,h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: -0.02em; }
+
+    /* ── Marquee ── */
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .marquee-track { display: flex; width: max-content; animation: marquee 28s linear infinite; }
+    .marquee-track:hover { animation-play-state: paused; }
+
+    /* ── Float ── */
+    @keyframes float {
+      0%,100% { transform: translateY(0) rotate(-2deg); }
+      50%      { transform: translateY(-18px) rotate(-2deg); }
+    }
+    .float-img { animation: float 3.6s ease-in-out infinite; }
+
+    /* ── Scroll Reveal ── */
+    .reveal { opacity: 0; transform: translateY(36px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-left  { opacity: 0; transform: translateX(-48px); transition: opacity 0.75s ease, transform 0.75s ease; }
+    .reveal-right { opacity: 0; transform: translateX(48px);  transition: opacity 0.75s ease, transform 0.75s ease; }
+    .reveal-left.visible, .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+    /* ── Stagger delays ── */
+    .delay-1 { transition-delay: 0.10s; }
+    .delay-2 { transition-delay: 0.22s; }
+    .delay-3 { transition-delay: 0.34s; }
+    .delay-4 { transition-delay: 0.46s; }
+
+    /* ── Glow ── */
+    .glow-btn { box-shadow: 0 0 0 rgba(255,107,0,0); transition: box-shadow 0.3s ease, background 0.3s ease; }
+    .glow-btn:hover { box-shadow: 0 0 28px rgba(255,107,0,0.65); background-color: #FF8533; }
+
+    /* ── Navbar ── */
+    #navbar { transition: background 0.4s ease, backdrop-filter 0.4s ease; }
+    #navbar.scrolled { background: rgba(10,10,10,0.85) !important; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.08); }
+
+    /* ── Hero Glow ── */
+    .hero-glow {
+      position: absolute; width: 420px; height: 420px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,107,0,0.22) 0%, transparent 70%);
+      filter: blur(40px); pointer-events: none;
+    }
+
+    /* ── Product Cards ── */
+    .product-card { transition: transform 0.35s ease, box-shadow 0.35s ease; }
+    .product-card:hover { transform: translateY(-10px); box-shadow: 0 28px 60px rgba(0,0,0,0.6); }
+    .product-card:hover .card-img { transform: scale(1.06); }
+    .card-img { transition: transform 0.4s ease; }
+
+    /* ── Glassmorphism ── */
+    .glass {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.09);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 1.25rem;
+    }
+
+    /* ── Feature zigzag line ── */
+    .feature-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,107,0,0.12); border: 1px solid rgba(255,107,0,0.3); border-radius: 999px; padding: 4px 14px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #FF6B00; }
+
+    /* ── Instagram grid hover ── */
+    .ig-item { position: relative; overflow: hidden; aspect-ratio: 1; border-radius: 12px; }
+    .ig-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; display: block; }
+    .ig-item:hover img { transform: scale(1.08); }
+    .ig-overlay { position: absolute; inset: 0; background: rgba(10,10,10,0.6); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease; }
+    .ig-item:hover .ig-overlay { opacity: 1; }
+
+    /* ── Mobile menu ── */
+    #mobile-menu { transition: opacity 0.3s ease, transform 0.3s ease; }
+    #mobile-menu.hidden { opacity: 0; pointer-events: none; transform: translateY(-16px); }
+    #mobile-menu:not(.hidden) { opacity: 1; pointer-events: all; transform: translateY(0); }
+
+    /* ── Scroll progress bar ── */
+    #scroll-progress { position: fixed; top: 0; left: 0; height: 3px; background: #FF6B00; z-index: 9999; transition: width 0.1s linear; width: 0%; }
+
+    /* ── Count-up stat big number ── */
+    .stat-num { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(56px, 8vw, 96px); color: #FF6B00; line-height: 1; }
+
+    /* ── Section padding ── */
+    .section-py { padding-top: 6rem; padding-bottom: 6rem; }
+    @media (max-width:640px) { .section-py { padding-top: 4rem; padding-bottom: 4rem; } }
+
+    /* ── Marquee band rotation ── */
+    .marquee-band { transform: rotate(-1.5deg); margin: 0 -20px; }
+
+    /* ── Horizontal scroll on mobile ── */
+    @media (max-width: 768px) {
+      .mobile-scroll { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 1rem; padding-bottom: 1rem; }
+      .mobile-scroll::-webkit-scrollbar { display: none; }
+      .mobile-scroll > * { min-width: 82%; scroll-snap-align: start; }
+    }
+
+    /* ── Number strike ── */
+    .strike { text-decoration: line-through; color: #A0A0A0; }
+
+    /* ── Trust icons row ── */
+    .trust-icon { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; color: #A0A0A0; }
+
+    /* ── Logo band ── */
+    .logo-band-item { opacity: 0.4; filter: grayscale(1); font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 0.12em; text-transform: uppercase; white-space: nowrap; transition: opacity 0.3s; cursor: default; }
+    .logo-band-item:hover { opacity: 0.7; }
+
+    /* ── Announcement bar ── */
+    #announcement-bar { transition: max-height 0.4s ease, opacity 0.4s ease; max-height: 60px; overflow: hidden; }
+    #announcement-bar.closed { max-height: 0; opacity: 0; }
+
+    /* hidden utility */
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body class="bg-bg text-white">
+
+  <!-- Scroll Progress -->
+  <div id="scroll-progress"></div>
+
+  <!-- ═══════════════════════════════════════════
+       1. ANNOUNCEMENT BAR
+  ═══════════════════════════════════════════ -->
+  <div id="announcement-bar" class="bg-accent relative z-50">
+    <div class="max-w-7xl mx-auto px-6 py-2.5 flex items-center justify-center gap-3 text-white">
+      <p class="text-xs font-bold uppercase tracking-widest text-center leading-tight">
+        🔥 LIMITED DROP: SALTED CARAMEL CRUNCH – JETZT VERFÜGBAR &nbsp;|&nbsp; 🚚 FREE SHIPPING AB 30€
+      </p>
+      <button id="close-announcement" aria-label="Schließen" class="absolute right-4 top-1/2 -translate-y-1/2 text-white/80 hover:text-white text-lg leading-none transition-colors">✕</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       2. NAVBAR
+  ═══════════════════════════════════════════ -->
+  <nav id="navbar" class="sticky top-0 z-40 w-full px-6 py-4">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <!-- Logo -->
+      <a href="#" class="font-grotesk font-black text-2xl uppercase tracking-tight text-white" style="text-shadow: 2px 2px 0 #FF6B00, 4px 4px 0 rgba(255,107,0,0.3);">
+        IRON BITE
+      </a>
+      <!-- Desktop Nav -->
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#flavors"    class="text-sm font-semibold uppercase tracking-widest text-text-muted hover:text-white transition-colors">Flavors</a>
+        <a href="#nutrition"  class="text-sm font-semibold uppercase tracking-widest text-text-muted hover:text-white transition-colors">Nutrition</a>
+        <a href="#about"      class="text-sm font-semibold uppercase tracking-widest text-text-muted hover:text-white transition-colors">About</a>
+        <a href="#reviews"    class="text-sm font-semibold uppercase tracking-widest text-text-muted hover:text-white transition-colors">Reviews</a>
+      </div>
+      <!-- CTA -->
+      <div class="flex items-center gap-4">
+        <a href="#bundle" class="hidden md:inline-flex items-center bg-accent text-white font-bold uppercase tracking-widest text-sm px-6 py-3 rounded-full glow-btn">
+          ORDER NOW
+        </a>
+        <!-- Hamburger -->
+        <button id="hamburger" aria-label="Menü öffnen" class="md:hidden flex flex-col gap-1.5 p-2">
+          <span class="ham-line block h-0.5 w-6 bg-white transition-all duration-300"></span>
+          <span class="ham-line block h-0.5 w-6 bg-white transition-all duration-300"></span>
+          <span class="ham-line block h-0.5 w-4 bg-white transition-all duration-300"></span>
+        </button>
+      </div>
+    </div>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-bg-2 border-t border-white/10 px-6 py-8 flex flex-col gap-6">
+      <a href="#flavors"   class="text-2xl font-black uppercase tracking-wide hover:text-accent transition-colors" onclick="closeMobileMenu()">Flavors</a>
+      <a href="#nutrition" class="text-2xl font-black uppercase tracking-wide hover:text-accent transition-colors" onclick="closeMobileMenu()">Nutrition</a>
+      <a href="#about"     class="text-2xl font-black uppercase tracking-wide hover:text-accent transition-colors" onclick="closeMobileMenu()">About</a>
+      <a href="#reviews"   class="text-2xl font-black uppercase tracking-wide hover:text-accent transition-colors" onclick="closeMobileMenu()">Reviews</a>
+      <a href="#bundle"    class="mt-4 inline-flex justify-center bg-accent text-white font-bold uppercase tracking-widest text-sm px-6 py-4 rounded-full glow-btn" onclick="closeMobileMenu()">ORDER NOW</a>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════
+       3. HERO SECTION
+  ═══════════════════════════════════════════ -->
+  <section id="hero" class="relative min-h-screen flex items-center overflow-hidden bg-bg" style="padding-top:0;">
+    <!-- Background glow -->
+    <div class="hero-glow" style="top:50%;right:8%;transform:translateY(-50%);"></div>
+    <div class="hero-glow" style="bottom:10%;left:5%;width:280px;height:280px;background:radial-gradient(circle,rgba(255,107,0,0.10) 0%,transparent 70%);"></div>
+    <!-- Grid lines decoration -->
+    <div class="absolute inset-0 pointer-events-none" style="background-image: linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px), linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px); background-size: 64px 64px;"></div>
+
+    <div class="max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 gap-12 items-center py-24 lg:py-0">
+      <!-- Text -->
+      <div class="z-10">
+        <!-- Badge -->
+        <div class="reveal inline-flex items-center gap-2 border border-accent/50 text-accent text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6">
+          <span class="w-2 h-2 bg-accent rounded-full animate-pulse"></span>
+          NEW FORMULA · 32G PROTEIN
+        </div>
+        <!-- H1 -->
+        <h1 class="reveal delay-1 font-grotesk font-black uppercase leading-none mb-6"
+            style="font-size: clamp(44px, 7vw, 88px); letter-spacing:-0.03em; text-shadow: 0 0 80px rgba(255,107,0,0.12);">
+          FUEL<br/>
+          <span style="color:#FF6B00;">YOUR</span><br/>
+          GRIND.
+        </h1>
+        <!-- Sub -->
+        <p class="reveal delay-2 text-text-muted text-lg leading-relaxed max-w-md mb-8">
+          Der Proteinriegel, der nicht nach Pappe schmeckt.<br/>
+          <strong class="text-white">32g Protein. Zero Kompromisse.</strong>
+        </p>
+        <!-- Macro Badges -->
+        <div class="reveal delay-3 flex flex-wrap gap-3 mb-10">
+          <span class="flex items-center gap-2 bg-bg-card border border-white/10 text-sm font-bold px-4 py-2 rounded-full"><span>💪</span> 32g Protein</span>
+          <span class="flex items-center gap-2 bg-bg-card border border-white/10 text-sm font-bold px-4 py-2 rounded-full"><span>🍬</span> 1g Zucker</span>
+          <span class="flex items-center gap-2 bg-bg-card border border-white/10 text-sm font-bold px-4 py-2 rounded-full"><span>🔥</span> 210 kcal</span>
+        </div>
+        <!-- CTAs -->
+        <div class="reveal delay-4 flex flex-wrap gap-4">
+          <a href="#bundle" class="bg-accent text-white font-black uppercase tracking-widest text-sm px-8 py-4 rounded-full glow-btn inline-flex items-center gap-2">
+            JETZT BESTELLEN
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+          </a>
+          <a href="#nutrition" class="border border-white/20 text-white font-bold uppercase tracking-widest text-sm px-8 py-4 rounded-full hover:border-accent/60 hover:text-accent transition-all duration-300 inline-flex items-center">
+            NÄHRWERTE ANSEHEN
+          </a>
+        </div>
+      </div>
+
+      <!-- Product Image -->
+      <div class="relative flex items-center justify-center z-10 mt-8 lg:mt-0">
+        <div class="hero-glow" style="position:absolute;width:380px;height:380px;top:50%;left:50%;transform:translate(-50%,-50%);"></div>
+        <!-- Floating ingredients deco -->
+        <span class="absolute text-3xl" style="top:8%;left:5%;animation:float 4.1s ease-in-out infinite 0.3s;">🥜</span>
+        <span class="absolute text-2xl" style="top:15%;right:10%;animation:float 3.5s ease-in-out infinite 0.8s;">🍫</span>
+        <span class="absolute text-4xl" style="bottom:20%;left:2%;animation:float 4.4s ease-in-out infinite 0.5s;">🫘</span>
+        <span class="absolute text-3xl" style="bottom:10%;right:5%;animation:float 3.8s ease-in-out infinite 1.1s;">⚡</span>
+        <span class="absolute text-2xl" style="top:45%;left:-4%;animation:float 5s ease-in-out infinite 0.2s;">🌰</span>
+
+        <img
+          src="https://images.unsplash.com/photo-1622484212850-eb596d769edc?w=600&q=80"
+          alt="IRON BITE Proteinriegel – Salted Caramel Crunch"
+          class="float-img relative z-10 max-h-[480px] w-auto object-contain drop-shadow-2xl"
+          loading="eager"
+          onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1606914501449-5a96b6ce24ca?w=600&q=80';"
+        />
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40">
+      <span class="text-xs uppercase tracking-widest">Scroll</span>
+      <div class="w-px h-12 bg-gradient-to-b from-white to-transparent"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       4. MARQUEE BAND
+  ═══════════════════════════════════════════ -->
+  <div class="relative z-10 py-3 marquee-band overflow-hidden bg-accent">
+    <div class="marquee-track whitespace-nowrap">
+      <span class="text-white font-black uppercase text-sm tracking-widest px-8">
+        💪 32G PROTEIN &nbsp;•&nbsp; ZERO ADDED SUGAR &nbsp;•&nbsp; REAL INGREDIENTS &nbsp;•&nbsp; NO BULLSH*T &nbsp;•&nbsp; GLUTEN FREE &nbsp;•&nbsp; MADE IN GERMANY &nbsp;•&nbsp;
+        💪 32G PROTEIN &nbsp;•&nbsp; ZERO ADDED SUGAR &nbsp;•&nbsp; REAL INGREDIENTS &nbsp;•&nbsp; NO BULLSH*T &nbsp;•&nbsp; GLUTEN FREE &nbsp;•&nbsp; MADE IN GERMANY &nbsp;•&nbsp;
+        💪 32G PROTEIN &nbsp;•&nbsp; ZERO ADDED SUGAR &nbsp;•&nbsp; REAL INGREDIENTS &nbsp;•&nbsp; NO BULLSH*T &nbsp;•&nbsp; GLUTEN FREE &nbsp;•&nbsp; MADE IN GERMANY &nbsp;•&nbsp;
+        💪 32G PROTEIN &nbsp;•&nbsp; ZERO ADDED SUGAR &nbsp;•&nbsp; REAL INGREDIENTS &nbsp;•&nbsp; NO BULLSH*T &nbsp;•&nbsp; GLUTEN FREE &nbsp;•&nbsp; MADE IN GERMANY &nbsp;•&nbsp;
+      </span>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       5. PRODUCT SHOWCASE – PICK YOUR FLAVOR
+  ═══════════════════════════════════════════ -->
+  <section id="flavors" class="section-py bg-bg-2 relative z-10">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16 reveal">
+        <h2 class="font-grotesk text-5xl md:text-6xl font-black uppercase mb-4" style="letter-spacing:-0.02em;">PICK YOUR FLAVOR</h2>
+        <p class="text-text-muted text-lg">Drei Geschmäcker. Null Kompromisse.</p>
+      </div>
+
+      <!-- Cards -->
+      <div class="grid md:grid-cols-3 gap-6 mobile-scroll md:mobile-scroll-off">
+
+        <!-- Card 1: Dark Chocolate -->
+        <div class="product-card bg-bg-card rounded-2xl overflow-hidden border border-white/5 flex flex-col reveal delay-1">
+          <div class="relative p-8 flex justify-center items-center" style="background: linear-gradient(135deg, #1a1007 0%, #2a1a09 100%); min-height:220px;">
+            <div style="position:absolute;inset:0;background:radial-gradient(circle at 60% 50%,rgba(139,105,20,0.25) 0%,transparent 65%);"></div>
+            <img src="https://images.unsplash.com/photo-1606914501449-5a96b6ce24ca?w=400&q=80"
+                 alt="Dark Chocolate Crunch Proteinriegel" loading="lazy"
+                 class="card-img relative z-10 h-36 object-contain drop-shadow-xl"
+                 onerror="this.src='https://images.unsplash.com/photo-1548907040-4baa42d10919?w=400&q=80';">
+            <span class="absolute top-4 right-4 text-xs font-black uppercase tracking-widest px-3 py-1 rounded-full" style="background:rgba(139,105,20,0.35);color:#D4A017;border:1px solid rgba(212,160,23,0.4);">BESTSELLER</span>
+          </div>
+          <div class="p-6 flex flex-col flex-1">
+            <h3 class="font-grotesk font-black uppercase text-xl mb-2" style="letter-spacing:-0.01em;">DARK CHOCOLATE CRUNCH</h3>
+            <p class="text-text-muted text-sm mb-5 leading-relaxed">Dunkle Schokolade trifft auf knusprige Protein-Crispies.</p>
+            <div class="flex gap-4 mb-6">
+              <div class="text-center"><div class="font-grotesk font-bold text-lg text-accent">32g</div><div class="text-text-muted text-xs uppercase tracking-wide">Protein</div></div>
+              <div class="w-px bg-white/10"></div>
+              <div class="text-center"><div class="font-grotesk font-bold text-lg text-white">1g</div><div class="text-text-muted text-xs uppercase tracking-wide">Zucker</div></div>
+              <div class="w-px bg-white/10"></div>
+              <div class="text-center"><div class="font-grotesk font-bold text-lg text-white">208</div><div class="text-text-muted text-xs uppercase tracking-wide">kcal</div></div>
+            </div>
+            <div class="mt-auto">
+              <div class="flex items-end justify-between mb-4">
+                <div><span class="font-grotesk font-black text-2xl">€2,99</span><span class="text-text-muted text-sm ml-2">/ Riegel</span></div>
+                <span class="text-trust text-xs font-semibold">✓ Auf Lager</span>
+              </div>
+              <button class="w-full bg-accent hover:bg-accent-hover text-white font-black uppercase tracking-widest text-sm py-3.5 rounded-xl glow-btn transition-all">IN DEN WARENKORB</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Salted Caramel -->
+        <div class="product-card bg-bg-card rounded-2xl overflow-hidden border border-white/5 flex flex-col reveal delay-2">
+          <div class="relative p-8 flex justify-center items-center" style="background: linear-gradient(135deg, #1f1206 0%, #2d1a08 100%); min-height:220px;">
+            <div style="position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(212,130,12,0.3) 0%,transparent 65%);"></div>
+            <img src="https://images.unsplash.com/photo-1604145559206-e3bce7e2e9c4?w=400&q=80"
+                 alt="Salted Caramel Proteinriegel" loading="lazy"
+                 class="card-img relative z-10 h-36 object-contain drop-shadow-xl"
+                 onerror="this.src='https://images.unsplash.com/photo-1548907040-4baa42d10919?w=400&q=80';">
+            <span class="absolute top-4 right-4 text-xs font-black uppercase tracking-widest px-3 py-1 rounded-full" style="background:rgba(212,130,12,0.3);color:#F59E0B;border:1px solid rgba(212,130,12,0.5);">NEW DROP</span>
+          </div>
+          <div class="p-6 flex flex-col flex-1">
+            <h3 class="font-grotesk font-black uppercase text-xl mb-2" style="letter-spacing:-0.01em;">SALTED CARAMEL</h3>
+            <p class="text-text-muted text-sm mb-5 leading-relaxed">Butteriges Karamell meets feines Meersalz. Suchtfaktor: maximal.</p>
+            <div class="flex gap-4 mb-6">
+              <div class="text-center"><div class="font-grotesk font-bold text-lg text-accent">32g</div><div class="text-text-muted text-xs uppercase tracking-wide">Protein</div></div>
+              <div class="w-px bg-white/10"></div>
+              <div class="text-center"><div class="font-grotesk font-bold text-lg text-white">1g</div><div class="text-text-muted text-xs uppercase tracking-wide">Zucker</div></div>
+              <div class="w-px bg-white/10"></div>
+              <div class="text-center"><div class="font-grotesk font-bold text-lg text-white">212</div><div class="text-text-muted text-xs uppercase tracking-wide">kcal</div></div>
+            </div>
+            <div class="mt-auto">
+              <div class="flex items-end justify-between mb-4">
+                <div><span class="font-grotesk font-black text-2xl">€2,99</span><span class="text-text-muted text-sm ml-2">/ Riegel</span></div>
+                <span class="text-trust text-xs font-semibold">✓ Auf Lager</span>
+              </div>
+              <button class="w-full bg-accent hover:bg-accent-hover text-white font-black uppercase tracking-widest text-sm py-3.5 rounded-xl glow-btn transition-all">IN DEN WARENKORB</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: Peanut Butter -->
+        <div class="product-card bg-bg-card rounded-2xl overflow-hidden border border-white/5 flex flex-col reveal delay-3">
+          <div class="relative p-8 flex justify-center items-center" style="background: linear-gradient(135deg, #1a1600 0%, #262000 100%); min-height:220px;">
+            <div style="position:absolute;inset:0;background:radial-gradient(circle at 40% 50%,rgba(196,165,53,0.25) 0%,transparent 65%);"></div>
+            <img src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=400&q=80"
+                 alt="Peanut Butter Smash Proteinriegel" loading="lazy"
+                 class="card-img relative z-10 h-36 object-contain drop-shadow-xl"
+                 onerror="this.src='https://images.unsplash.com/photo-1548907040-4baa42d10919?w=400&q=80';">
+          </div>
+          <div class="p-6 flex flex-col flex-1">
+            <h3 class="font-grotesk font-black uppercase text-xl mb-2" style="letter-spacing:-0.01em;">PEANUT BUTTER SMASH</h3>
+            <p class="text-text-muted text-sm mb-5 leading-relaxed">Cremige Erdnussbutter, geröstet und ready to crush your cravings.</p>
+            <div class="flex gap-4 mb-6">
+              <div class="text-center"><div class="font-grotesk font-bold text-lg text-accent">33g</div><div class="text-text-muted text-xs uppercase tracking-wide">Protein</div></div>
+              <div class="w-px bg-white/10"></div>
+              <div class="text-center"><div class="font-grotesk font-bold text-lg text-white">1g</div><div class="text-text-muted text-xs uppercase tracking-wide">Zucker</div></div>
+              <div class="w-px bg-white/10"></div>
+              <div class="text-center"><div class="font-grotesk font-bold text-lg text-white">215</div><div class="text-text-muted text-xs uppercase tracking-wide">kcal</div></div>
+            </div>
+            <div class="mt-auto">
+              <div class="flex items-end justify-between mb-4">
+                <div><span class="font-grotesk font-black text-2xl">€2,99</span><span class="text-text-muted text-sm ml-2">/ Riegel</span></div>
+                <span class="text-trust text-xs font-semibold">✓ Auf Lager</span>
+              </div>
+              <button class="w-full bg-accent hover:bg-accent-hover text-white font-black uppercase tracking-widest text-sm py-3.5 rounded-xl glow-btn transition-all">IN DEN WARENKORB</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       6. NUTRITION – THE NUMBERS DON'T LIE
+  ═══════════════════════════════════════════ -->
+  <section id="nutrition" class="section-py relative z-10 overflow-hidden" style="background:linear-gradient(180deg,#0A0A0A 0%,#111111 50%,#0A0A0A 100%);">
+    <!-- Watermark product image -->
+    <div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-5">
+      <img src="https://images.unsplash.com/photo-1606914501449-5a96b6ce24ca?w=800&q=60"
+           alt="" aria-hidden="true" loading="lazy" class="w-full max-w-2xl object-contain" />
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+      <div class="text-center mb-16 reveal">
+        <h2 class="font-grotesk text-5xl md:text-6xl font-black uppercase mb-4">THE NUMBERS<br/>DON'T LIE</h2>
+        <p class="text-text-muted">Wir reden nicht. Wir liefern.</p>
+      </div>
+
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-4">
+        <div class="text-center reveal delay-1">
+          <div class="stat-num" data-target="32">0</div>
+          <div class="text-white font-bold text-sm uppercase tracking-widest mt-2">Protein</div>
+          <div class="text-text-muted text-xs mt-1">pro Riegel</div>
+          <div class="font-grotesk text-accent text-xl font-bold mt-1">g</div>
+        </div>
+        <div class="text-center reveal delay-2">
+          <div class="stat-num" data-target="1">0</div>
+          <div class="text-white font-bold text-sm uppercase tracking-widest mt-2">Zucker</div>
+          <div class="text-text-muted text-xs mt-1">nur ein Gramm</div>
+          <div class="font-grotesk text-accent text-xl font-bold mt-1">g</div>
+        </div>
+        <div class="text-center reveal delay-3">
+          <div class="stat-num" data-target="210">0</div>
+          <div class="text-white font-bold text-sm uppercase tracking-widest mt-2">Kalorien</div>
+          <div class="text-text-muted text-xs mt-1">kontrolliert</div>
+          <div class="font-grotesk text-accent text-xl font-bold mt-1">kcal</div>
+        </div>
+        <div class="text-center reveal delay-4">
+          <div class="stat-num" data-target="0">0</div>
+          <div class="text-white font-bold text-sm uppercase tracking-widest mt-2">Künstliche</div>
+          <div class="text-text-muted text-xs mt-1">Zusätze</div>
+          <div class="font-grotesk text-accent text-xl font-bold mt-1">×</div>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div class="mt-16 pt-16 border-t border-white/10 grid md:grid-cols-3 gap-6 reveal">
+        <div class="glass p-6 text-center">
+          <div class="text-3xl mb-3">🌾</div>
+          <div class="font-grotesk font-bold uppercase text-sm mb-2">Glutenfrei</div>
+          <p class="text-text-muted text-xs leading-relaxed">Zertifiziert glutenfrei – für jeden geeignet.</p>
+        </div>
+        <div class="glass p-6 text-center">
+          <div class="text-3xl mb-3">🇩🇪</div>
+          <div class="font-grotesk font-bold uppercase text-sm mb-2">Made in Germany</div>
+          <p class="text-text-muted text-xs leading-relaxed">Produziert nach höchsten Qualitätsstandards.</p>
+        </div>
+        <div class="glass p-6 text-center">
+          <div class="text-3xl mb-3">🔬</div>
+          <div class="font-grotesk font-bold uppercase text-sm mb-2">Lab-getestet</div>
+          <p class="text-text-muted text-xs leading-relaxed">Jede Charge wird unabhängig geprüft.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       7. FEATURES – BUILT DIFFERENT
+  ═══════════════════════════════════════════ -->
+  <section id="about" class="section-py bg-bg-2 relative z-10">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-20 reveal">
+        <h2 class="font-grotesk text-5xl md:text-6xl font-black uppercase mb-4">BUILT DIFFERENT</h2>
+        <p class="text-text-muted text-lg">Drei Gründe, warum IRON BITE kein normaler Proteinriegel ist.</p>
+      </div>
+
+      <!-- Feature 1: Img left -->
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-20 lg:mb-28">
+        <div class="reveal-left">
+          <div class="rounded-2xl overflow-hidden aspect-video lg:aspect-square">
+            <img src="https://images.unsplash.com/photo-1622484211828-17230f29dfa8?w=800&q=80"
+                 alt="Echte Zutaten – Nüsse, Schokolade und Karamell für IRON BITE"
+                 loading="lazy" class="w-full h-full object-cover" />
+          </div>
+        </div>
+        <div class="reveal-right">
+          <div class="feature-badge mb-5">01 / Real Ingredients</div>
+          <h3 class="font-grotesk font-black uppercase text-3xl lg:text-4xl mb-6" style="letter-spacing:-0.01em;">KEINE FÜLLSTOFFE.<br/>NUR ECHTES FOOD.</h3>
+          <p class="text-text-muted text-lg leading-relaxed mb-8">
+            Keine Füllstoffe, keine leeren Versprechen. Nur echte Zutaten, die du aussprechen kannst – und die dein Körper auch wirklich braucht.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="bg-bg border border-white/10 text-sm font-semibold px-4 py-2 rounded-full">Whey Protein</span>
+            <span class="bg-bg border border-white/10 text-sm font-semibold px-4 py-2 rounded-full">Cashews</span>
+            <span class="bg-bg border border-white/10 text-sm font-semibold px-4 py-2 rounded-full">Kakao 72%</span>
+            <span class="bg-bg border border-white/10 text-sm font-semibold px-4 py-2 rounded-full">Meersalz</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 2: Img right -->
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-20 lg:mb-28">
+        <div class="reveal-left order-2 lg:order-1">
+          <div class="feature-badge mb-5">02 / Performance Fuel</div>
+          <h3 class="font-grotesk font-black uppercase text-3xl lg:text-4xl mb-6" style="letter-spacing:-0.01em;">IMMER DANN,<br/>WENN DU ES BRAUCHST.</h3>
+          <p class="text-text-muted text-lg leading-relaxed mb-8">
+            Ob Pre-Workout, Post-Workout oder 3-Uhr-Nachmittag-Tief – IRON BITE liefert genau das, was du brauchst. Wann immer. Wo immer.
+          </p>
+          <ul class="space-y-3">
+            <li class="flex items-center gap-3 text-text-muted"><span class="text-accent font-bold text-lg">→</span> Schnelle Proteinverfügbarkeit durch Whey-Blend</li>
+            <li class="flex items-center gap-3 text-text-muted"><span class="text-accent font-bold text-lg">→</span> Komplexe Kohlenhydrate für anhaltende Energie</li>
+            <li class="flex items-center gap-3 text-text-muted"><span class="text-accent font-bold text-lg">→</span> Kein Zuckertief nach dem Genuss</li>
+          </ul>
+        </div>
+        <div class="reveal-right order-1 lg:order-2">
+          <div class="rounded-2xl overflow-hidden aspect-video lg:aspect-square">
+            <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=80"
+                 alt="Gym Workout – IRON BITE Performance Fuel"
+                 loading="lazy" class="w-full h-full object-cover" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 3: Img left -->
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div class="reveal-left">
+          <div class="rounded-2xl overflow-hidden aspect-video lg:aspect-square">
+            <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&q=80"
+                 alt="Nachhaltige Verpackung und Umweltbewusstsein bei IRON BITE"
+                 loading="lazy" class="w-full h-full object-cover" />
+          </div>
+        </div>
+        <div class="reveal-right">
+          <div class="feature-badge mb-5">03 / Nachhaltig</div>
+          <h3 class="font-grotesk font-black uppercase text-3xl lg:text-4xl mb-6" style="letter-spacing:-0.01em;">GUT FÜR DICH.<br/>GUT FÜR DIE ERDE.</h3>
+          <p class="text-text-muted text-lg leading-relaxed mb-8">
+            Recycelbare Verpackung, kurze Lieferwege, CO₂-kompensierter Versand. Wir machen das Richtige – für dich und für den Planeten.
+          </p>
+          <div class="inline-flex items-center gap-3 bg-trust/10 border border-trust/30 text-trust px-5 py-3 rounded-full">
+            <span class="text-lg">🌱</span>
+            <span class="font-bold uppercase tracking-wider text-sm">Climate Neutral Certified</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       8. SOCIAL PROOF / TRUST
+  ═══════════════════════════════════════════ -->
+  <section class="section-py bg-bg relative z-10">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-12 reveal">
+        <h2 class="font-grotesk text-4xl md:text-5xl font-black uppercase mb-4">TRUSTED BY 50.000+<br/>ATHLETES</h2>
+        <p class="text-text-muted">Featured in</p>
+      </div>
+
+      <!-- Logo band -->
+      <div class="overflow-hidden mb-12">
+        <div class="marquee-track" style="animation-duration:22s;">
+          <div class="flex gap-12 items-center px-6">
+            <span class="logo-band-item">MEN'S HEALTH</span>
+            <span class="logo-band-item">·</span>
+            <span class="logo-band-item">FITBOOK</span>
+            <span class="logo-band-item">·</span>
+            <span class="logo-band-item">SHAPE</span>
+            <span class="logo-band-item">·</span>
+            <span class="logo-band-item">RUNNER'S WORLD</span>
+            <span class="logo-band-item">·</span>
+            <span class="logo-band-item">CHIP</span>
+            <span class="logo-band-item">·</span>
+            <span class="logo-band-item">BODYBUILDING.COM</span>
+            <span class="logo-band-item">·</span>
+            <span class="logo-band-item">MEN'S HEALTH</span>
+            <span class="logo-band-item">·</span>
+            <span class="logo-band-item">FITBOOK</span>
+            <span class="logo-band-item">·</span>
+            <span class="logo-band-item">SHAPE</span>
+            <span class="logo-band-item">·</span>
+            <span class="logo-band-item">RUNNER'S WORLD</span>
+            <span class="logo-band-item">·</span>
+            <span class="logo-band-item">CHIP</span>
+            <span class="logo-band-item">·</span>
+            <span class="logo-band-item">BODYBUILDING.COM</span>
+            <span class="logo-band-item">·</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="grid grid-cols-3 gap-6 reveal">
+        <div class="glass p-6 lg:p-8 text-center">
+          <div class="font-grotesk font-black text-3xl lg:text-4xl text-accent mb-2">50.000+</div>
+          <div class="text-text-muted text-sm uppercase tracking-widest">Zufriedene Kunden</div>
+        </div>
+        <div class="glass p-6 lg:p-8 text-center">
+          <div class="font-grotesk font-black text-3xl lg:text-4xl text-accent mb-2">4.9 / 5</div>
+          <div class="text-text-muted text-sm uppercase tracking-widest">Ø Bewertung</div>
+        </div>
+        <div class="glass p-6 lg:p-8 text-center">
+          <div class="font-grotesk font-black text-3xl lg:text-4xl text-accent mb-2">500+</div>
+          <div class="text-text-muted text-sm uppercase tracking-widest">5-Sterne Reviews</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       9. TESTIMONIALS – REAL TALK
+  ═══════════════════════════════════════════ -->
+  <section id="reviews" class="section-py bg-bg-2 relative z-10">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16 reveal">
+        <h2 class="font-grotesk text-5xl md:text-6xl font-black uppercase mb-4">REAL TALK</h2>
+        <p class="text-text-muted">Was unsere Community wirklich sagt.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 mobile-scroll md:mobile-scroll-off">
+
+        <div class="glass p-6 lg:p-8 flex flex-col reveal delay-1">
+          <div class="flex gap-1 mb-4" aria-label="5 von 5 Sternen">
+            <span class="text-accent text-lg">★★★★★</span>
+          </div>
+          <p class="text-white leading-relaxed mb-6 flex-1 text-[15px]">
+            "Endlich ein Proteinriegel, der nicht nach Chemie schmeckt. Der Salted Caramel ist ein absoluter Game-Changer. Bestelle schon seit 6 Monaten."
+          </p>
+          <div class="flex items-center gap-3 pt-4 border-t border-white/10">
+            <div class="w-10 h-10 rounded-full bg-accent/20 flex items-center justify-center text-accent font-bold">M</div>
+            <div>
+              <div class="font-bold text-sm">Max K.</div>
+              <div class="text-text-muted text-xs">@max.fitness</div>
+            </div>
+            <span class="ml-auto text-trust text-xs font-semibold flex items-center gap-1"><span>✓</span> Verifizierter Kauf</span>
+          </div>
+        </div>
+
+        <div class="glass p-6 lg:p-8 flex flex-col reveal delay-2">
+          <div class="flex gap-1 mb-4" aria-label="5 von 5 Sternen">
+            <span class="text-accent text-lg">★★★★★</span>
+          </div>
+          <p class="text-white leading-relaxed mb-6 flex-1 text-[15px]">
+            "Dark Chocolate Crunch vor jedem Training – das ist mein Pre-Workout-Ritual. 32g Protein ohne den süßen Chemie-Nachgeschmack. Respect."
+          </p>
+          <div class="flex items-center gap-3 pt-4 border-t border-white/10">
+            <div class="w-10 h-10 rounded-full bg-accent/20 flex items-center justify-center text-accent font-bold">S</div>
+            <div>
+              <div class="font-bold text-sm">Sara M.</div>
+              <div class="text-text-muted text-xs">@sarafitness_</div>
+            </div>
+            <span class="ml-auto text-trust text-xs font-semibold flex items-center gap-1"><span>✓</span> Verifizierter Kauf</span>
+          </div>
+        </div>
+
+        <div class="glass p-6 lg:p-8 flex flex-col reveal delay-3">
+          <div class="flex gap-1 mb-4" aria-label="5 von 5 Sternen">
+            <span class="text-accent text-lg">★★★★★</span>
+          </div>
+          <p class="text-white leading-relaxed mb-6 flex-1 text-[15px]">
+            "Ich hab so viele Protein-Bars getestet. IRON BITE ist der Einzige, der im Office-Regal steht UND nach dem Training gegessen wird. Peanut Butter Smash > alles."
+          </p>
+          <div class="flex items-center gap-3 pt-4 border-t border-white/10">
+            <div class="w-10 h-10 rounded-full bg-accent/20 flex items-center justify-center text-accent font-bold">L</div>
+            <div>
+              <div class="font-bold text-sm">Luca B.</div>
+              <div class="text-text-muted text-xs">@lb_lifts</div>
+            </div>
+            <span class="ml-auto text-trust text-xs font-semibold flex items-center gap-1"><span>✓</span> Verifizierter Kauf</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       10. BUNDLE CTA – STARTER PACK
+  ═══════════════════════════════════════════ -->
+  <section id="bundle" class="section-py relative z-10 overflow-hidden" style="background: linear-gradient(135deg, #CC5500 0%, #FF6B00 45%, #FF8533 100%);">
+    <!-- Deco shapes -->
+    <div class="absolute top-0 right-0 w-96 h-96 opacity-10" style="background:radial-gradient(circle,#fff 0%,transparent 70%);"></div>
+    <div class="absolute bottom-0 left-0 w-64 h-64 opacity-10" style="background:radial-gradient(circle,#fff 0%,transparent 70%);"></div>
+
+    <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
+      <div class="reveal">
+        <div class="inline-flex items-center gap-2 bg-white/20 text-white text-xs font-black uppercase tracking-widest px-4 py-2 rounded-full mb-6">
+          SAVE 25% &nbsp;🎯
+        </div>
+        <h2 class="font-grotesk font-black uppercase text-5xl lg:text-6xl leading-none mb-6" style="letter-spacing:-0.02em;color:#fff;text-shadow:0 4px 32px rgba(0,0,0,0.2);">
+          STARTER PACK –<br/>ALLE 3 FLAVORS
+        </h2>
+        <p class="text-white/80 text-lg mb-8 leading-relaxed">
+          Probier alle drei Geschmäcker zum Vorteilspreis.<br/>Dein erstes IRON BITE – guaranteed to hit.
+        </p>
+        <div class="flex items-end gap-4 mb-8">
+          <span class="font-grotesk font-black text-5xl text-white">€8,99</span>
+          <span class="font-grotesk font-bold text-2xl text-white/50 line-through mb-1">€11,99</span>
+        </div>
+        <a href="#" class="inline-flex items-center gap-3 bg-bg text-white font-black uppercase tracking-widest text-sm px-10 py-5 rounded-full hover:bg-bg-card transition-all mb-8 group">
+          BUNDLE BESTELLEN
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-1 transition-transform"><path d="m9 18 6-6-6-6"/></svg>
+        </a>
+        <div class="flex flex-wrap gap-6">
+          <span class="trust-icon text-white/70"><span>🚚</span> Kostenloser Versand</span>
+          <span class="trust-icon text-white/70"><span>🔄</span> 30 Tage Rückgabe</span>
+          <span class="trust-icon text-white/70"><span>🔒</span> Sichere Zahlung</span>
+        </div>
+      </div>
+      <div class="reveal delay-2 flex justify-center items-center">
+        <div class="relative">
+          <img src="https://images.unsplash.com/photo-1622484212850-eb596d769edc?w=500&q=80"
+               alt="IRON BITE Starter Pack – Alle 3 Flavors"
+               loading="lazy" class="max-h-96 object-contain drop-shadow-2xl float-img"
+               onerror="this.src='https://images.unsplash.com/photo-1606914501449-5a96b6ce24ca?w=500&q=80';">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       11. INSTAGRAM / COMMUNITY
+  ═══════════════════════════════════════════ -->
+  <section class="section-py bg-bg relative z-10">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-12 reveal">
+        <h2 class="font-grotesk text-5xl md:text-6xl font-black uppercase mb-4">#IRONBITE</h2>
+        <p class="text-text-muted text-lg">Join the pack. Zeig uns dein IRON BITE Moment.</p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mb-10 reveal">
+        <div class="ig-item lg:col-span-2 lg:row-span-2">
+          <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600&q=80" alt="Community Fitness Lifestyle @ironbite" loading="lazy" />
+          <div class="ig-overlay"><span class="text-white text-center"><div class="text-3xl mb-2">📸</div><div class="text-xs font-bold uppercase tracking-widest">@ironbite</div></span></div>
+        </div>
+        <div class="ig-item">
+          <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=400&q=80" alt="Gym Workout @ironbite" loading="lazy" />
+          <div class="ig-overlay"><span class="text-white text-center"><div class="text-2xl mb-1">📸</div><div class="text-xs font-bold uppercase tracking-widest">@ironbite</div></span></div>
+        </div>
+        <div class="ig-item">
+          <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?w=400&q=80" alt="Meal Prep mit IRON BITE" loading="lazy" />
+          <div class="ig-overlay"><span class="text-white text-center"><div class="text-2xl mb-1">📸</div><div class="text-xs font-bold uppercase tracking-widest">@ironbite</div></span></div>
+        </div>
+        <div class="ig-item">
+          <img src="https://images.unsplash.com/photo-1581009137042-c552e485697a?w=400&q=80" alt="Fitness Lifestyle IRON BITE Community" loading="lazy" />
+          <div class="ig-overlay"><span class="text-white text-center"><div class="text-2xl mb-1">📸</div><div class="text-xs font-bold uppercase tracking-widest">@ironbite</div></span></div>
+        </div>
+        <div class="ig-item">
+          <img src="https://images.unsplash.com/photo-1550345332-09e3ac987658?w=400&q=80" alt="Athlete lifestyle IRON BITE" loading="lazy" />
+          <div class="ig-overlay"><span class="text-white text-center"><div class="text-2xl mb-1">📸</div><div class="text-xs font-bold uppercase tracking-widest">@ironbite</div></span></div>
+        </div>
+        <div class="ig-item hidden lg:block">
+          <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=400&q=80" alt="Healthy food lifestyle @ironbite" loading="lazy" />
+          <div class="ig-overlay"><span class="text-white text-center"><div class="text-2xl mb-1">📸</div><div class="text-xs font-bold uppercase tracking-widest">@ironbite</div></span></div>
+        </div>
+        <div class="ig-item hidden lg:block">
+          <img src="https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=400&q=80" alt="Fitness workout @ironbite" loading="lazy" />
+          <div class="ig-overlay"><span class="text-white text-center"><div class="text-2xl mb-1">📸</div><div class="text-xs font-bold uppercase tracking-widest">@ironbite</div></span></div>
+        </div>
+      </div>
+
+      <div class="text-center reveal">
+        <a href="#" class="inline-flex items-center gap-3 border border-white/20 hover:border-accent text-white hover:text-accent font-bold uppercase tracking-widest text-sm px-8 py-4 rounded-full transition-all">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          FOLGE UNS AUF INSTAGRAM
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       12. FOOTER
+  ═══════════════════════════════════════════ -->
+  <footer class="relative z-10 bg-bg border-t border-white/10">
+    <!-- Newsletter -->
+    <div class="border-b border-white/10">
+      <div class="max-w-7xl mx-auto px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div>
+          <p class="font-grotesk font-black uppercase text-lg mb-1">10% RABATT AUF DEINE ERSTE ORDER</p>
+          <p class="text-text-muted text-sm">Kein Spam. Nur Drops, Deals & Gains.</p>
+        </div>
+        <form class="flex w-full md:w-auto gap-3 flex-col sm:flex-row" onsubmit="return false;">
+          <input type="email" placeholder="Deine E-Mail für 10% Rabatt" required
+                 class="bg-bg-card border border-white/10 text-white placeholder-text-muted text-sm px-5 py-3.5 rounded-full focus:outline-none focus:border-accent transition-colors w-full sm:w-72" />
+          <button type="submit" class="bg-accent hover:bg-accent-hover text-white font-bold uppercase tracking-widest text-xs px-6 py-3.5 rounded-full glow-btn whitespace-nowrap transition-all">ANMELDEN</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Main footer grid -->
+    <div class="max-w-7xl mx-auto px-6 py-16 grid sm:grid-cols-2 lg:grid-cols-4 gap-12">
+      <!-- Brand -->
+      <div>
+        <div class="font-grotesk font-black text-2xl uppercase mb-2" style="letter-spacing:-0.02em;text-shadow:2px 2px 0 #FF6B00;">IRON BITE</div>
+        <p class="text-text-muted text-sm mb-6 leading-relaxed">Fuel Your Grind.<br/>32g Protein. Zero Kompromisse.<br/>Made in Germany 🇩🇪</p>
+        <div class="flex gap-4">
+          <!-- Instagram -->
+          <a href="#" aria-label="Instagram" class="w-10 h-10 rounded-full bg-bg-card border border-white/10 flex items-center justify-center text-text-muted hover:text-accent hover:border-accent transition-all">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <!-- TikTok -->
+          <a href="#" aria-label="TikTok" class="w-10 h-10 rounded-full bg-bg-card border border-white/10 flex items-center justify-center text-text-muted hover:text-accent hover:border-accent transition-all">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.16 8.16 0 0 0 4.78 1.54V6.78a4.85 4.85 0 0 1-1.01-.09z"/></svg>
+          </a>
+          <!-- YouTube -->
+          <a href="#" aria-label="YouTube" class="w-10 h-10 rounded-full bg-bg-card border border-white/10 flex items-center justify-center text-text-muted hover:text-accent hover:border-accent transition-all">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23 7s-.3-2-1.2-2.7c-1.1-1.2-2.4-1.2-3-1.3C16.4 3 12 3 12 3s-4.4 0-6.8.1c-.6.1-1.9.1-3 1.3C1.3 5 1 7 1 7S.7 9.1.7 11.3v2c0 2.2.3 4.3.3 4.3s.3 2 1.2 2.7c1.1 1.2 2.6 1.1 3.3 1.2C7.5 21.6 12 21.7 12 21.7s4.4 0 6.8-.2c.6-.1 1.9-.1 3-1.3.9-.7 1.2-2.7 1.2-2.7s.3-2.1.3-4.3v-2C23.3 9.1 23 7 23 7zm-13.5 8.7V8.3l8 3.7-8 3.7z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Shop -->
+      <div>
+        <h3 class="font-grotesk font-bold uppercase text-sm tracking-widest mb-6 text-white">Shop</h3>
+        <ul class="space-y-3">
+          <li><a href="#flavors" class="text-text-muted text-sm hover:text-white transition-colors">Dark Chocolate Crunch</a></li>
+          <li><a href="#flavors" class="text-text-muted text-sm hover:text-white transition-colors">Salted Caramel</a></li>
+          <li><a href="#flavors" class="text-text-muted text-sm hover:text-white transition-colors">Peanut Butter Smash</a></li>
+          <li><a href="#bundle" class="text-text-muted text-sm hover:text-white transition-colors">Starter Pack Bundle</a></li>
+          <li><a href="#"       class="text-text-muted text-sm hover:text-white transition-colors">Abo & Sparen</a></li>
+          <li><a href="#"       class="text-text-muted text-sm hover:text-white transition-colors">Merch</a></li>
+        </ul>
+      </div>
+
+      <!-- Support -->
+      <div>
+        <h3 class="font-grotesk font-bold uppercase text-sm tracking-widest mb-6 text-white">Support</h3>
+        <ul class="space-y-3">
+          <li><a href="#" class="text-text-muted text-sm hover:text-white transition-colors">FAQ</a></li>
+          <li><a href="#" class="text-text-muted text-sm hover:text-white transition-colors">Kontakt</a></li>
+          <li><a href="#" class="text-text-muted text-sm hover:text-white transition-colors">Versand & Retouren</a></li>
+          <li><a href="#nutrition" class="text-text-muted text-sm hover:text-white transition-colors">Nährwert-Tabelle</a></li>
+          <li><a href="#" class="text-text-muted text-sm hover:text-white transition-colors">Zutaten & Allergene</a></li>
+        </ul>
+      </div>
+
+      <!-- Legal -->
+      <div>
+        <h3 class="font-grotesk font-bold uppercase text-sm tracking-widest mb-6 text-white">Rechtliches</h3>
+        <ul class="space-y-3">
+          <li><a href="#" class="text-text-muted text-sm hover:text-white transition-colors">Impressum</a></li>
+          <li><a href="#" class="text-text-muted text-sm hover:text-white transition-colors">Datenschutz</a></li>
+          <li><a href="#" class="text-text-muted text-sm hover:text-white transition-colors">AGB</a></li>
+          <li><a href="#" class="text-text-muted text-sm hover:text-white transition-colors">Widerrufsrecht</a></li>
+          <li><a href="#" class="text-text-muted text-sm hover:text-white transition-colors">Cookie-Einstellungen</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="border-t border-white/10">
+      <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-text-muted text-xs uppercase tracking-widest">© 2026 IRON BITE. ALL RIGHTS RESERVED.</p>
+        <div class="flex items-center gap-3">
+          <span class="text-text-muted text-xs bg-bg-card border border-white/10 px-3 py-1.5 rounded-md">VISA</span>
+          <span class="text-text-muted text-xs bg-bg-card border border-white/10 px-3 py-1.5 rounded-md">MC</span>
+          <span class="text-text-muted text-xs bg-bg-card border border-white/10 px-3 py-1.5 rounded-md">PAYPAL</span>
+          <span class="text-text-muted text-xs bg-bg-card border border-white/10 px-3 py-1.5 rounded-md">KLARNA</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════════════════════════
+       JAVASCRIPT
+  ═══════════════════════════════════════════ -->
+  <script>
+    // ── Announcement bar close ──
+    document.getElementById('close-announcement').addEventListener('click', () => {
+      const bar = document.getElementById('announcement-bar');
+      bar.classList.add('closed');
+    });
+
+    // ── Hamburger menu ──
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    let menuOpen = false;
+    function closeMobileMenu() {
+      menuOpen = false;
+      mobileMenu.classList.add('hidden');
+      hamburger.querySelectorAll('.ham-line').forEach((l,i) => {
+        l.style.transform = '';
+        l.style.opacity = '';
+        l.style.width = i === 2 ? '1rem' : '1.5rem';
+      });
+    }
+    hamburger.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      if (menuOpen) {
+        mobileMenu.classList.remove('hidden');
+        const lines = hamburger.querySelectorAll('.ham-line');
+        lines[0].style.transform = 'translateY(8px) rotate(45deg)';
+        lines[1].style.opacity  = '0';
+        lines[2].style.transform = 'translateY(-8px) rotate(-45deg)';
+        lines[2].style.width = '1.5rem';
+      } else { closeMobileMenu(); }
+    });
+
+    // ── Navbar scroll ──
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+      // scroll progress
+      const prog = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+      document.getElementById('scroll-progress').style.width = prog + '%';
+    }, { passive: true });
+
+    // ── Scroll Reveal (IntersectionObserver) ──
+    const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
+    }, { threshold: 0.15, rootMargin: '0px 0px -48px 0px' });
+    revealEls.forEach(el => revealObs.observe(el));
+
+    // ── Count-up ──
+    function countUp(el, target, duration) {
+      const start = performance.now();
+      function step(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.round(eased * target);
+        if (progress < 1) requestAnimationFrame(step);
+        else el.textContent = target;
+      }
+      requestAnimationFrame(step);
+    }
+
+    const statEls = document.querySelectorAll('.stat-num[data-target]');
+    const countObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const target = parseInt(e.target.dataset.target, 10);
+          countUp(e.target, target, 1800);
+          countObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    statEls.forEach(el => countObs.observe(el));
+  </script>
+</body>
+</html>

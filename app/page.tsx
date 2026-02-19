@@ -62,6 +62,9 @@ export default function HomePage() {
               <MagneticButton className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 text-sm font-medium rounded-md">
                 <Link href="/projects">View Projects →</Link>
               </MagneticButton>
+              <MagneticButton className="border border-white/10 px-4 py-2 text-sm font-medium rounded-md hover:bg-white/5">
+                <Link href="#contact">Contact me</Link>
+              </MagneticButton>
             </div>
           </Reveal>
           <Reveal delay={0.3}>

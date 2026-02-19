@@ -1,8 +1,8 @@
 // components/AboutSection.tsx
 import Image from 'next/image'
-import Link from 'next/link'
+//import Link from 'next/link'
 import Reveal from '@/components/motion/Reveal'
-import MagneticButton from '@/components/ui/MagneticButton'
+//import MagneticButton from '@/components/ui/MagneticButton'
 
 const skills = {
   Frontend: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'HTML/CSS', 'JavaScript'],
@@ -42,14 +42,14 @@ export default function AboutSection() {
 
           <Reveal delay={0.06}>
             <h2 className="mt-2 text-3xl sm:text-4xl font-bold">
-              I’m Patrick Eger — I build efficient, delightful web apps.
+              I’m Patrick Eger — I love building things.
             </h2>
           </Reveal>
 
           <Reveal delay={0.12}>
             <p className="mt-4 text-neutral-300">
-              I specialize in Web-Developement, AI-Automation and Online-Marketing. I care about clean architecture,
-              great UX, and performance. Recently, I’ve build my own projects and projects for some clients.
+              I specialize in Web-Development, AI-Automation and Online-Marketing. I care about consistent designs,
+              great User Experience, and performance. Recently, I’ve build my own projects, like the chrome extension and projects for some clients.
             </p>
           </Reveal>
 
@@ -60,10 +60,10 @@ export default function AboutSection() {
                 <span className="mt-1 h-1.5 w-1.5 rounded-full bg-blue-400" />
                 5+ years building Web-Development projects
               </li>
-              <li className="flex items-start gap-2">
+              {/*<li className="flex items-start gap-2">
                 <span className="mt-1 h-1.5 w-1.5 rounded-full bg-pink-400" />
                 Open source and writing: posts on self-improvement, dev, and productivity
-              </li>
+              </li>*/}
             </ul>
           </Reveal>
 
@@ -89,17 +89,18 @@ export default function AboutSection() {
           </Reveal>
 
           {/* CTAs */}
+          {/*
           <Reveal delay={0.3}>
             <div className="mt-6 flex flex-wrap items-center gap-3">
               <MagneticButton className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 text-sm font-medium rounded-md">
                 <Link href="/projects">View Projects →</Link>
               </MagneticButton>
-              <MagneticButton className="border border-white/10 px-4 py-2 text-sm font-medium rounded-md hover:bg-white/5">
-                <Link href="#contact">Contact me</Link>
+              <MagneticButton className="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 text-sm font-medium rounded-md">
+                <Link href="/blog">Read Blog →</Link>
               </MagneticButton>
 
             </div>
-          </Reveal>
+          </Reveal>*/}
         </div>
       </div>
     </section>
