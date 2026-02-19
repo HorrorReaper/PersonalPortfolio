@@ -1,0 +1,40 @@
+{
+  "title": "Flavor Labs",
+  "slug": "flavor-labs",
+  "summary": "Landing Page for a protein chips manufacturer self-coded",
+  "date": "2026-02-10T00:00:00.000Z",
+  "tags": [
+    "HTML",
+    "Landing Page"
+  ],
+  "stack": [
+    "HTML",
+    "CSS",
+    "JavaScript"
+  ],
+  "liveUrl": "/projects/basic-html-project/",
+  "cover": "/images/posts/Flavor-Labs2.png\r",
+  "featured": false,
+  "published": true,
+  "body": {
+    "raw": "\r\n## Overview\r\nI built a landing page for a fictional protein chips manufacturer, which I coded myself\r\n\r\n<iframe src=\"/projects/basic-html-project/\" style={{width: '100%', height: 480, border: 0, borderRadius: 8}}></iframe>\r\n\r\n",
+    "code": "var Component=(()=>{var m=Object.create;var o=Object.defineProperty;var p=Object.getOwnPropertyDescriptor;var f=Object.getOwnPropertyNames;var u=Object.getPrototypeOf,g=Object.prototype.hasOwnProperty;var v=(e,t)=>()=>(t||e((t={exports:{}}).exports,t),t.exports),j=(e,t)=>{for(var a in t)o(e,a,{get:t[a],enumerable:!0})},i=(e,t,a,s)=>{if(t&&typeof t==\"object\"||typeof t==\"function\")for(let n of f(t))!g.call(e,n)&&n!==a&&o(e,n,{get:()=>t[n],enumerable:!(s=p(t,n))||s.enumerable});return e};var x=(e,t,a)=>(a=e!=null?m(u(e)):{},i(t||!e||!e.__esModule?o(a,\"default\",{value:e,enumerable:!0}):a,e)),b=e=>i(o({},\"__esModule\",{value:!0}),e);var l=v((M,c)=>{c.exports=_jsx_runtime});var _={};j(_,{default:()=>h,frontmatter:()=>L});var r=x(l()),L={title:\"Flavor Labs\",slug:\"flavor-labs\",summary:\"Landing Page for a protein chips manufacturer self-coded\",date:\"2026-02-10\",tags:[\"HTML\",\"Landing Page\"],stack:[\"HTML\",\"CSS\",\"JavaScript\"],liveUrl:\"/projects/basic-html-project/\",cover:\"/images/posts/Flavor-Labs2.png\"};function d(e){let t={a:\"a\",h2:\"h2\",p:\"p\",...e.components};return(0,r.jsxs)(r.Fragment,{children:[(0,r.jsx)(t.h2,{id:\"overview\",children:(0,r.jsx)(t.a,{href:\"#overview\",children:\"Overview\"})}),`\n`,(0,r.jsx)(t.p,{children:\"I built a landing page for a fictional protein chips manufacturer, which I coded myself\"}),`\n`,(0,r.jsx)(\"iframe\",{src:\"/projects/basic-html-project/\",style:{width:\"100%\",height:480,border:0,borderRadius:8}})]})}function h(e={}){let{wrapper:t}=e.components||{};return t?(0,r.jsx)(t,{...e,children:(0,r.jsx)(d,{...e})}):d(e)}return b(_);})();\n;return Component;"
+  },
+  "_id": "projects/basic-html-project.mdx",
+  "_raw": {
+    "sourceFilePath": "projects/basic-html-project.mdx",
+    "sourceFileName": "basic-html-project.mdx",
+    "sourceFileDir": "projects",
+    "contentType": "mdx",
+    "flattenedPath": "projects/basic-html-project"
+  },
+  "type": "Project",
+  "url": "/projects/flavor-labs",
+  "dateObj": "2026-02-10T00:00:00.000Z",
+  "readingTime": {
+    "text": "1 min read",
+    "minutes": 0.135,
+    "time": 8100,
+    "words": 27
+  }
+}

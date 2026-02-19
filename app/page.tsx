@@ -42,12 +42,12 @@ export default function HomePage() {
           </Reveal>
           <Reveal delay={0.06}>
             <h1 className="mt-4 text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight">
-              I am a  <span className="text-gradient">business informatics</span> student.
+              Hey, I'm <span className="text-gradient">Patrick</span>.
             </h1>
           </Reveal>
           <Reveal delay={0.12}>
             <p className="mt-5 max-w-2xl text-neutral-300">
-              I’m Patrick Eger, focused on different projects in the realm of web-developement, AI-Automation and Online-Marketing.
+              I’m a business informatics student from Germany, focused on different projects in the realm of web-developement, AI-Automation and Online-Marketing.
             </p>
           </Reveal>
           <Reveal delay={0.18}>

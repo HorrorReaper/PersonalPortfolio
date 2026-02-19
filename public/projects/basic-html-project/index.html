@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FLAVOR LABS – Snacks That Hit Different</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          grotesk: ['Space Grotesk', 'sans-serif'],
+          inter:   ['Inter', 'sans-serif'],
+        },
+        colors: {
+          lime:   '#CCFF00',
+          neon:   '#39FF14',
+          ink:    '#0A0A0A',
+          card:   '#111111',
+          card2:  '#161616',
+          muted:  '#6B7280',
+          border: '#1E1E1E',
+        }
+      }
+    }
+  }
+</script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: #0A0A0A;
+    color: #F1F1F1;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ── Grain texture overlay ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.035;
+    pointer-events: none;
+    z-index: 999;
+  }
+
+  /* ── Floating hero product ── */
+  @keyframes float-anim {
+    0%,100% { transform: translateY(0)   rotate(-2deg) scale(1);    }
+    50%      { transform: translateY(-26px) rotate(2deg)  scale(1.03); }
+  }
+  .floating { animation: float-anim 4.8s ease-in-out infinite; will-change: transform; }
+
+  /* ── Marquee ── */
+  .marquee-wrap { overflow: hidden; }
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee-scroll 24s linear infinite;
+    will-change: transform;
+  }
+  .marquee-wrap:hover .marquee-track { animation-play-state: paused; }
+  @keyframes marquee-scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ── Scroll reveal ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(48px);
+    transition: opacity 0.75s cubic-bezier(0.16,1,0.3,1),
+                transform 0.75s cubic-bezier(0.16,1,0.3,1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .d1 { transition-delay: 0.05s; }
+  .d2 { transition-delay: 0.15s; }
+  .d3 { transition-delay: 0.25s; }
+  .d4 { transition-delay: 0.35s; }
+
+  /* ── Navbar scroll state ── */
+  #navbar {
+    transition: background 0.4s ease, border-color 0.4s ease, backdrop-filter 0.4s ease;
+  }
+  #navbar.scrolled {
+    background: rgba(10,10,10,0.88);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid #1E1E1E;
+  }
+
+  /* ── Hamburger ── */
+  .ham-line {
+    display: block;
+    width: 26px; height: 2px;
+    background: #F1F1F1;
+    transition: transform 0.35s ease, opacity 0.3s ease;
+    border-radius: 2px;
+  }
+  #ham-btn.open .ham-line:nth-child(1) { transform: translateY(8px) rotate(45deg);  }
+  #ham-btn.open .ham-line:nth-child(2) { opacity: 0; }
+  #ham-btn.open .ham-line:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+  /* ── Mobile menu ── */
+  #mobile-menu {
+    transition: opacity 0.35s ease, visibility 0.35s ease;
+  }
+  #mobile-menu.hidden-menu { opacity: 0; visibility: hidden; pointer-events: none; }
+  #mobile-menu.open-menu   { opacity: 1; visibility: visible; pointer-events: all; }
+
+  /* ── Product card hover ── */
+  .product-card {
+    transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s ease;
+  }
+  .product-card:hover { transform: translateY(-10px); box-shadow: 0 30px 60px rgba(0,0,0,0.5); }
+  .product-card:hover .card-img { transform: scale(1.08) rotate(-3deg); }
+  .card-img { transition: transform 0.45s cubic-bezier(0.16,1,0.3,1); }
+
+  /* ── Feature card hover ── */
+  .feat-card {
+    transition: transform 0.3s ease, border-color 0.3s ease;
+  }
+  .feat-card:hover { transform: translateY(-6px); border-color: #CCFF00; }
+
+  /* ── Glassmorphism review card ── */
+  .glass {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.09);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+
+  /* ── Glow button ── */
+  .btn-lime {
+    background: #CCFF00;
+    color: #0A0A0A;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: box-shadow 0.3s ease, transform 0.2s ease, background 0.2s ease;
+  }
+  .btn-lime:hover {
+    background: #d9ff33;
+    box-shadow: 0 0 28px rgba(204,255,0,0.55);
+    transform: translateY(-2px);
+  }
+  .btn-lime:active { transform: translateY(0); }
+
+  .btn-outline {
+    border: 1.5px solid rgba(241,241,241,0.35);
+    color: #F1F1F1;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: border-color 0.3s ease, background 0.3s ease, transform 0.2s ease;
+  }
+  .btn-outline:hover { border-color: #CCFF00; color: #CCFF00; transform: translateY(-2px); }
+
+  /* ── Sparkle CTA bg ── */
+  .cta-bg {
+    background: linear-gradient(135deg, #1a1a00 0%, #0A0A0A 40%, #0d2200 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(204,255,0,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* ── Hero bg ── */
+  .hero-bg {
+    background:
+      radial-gradient(ellipse 70% 60% at 80% 50%, rgba(204,255,0,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 15% 80%, rgba(57,255,20,0.05) 0%, transparent 60%),
+      #0A0A0A;
+  }
+
+  /* ── Scrollbar ── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: #0A0A0A; }
+  ::-webkit-scrollbar-thumb { background: #CCFF00; border-radius: 3px; }
+
+  /* ── Focus ring ── */
+  :focus-visible { outline: 2px solid #CCFF00; outline-offset: 3px; }
+
+  /* ── Input focus ── */
+  .nl-input:focus { outline: none; border-color: #CCFF00; box-shadow: 0 0 0 3px rgba(204,255,0,0.2); }
+
+  /* ── Stars ── */
+  .star { color: #CCFF00; font-size: 1rem; }
+
+  /* ── Confetti sparkles (CSS only) ── */
+  @keyframes sparkle {
+    0%,100% { transform: scale(0) rotate(0deg);   opacity: 0; }
+    50%      { transform: scale(1) rotate(180deg); opacity: 1; }
+  }
+  .sparkle {
+    position: absolute;
+    width: 8px; height: 8px;
+    background: #CCFF00;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    animation: sparkle 2.4s ease-in-out infinite;
+    opacity: 0;
+  }
+  .sp1 { top: 15%; left: 8%;  animation-delay: 0s;    }
+  .sp2 { top: 25%; right: 10%; animation-delay: 0.6s; }
+  .sp3 { bottom: 20%; left: 15%; animation-delay: 1.2s; }
+  .sp4 { bottom: 30%; right: 8%; animation-delay: 0.9s; }
+  .sp5 { top: 60%; left: 5%;  animation-delay: 1.8s; }
+  .sp6 { top: 10%; right: 20%; animation-delay: 0.3s; }
+</style>
+</head>
+
+<body class="antialiased">
+
+<!-- ═══════════════════════════════════════════
+     1. NAVBAR
+═══════════════════════════════════════════ -->
+<header id="navbar" class="fixed top-0 left-0 right-0 z-50 px-6 py-4">
+  <nav class="max-w-7xl mx-auto flex items-center justify-between">
+
+    <!-- Logo -->
+    <a href="#home" class="font-grotesk font-bold text-xl uppercase tracking-widest text-white">
+      <span class="text-lime">Flavor</span> Labs
+    </a>
+
+    <!-- Desktop links -->
+    <ul class="hidden md:flex items-center gap-8 font-grotesk font-medium text-sm uppercase tracking-widest text-gray-400">
+      <li><a href="#home"     class="hover:text-white transition-colors duration-200">Home</a></li>
+      <li><a href="#products" class="hover:text-white transition-colors duration-200">Products</a></li>
+      <li><a href="#about"    class="hover:text-white transition-colors duration-200">About</a></li>
+      <li><a href="#reviews"  class="hover:text-white transition-colors duration-200">Reviews</a></li>
+    </ul>
+
+    <!-- Desktop CTA -->
+    <a href="#products" class="hidden md:inline-flex btn-lime px-5 py-2.5 rounded-full text-sm">Shop Now</a>
+
+    <!-- Hamburger -->
+    <button id="ham-btn" aria-label="Toggle menu" class="md:hidden flex flex-col gap-[6px] p-1">
+      <span class="ham-line"></span>
+      <span class="ham-line"></span>
+      <span class="ham-line"></span>
+    </button>
+  </nav>
+</header>
+
+<!-- Mobile fullscreen menu -->
+<div id="mobile-menu" class="hidden-menu fixed inset-0 z-40 bg-ink flex flex-col items-center justify-center gap-10">
+  <ul class="flex flex-col items-center gap-8 font-grotesk font-bold text-3xl uppercase tracking-widest text-white">
+    <li><a href="#home"     class="mobile-link hover:text-lime transition-colors">Home</a></li>
+    <li><a href="#products" class="mobile-link hover:text-lime transition-colors">Products</a></li>
+    <li><a href="#about"    class="mobile-link hover:text-lime transition-colors">About</a></li>
+    <li><a href="#reviews"  class="mobile-link hover:text-lime transition-colors">Reviews</a></li>
+  </ul>
+  <a href="#products" class="mobile-link btn-lime px-8 py-4 rounded-full text-base">Shop Now</a>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     2. HERO
+═══════════════════════════════════════════ -->
+<section id="home" class="hero-bg min-h-screen flex items-center pt-20 pb-12 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6 w-full">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+
+      <!-- Left: Copy -->
+      <div class="order-2 lg:order-1 reveal">
+        <div class="inline-flex items-center gap-2 bg-[#161616] border border-border rounded-full px-4 py-1.5 mb-6">
+          <span class="w-2 h-2 rounded-full bg-lime animate-pulse"></span>
+          <span class="font-grotesk text-xs uppercase tracking-widest text-gray-300">New Drop — Available Now</span>
+        </div>
+
+        <h1 class="font-grotesk font-bold text-6xl sm:text-7xl lg:text-8xl uppercase leading-[0.9] tracking-tight mb-6">
+          Snacks<br/>
+          <span class="text-lime">That Hit</span><br/>
+          Different.
+        </h1>
+
+        <p class="font-inter text-gray-400 text-lg leading-relaxed max-w-md mb-10">
+          Lab-engineered flavors. Real protein. Zero compromise.
+          Snacks built for the generation that doesn't settle.
+        </p>
+
+        <div class="flex flex-wrap gap-4">
+          <a href="#products" class="btn-lime px-8 py-4 rounded-full text-sm">Shop Now</a>
+          <button class="btn-outline px-8 py-4 rounded-full text-sm flex items-center gap-2">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            Watch Video
+          </button>
+        </div>
+
+        <!-- Stats -->
+        <div class="flex gap-10 mt-12 pt-8 border-t border-border">
+          <div>
+            <p class="font-grotesk font-bold text-3xl text-lime">15g</p>
+            <p class="font-inter text-xs text-gray-500 uppercase tracking-widest mt-0.5">Protein / Pack</p>
+          </div>
+          <div>
+            <p class="font-grotesk font-bold text-3xl text-lime">6</p>
+            <p class="font-inter text-xs text-gray-500 uppercase tracking-widest mt-0.5">Bold Flavors</p>
+          </div>
+          <div>
+            <p class="font-grotesk font-bold text-3xl text-lime">100%</p>
+            <p class="font-inter text-xs text-gray-500 uppercase tracking-widest mt-0.5">Natural</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Product image -->
+      <div class="order-1 lg:order-2 flex justify-center items-center relative">
+        <!-- Glow circle -->
+        <div class="absolute w-80 h-80 sm:w-96 sm:h-96 rounded-full bg-lime opacity-[0.08] blur-3xl"></div>
+        <!-- Decorative ring -->
+        <div class="absolute w-72 h-72 sm:w-88 sm:h-88 rounded-full border border-lime/10"></div>
+
+        <!-- Product bag mockup (SVG illustration) -->
+        <div class="floating relative z-10">
+          <svg viewBox="0 0 340 420" width="300" height="370" class="sm:w-[340px] sm:h-[420px]" xmlns="http://www.w3.org/2000/svg" aria-label="Flavor Labs Sriracha Chips product bag">
+            <!-- Bag body -->
+            <defs>
+              <linearGradient id="bagGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#1a1a00"/>
+                <stop offset="40%" style="stop-color:#0A0A0A"/>
+                <stop offset="100%" style="stop-color:#162200"/>
+              </linearGradient>
+              <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#CCFF00"/>
+                <stop offset="100%" style="stop-color:#39FF14"/>
+              </linearGradient>
+              <filter id="glow">
+                <feGaussianBlur stdDeviation="4" result="blur"/>
+                <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
+            </defs>
+
+            <!-- Bag shape -->
+            <rect x="20" y="50" width="300" height="350" rx="28" fill="url(#bagGrad)" stroke="#CCFF00" stroke-width="1.5" stroke-opacity="0.4"/>
+
+            <!-- Top seal -->
+            <rect x="40" y="28" width="260" height="34" rx="10" fill="#0f0f0f" stroke="#CCFF00" stroke-width="1" stroke-opacity="0.5"/>
+            <rect x="80" y="38" width="180" height="8" rx="4" fill="#CCFF00" opacity="0.6"/>
+
+            <!-- Lime accent stripe -->
+            <rect x="20" y="165" width="300" height="14" fill="url(#accentGrad)" filter="url(#glow)"/>
+
+            <!-- Brand name -->
+            <text x="170" y="145" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="22" fill="#CCFF00" letter-spacing="4" filter="url(#glow)">FLAVOR LABS</text>
+
+            <!-- Product emoji area -->
+            <circle cx="170" cy="255" r="72" fill="#CCFF00" opacity="0.07"/>
+            <text x="170" y="280" text-anchor="middle" font-size="80">🌶️</text>
+
+            <!-- Flavor name -->
+            <text x="170" y="340" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="18" fill="#FFFFFF" letter-spacing="2">SPICY SRIRACHA</text>
+            <text x="170" y="362" text-anchor="middle" font-family="'Inter', sans-serif" font-size="11" fill="#6B7280" letter-spacing="1">HIGH PROTEIN CHIPS • 90G</text>
+
+            <!-- Corner dot accents -->
+            <circle cx="42" cy="90" r="4" fill="#CCFF00" opacity="0.6"/>
+            <circle cx="298" cy="90" r="4" fill="#CCFF00" opacity="0.6"/>
+          </svg>
+        </div>
+
+        <!-- Floating labels -->
+        <div class="absolute top-8 -left-4 sm:left-0 bg-card border border-border rounded-2xl px-4 py-3 flex items-center gap-3 reveal d1" style="transition-delay:0.3s">
+          <span class="text-2xl">🔥</span>
+          <div>
+            <p class="font-grotesk font-bold text-sm text-white">Bold Flavor</p>
+            <p class="font-inter text-xs text-muted">Rated #1 by fans</p>
+          </div>
+        </div>
+        <div class="absolute bottom-8 -right-4 sm:right-0 bg-card border border-border rounded-2xl px-4 py-3 flex items-center gap-3 reveal d2" style="transition-delay:0.45s">
+          <span class="text-2xl">💪</span>
+          <div>
+            <p class="font-grotesk font-bold text-sm text-white">15g Protein</p>
+            <p class="font-inter text-xs text-muted">Per serving</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     3. MARQUEE TICKER
+═══════════════════════════════════════════ -->
+<div class="marquee-wrap py-4 bg-lime -rotate-[1.5deg] scale-105 my-6 border-y-0" aria-hidden="true">
+  <div class="marquee-track">
+    <!-- Repeated twice for seamless loop -->
+    <span class="font-grotesk font-bold text-ink text-sm uppercase tracking-widest whitespace-nowrap px-6">🔥 NEW FLAVOR DROP</span>
+    <span class="font-grotesk font-bold text-ink text-sm uppercase tracking-widest whitespace-nowrap px-6">•</span>
+    <span class="font-grotesk font-bold text-ink text-sm uppercase tracking-widest whitespace-nowrap px-6">100% Natural Ingredients</span>
+    <span class="font-grotesk font-bold text-ink text-sm uppercase tracking-widest whitespace-nowrap px-6">•</span>
+    <span class="font-grotesk font-bold text-ink text-sm uppercase tracking-widest whitespace-nowrap px-6">15g Protein Per Pack 💪</span>
+    <span class="font-grotesk font-bold text-ink text-sm uppercase tracking-widest whitespace-nowrap px-6">•</span>
+    <span class="font-grotesk font-bold text-ink text-sm uppercase tracking-widest whitespace-nowrap px-6">Zero Artificial BS</span>
+    <span class="font-grotesk font-bold text-ink text-sm uppercase tracking-widest whitespace-nowrap px-6">•</span>
+    <span class="font-grotesk font-bold text-ink text-sm uppercase tracking-widest whitespace-nowrap px-6">🌱 Vegan Friendly</span>
+    <span class="font-grotesk font-bold text-ink text-sm uppercase tracking-widest whitespace-nowrap px-6">•</span>
+    <span class="font-grotesk font-bold text-ink text-sm uppercase tracking-widest whitespace-nowrap px-6">Eco-Certified Packaging ♻️</span>
+    <span class="font-grotesk font-bold text-ink text-sm uppercase tracking-widest whitespace-nowrap px-6">•</span>
+    <!-- Duplicate for seamless -->
+    <span class="font-grotesk font-bold text-ink text-sm uppercase tracking-widest whitespace-nowrap px-6">🔥 NEW FLAVOR DROP</span>
+    <span class="font-grotesk font-bold text-ink text-sm uppercase tracking-widest whitespace-nowrap px-6">•</span>
+    <span class="font-grotesk font-bold text-ink text-sm uppercase tracking-widest whitespace-nowrap px-6">100% Natural Ingredients</span>
+    <span class="font-grotesk font-bold text-ink text-sm uppercase tracking-widest whitespace-nowrap px-6">•</span>
+    <span class="font-grotesk font-bold text-ink text-sm uppercase tracking-widest whitespace-nowrap px-6">15g Protein Per Pack 💪</span>
+    <span class="font-grotesk font-bold text-ink text-sm uppercase tracking-widest whitespace-nowrap px-6">•</span>
+    <span class="font-grotesk font-bold text-ink text-sm uppercase tracking-widest whitespace-nowrap px-6">Zero Artificial BS</span>
+    <span class="font-grotesk font-bold text-ink text-sm uppercase tracking-widest whitespace-nowrap px-6">•</span>
+    <span class="font-grotesk font-bold text-ink text-sm uppercase tracking-widest whitespace-nowrap px-6">🌱 Vegan Friendly</span>
+    <span class="font-grotesk font-bold text-ink text-sm uppercase tracking-widest whitespace-nowrap px-6">•</span>
+    <span class="font-grotesk font-bold text-ink text-sm uppercase tracking-widest whitespace-nowrap px-6">Eco-Certified Packaging ♻️</span>
+    <span class="font-grotesk font-bold text-ink text-sm uppercase tracking-widest whitespace-nowrap px-6">•</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     4. PRODUCT SHOWCASE
+═══════════════════════════════════════════ -->
+<section id="products" class="py-24 lg:py-32">
+  <div class="max-w-7xl mx-auto px-6">
+
+    <!-- Header -->
+    <div class="text-center mb-16 reveal">
+      <p class="font-grotesk text-xs uppercase tracking-[0.3em] text-lime mb-3">Our Lineup</p>
+      <h2 class="font-grotesk font-bold text-5xl sm:text-6xl uppercase tracking-tight">Pick Your Poison</h2>
+    </div>
+
+    <!-- Cards grid -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- Card 1: Spicy Sriracha -->
+      <div class="product-card rounded-3xl overflow-hidden cursor-pointer reveal d1" style="background: linear-gradient(145deg, #1a0a00, #0f0f0f);">
+        <div class="relative p-8 pb-0 flex justify-center" style="min-height:220px">
+          <!-- Color blob -->
+          <div class="absolute inset-0 rounded-t-3xl" style="background: radial-gradient(ellipse 80% 60% at 50% 80%, rgba(255,80,0,0.18) 0%, transparent 70%);"></div>
+          <div class="card-img relative z-10 text-center">
+            <span class="text-[120px] leading-none block mt-4">🌶️</span>
+          </div>
+          <!-- Badge -->
+          <span class="absolute top-5 right-5 font-grotesk font-bold text-[10px] uppercase tracking-widest bg-orange-500 text-white px-3 py-1 rounded-full">Best Seller</span>
+        </div>
+        <div class="p-7 pt-4">
+          <div class="flex items-start justify-between mb-2">
+            <div>
+              <h3 class="font-grotesk font-bold text-xl uppercase tracking-tight">Spicy Sriracha</h3>
+              <p class="font-inter text-gray-500 text-sm mt-1">Intense heat that builds with every bite</p>
+            </div>
+          </div>
+          <div class="flex items-center justify-between mt-5">
+            <p class="font-grotesk font-bold text-2xl">€4.99</p>
+            <button class="btn-lime px-5 py-2.5 rounded-full text-xs">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Smoky BBQ -->
+      <div class="product-card rounded-3xl overflow-hidden cursor-pointer reveal d2" style="background: linear-gradient(145deg, #001a10, #0f0f0f);">
+        <div class="relative p-8 pb-0 flex justify-center" style="min-height:220px">
+          <div class="absolute inset-0 rounded-t-3xl" style="background: radial-gradient(ellipse 80% 60% at 50% 80%, rgba(204,255,0,0.12) 0%, transparent 70%);"></div>
+          <div class="card-img relative z-10 text-center">
+            <span class="text-[120px] leading-none block mt-4">🔥</span>
+          </div>
+          <span class="absolute top-5 right-5 font-grotesk font-bold text-[10px] uppercase tracking-widest bg-lime text-ink px-3 py-1 rounded-full">New</span>
+        </div>
+        <div class="p-7 pt-4">
+          <div class="flex items-start justify-between mb-2">
+            <div>
+              <h3 class="font-grotesk font-bold text-xl uppercase tracking-tight">Smoky BBQ</h3>
+              <p class="font-inter text-gray-500 text-sm mt-1">Deep smoke, sweet caramel, pure addiction</p>
+            </div>
+          </div>
+          <div class="flex items-center justify-between mt-5">
+            <p class="font-grotesk font-bold text-2xl">€4.99</p>
+            <button class="btn-lime px-5 py-2.5 rounded-full text-xs">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Sour Cream OG -->
+      <div class="product-card rounded-3xl overflow-hidden cursor-pointer reveal d3 sm:col-span-2 lg:col-span-1" style="background: linear-gradient(145deg, #00101a, #0f0f0f);">
+        <div class="relative p-8 pb-0 flex justify-center" style="min-height:220px">
+          <div class="absolute inset-0 rounded-t-3xl" style="background: radial-gradient(ellipse 80% 60% at 50% 80%, rgba(0,160,255,0.12) 0%, transparent 70%);"></div>
+          <div class="card-img relative z-10 text-center">
+            <span class="text-[120px] leading-none block mt-4">🧊</span>
+          </div>
+        </div>
+        <div class="p-7 pt-4">
+          <div class="flex items-start justify-between mb-2">
+            <div>
+              <h3 class="font-grotesk font-bold text-xl uppercase tracking-tight">Sour Cream OG</h3>
+              <p class="font-inter text-gray-500 text-sm mt-1">The classic reimagined — creamy, tangy, bold</p>
+            </div>
+          </div>
+          <div class="flex items-center justify-between mt-5">
+            <p class="font-grotesk font-bold text-2xl">€4.99</p>
+            <button class="btn-lime px-5 py-2.5 rounded-full text-xs">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bundle CTA -->
+    <div class="mt-10 rounded-3xl border border-border p-8 sm:p-10 flex flex-col sm:flex-row items-center justify-between gap-6 reveal" style="background: linear-gradient(135deg, #111100, #0A0A0A);">
+      <div>
+        <p class="font-grotesk text-xs uppercase tracking-[0.25em] text-lime mb-2">Best Value</p>
+        <h3 class="font-grotesk font-bold text-2xl sm:text-3xl uppercase">The Full Lab Kit</h3>
+        <p class="font-inter text-gray-500 text-sm mt-1">All 3 flavors. One box. Save 20%.</p>
+      </div>
+      <div class="flex items-center gap-6">
+        <div class="text-right">
+          <p class="font-inter text-sm text-gray-500 line-through">€14.99</p>
+          <p class="font-grotesk font-bold text-3xl text-lime">€11.99</p>
+        </div>
+        <a href="#" class="btn-lime px-7 py-3.5 rounded-full text-sm whitespace-nowrap">Get the Bundle</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     5. FEATURES / USP
+═══════════════════════════════════════════ -->
+<section id="about" class="py-24 lg:py-32 border-t border-border">
+  <div class="max-w-7xl mx-auto px-6">
+
+    <div class="text-center mb-16 reveal">
+      <p class="font-grotesk text-xs uppercase tracking-[0.3em] text-lime mb-3">The Difference</p>
+      <h2 class="font-grotesk font-bold text-5xl sm:text-6xl uppercase tracking-tight">Built Different</h2>
+    </div>
+
+    <div class="grid sm:grid-cols-2 gap-5">
+
+      <div class="feat-card border border-border rounded-3xl p-8 reveal d1" style="background:#111111">
+        <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl mb-6" style="background: rgba(204,255,0,0.1); border:1px solid rgba(204,255,0,0.2);">🌱</div>
+        <h3 class="font-grotesk font-bold text-xl uppercase tracking-tight mb-3">100% Natural</h3>
+        <p class="font-inter text-gray-500 leading-relaxed">No artificial colors, no mysterious numbers. Just real ingredients you can actually pronounce, straight from the source.</p>
+      </div>
+
+      <div class="feat-card border border-border rounded-3xl p-8 reveal d2" style="background:#111111">
+        <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl mb-6" style="background: rgba(204,255,0,0.1); border:1px solid rgba(204,255,0,0.2);">💪</div>
+        <h3 class="font-grotesk font-bold text-xl uppercase tracking-tight mb-3">High Protein</h3>
+        <p class="font-inter text-gray-500 leading-relaxed">15g of clean protein per pack. Finally a snack that works as hard as you do — gym bag approved, couch approved, all-day approved.</p>
+      </div>
+
+      <div class="feat-card border border-border rounded-3xl p-8 reveal d3" style="background:#111111">
+        <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl mb-6" style="background: rgba(204,255,0,0.1); border:1px solid rgba(204,255,0,0.2);">🔥</div>
+        <h3 class="font-grotesk font-bold text-xl uppercase tracking-tight mb-3">Bold Flavors</h3>
+        <p class="font-inter text-gray-500 leading-relaxed">Engineered in our flavor lab. Every batch is taste-tested until it's dialed in to perfection. Because average doesn't live here.</p>
+      </div>
+
+      <div class="feat-card border border-border rounded-3xl p-8 reveal d4" style="background:#111111">
+        <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl mb-6" style="background: rgba(204,255,0,0.1); border:1px solid rgba(204,255,0,0.2);">🌍</div>
+        <h3 class="font-grotesk font-bold text-xl uppercase tracking-tight mb-3">Eco-Friendly</h3>
+        <p class="font-inter text-gray-500 leading-relaxed">Our packaging is 100% compostable. Because the planet is the only snack we're not consuming. Certified carbon-neutral since 2025.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     6. SOCIAL PROOF / TRUST BAND
+═══════════════════════════════════════════ -->
+<div class="py-16 border-t border-b border-border">
+  <div class="max-w-7xl mx-auto px-6">
+    <p class="font-grotesk font-bold text-xs uppercase tracking-[0.35em] text-gray-600 text-center mb-10 reveal">As Seen On</p>
+    <div class="marquee-wrap reveal">
+      <div class="marquee-track" style="animation-duration: 30s;">
+        <!-- Each logo item -->
+        <div class="flex items-center gap-16 px-8">
+          <span class="font-grotesk font-bold text-xl uppercase tracking-widest text-gray-600 whitespace-nowrap opacity-60 hover:opacity-100 transition-opacity">Men's Health</span>
+          <span class="font-grotesk font-bold text-xl uppercase tracking-widest text-gray-600 whitespace-nowrap opacity-60 hover:opacity-100 transition-opacity">TikTok</span>
+          <span class="font-grotesk font-bold text-xl uppercase tracking-widest text-gray-600 whitespace-nowrap opacity-60 hover:opacity-100 transition-opacity">Instagram</span>
+          <span class="font-grotesk font-bold text-xl uppercase tracking-widest text-gray-600 whitespace-nowrap opacity-60 hover:opacity-100 transition-opacity">Fitness Magazine</span>
+          <span class="font-grotesk font-bold text-xl uppercase tracking-widest text-gray-600 whitespace-nowrap opacity-60 hover:opacity-100 transition-opacity">YouTube</span>
+          <span class="font-grotesk font-bold text-xl uppercase tracking-widest text-gray-600 whitespace-nowrap opacity-60 hover:opacity-100 transition-opacity">Vice Eats</span>
+          <span class="font-grotesk font-bold text-xl uppercase tracking-widest text-gray-600 whitespace-nowrap opacity-60 hover:opacity-100 transition-opacity">Runner's World</span>
+        </div>
+        <!-- Duplicate -->
+        <div class="flex items-center gap-16 px-8">
+          <span class="font-grotesk font-bold text-xl uppercase tracking-widest text-gray-600 whitespace-nowrap opacity-60 hover:opacity-100 transition-opacity">Men's Health</span>
+          <span class="font-grotesk font-bold text-xl uppercase tracking-widest text-gray-600 whitespace-nowrap opacity-60 hover:opacity-100 transition-opacity">TikTok</span>
+          <span class="font-grotesk font-bold text-xl uppercase tracking-widest text-gray-600 whitespace-nowrap opacity-60 hover:opacity-100 transition-opacity">Instagram</span>
+          <span class="font-grotesk font-bold text-xl uppercase tracking-widest text-gray-600 whitespace-nowrap opacity-60 hover:opacity-100 transition-opacity">Fitness Magazine</span>
+          <span class="font-grotesk font-bold text-xl uppercase tracking-widest text-gray-600 whitespace-nowrap opacity-60 hover:opacity-100 transition-opacity">YouTube</span>
+          <span class="font-grotesk font-bold text-xl uppercase tracking-widest text-gray-600 whitespace-nowrap opacity-60 hover:opacity-100 transition-opacity">Vice Eats</span>
+          <span class="font-grotesk font-bold text-xl uppercase tracking-widest text-gray-600 whitespace-nowrap opacity-60 hover:opacity-100 transition-opacity">Runner's World</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     7. REVIEWS / TESTIMONIALS
+═══════════════════════════════════════════ -->
+<section id="reviews" class="py-24 lg:py-32">
+  <div class="max-w-7xl mx-auto px-6">
+
+    <div class="text-center mb-16 reveal">
+      <p class="font-grotesk text-xs uppercase tracking-[0.3em] text-lime mb-3">Reviews</p>
+      <h2 class="font-grotesk font-bold text-5xl sm:text-6xl uppercase tracking-tight">Real Talk</h2>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+      <!-- Review 1 -->
+      <div class="glass rounded-3xl p-7 flex flex-col gap-5 reveal d1">
+        <div class="flex gap-1">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <p class="font-inter text-gray-300 leading-relaxed flex-1">"Bro these are actually insane. The Spicy Sriracha hit different — I finished the whole bag in one sitting. My macros have never been this fun."</p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-lime flex items-center justify-center font-grotesk font-bold text-ink text-sm">MK</div>
+          <div>
+            <p class="font-grotesk font-semibold text-sm">Max K.</p>
+            <p class="font-inter text-xs text-gray-500">@maxlifts</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Review 2 -->
+      <div class="glass rounded-3xl p-7 flex flex-col gap-5 reveal d2">
+        <div class="flex gap-1">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <p class="font-inter text-gray-300 leading-relaxed flex-1">"Finally a protein snack that doesn't taste like cardboard. The Smoky BBQ is genuinely one of the best things I've ever eaten. Sending this to everyone I know."</p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full flex items-center justify-center font-grotesk font-bold text-ink text-sm" style="background: #39FF14;">LT</div>
+          <div>
+            <p class="font-grotesk font-semibold text-sm">Lena T.</p>
+            <p class="font-inter text-xs text-gray-500">@lenas_lifestyle</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Review 3 -->
+      <div class="glass rounded-3xl p-7 flex flex-col gap-5 reveal d3 sm:col-span-2 lg:col-span-1">
+        <div class="flex gap-1">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <p class="font-inter text-gray-300 leading-relaxed flex-1">"The packaging is so sick — even the bag feels premium. Flavor Labs is on a different level. Sour Cream OG = comfort food with actual protein. Reordering monthly."</p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full flex items-center justify-center font-grotesk font-bold text-ink text-sm" style="background: #ffcc00;">JD</div>
+          <div>
+            <p class="font-grotesk font-semibold text-sm">Julian D.</p>
+            <p class="font-inter text-xs text-gray-500">@julian.does</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Overall rating -->
+    <div class="mt-12 flex items-center justify-center gap-4 reveal">
+      <div class="flex gap-1">
+        <span class="star text-xl">★</span><span class="star text-xl">★</span><span class="star text-xl">★</span><span class="star text-xl">★</span><span class="star text-xl">★</span>
+      </div>
+      <p class="font-grotesk font-bold text-xl">4.9 / 5</p>
+      <p class="font-inter text-sm text-gray-500">based on 2,400+ reviews</p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     8. NEWSLETTER / CTA
+═══════════════════════════════════════════ -->
+<section class="cta-bg py-24 lg:py-32 border-t border-border relative">
+  <!-- Sparkles -->
+  <div class="sparkle sp1"></div>
+  <div class="sparkle sp2"></div>
+  <div class="sparkle sp3"></div>
+  <div class="sparkle sp4"></div>
+  <div class="sparkle sp5"></div>
+  <div class="sparkle sp6"></div>
+
+  <div class="max-w-7xl mx-auto px-6 text-center relative z-10">
+    <div class="reveal">
+      <p class="font-grotesk text-xs uppercase tracking-[0.3em] text-lime mb-4">Exclusive Access</p>
+      <h2 class="font-grotesk font-bold text-5xl sm:text-6xl lg:text-7xl uppercase tracking-tight mb-5">
+        Join the<br/><span class="text-lime">Flavor Fam</span>
+      </h2>
+      <p class="font-inter text-gray-400 text-lg max-w-lg mx-auto mb-10">
+        Get early access to new drops, exclusive deals, and 10% off your first order. No spam, just flavor.
+      </p>
+
+      <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto" onsubmit="handleSubscribe(event)">
+        <input
+          id="nl-email"
+          type="email"
+          placeholder="your@email.com"
+          required
+          class="nl-input flex-1 bg-[#111111] border border-border rounded-full px-6 py-4 font-inter text-sm text-white placeholder-gray-600 transition-all duration-300"
+          aria-label="Email address"
+        />
+        <button type="submit" class="btn-lime px-7 py-4 rounded-full text-sm whitespace-nowrap">
+          Get 10% Off
+        </button>
+      </form>
+
+      <p id="nl-success" class="font-inter text-sm text-lime mt-4 opacity-0 transition-opacity duration-500">🎉 You're in! Check your inbox.</p>
+      <p class="font-inter text-xs text-gray-600 mt-4">By signing up you agree to our Privacy Policy. Unsubscribe anytime.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     9. FOOTER
+═══════════════════════════════════════════ -->
+<footer class="bg-[#060606] border-t border-border pt-16 pb-8">
+  <div class="max-w-7xl mx-auto px-6">
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+
+      <!-- Brand -->
+      <div class="sm:col-span-2 lg:col-span-1">
+        <a href="#home" class="font-grotesk font-bold text-lg uppercase tracking-widest text-white">
+          <span class="text-lime">Flavor</span> Labs
+        </a>
+        <p class="font-inter text-sm text-gray-500 mt-4 leading-relaxed max-w-xs">
+          Lab-engineered snacks for the bold. High protein, real flavors, zero BS.
+        </p>
+        <!-- Social icons -->
+        <div class="flex gap-4 mt-6">
+          <!-- Instagram -->
+          <a href="#" aria-label="Follow on Instagram" class="w-9 h-9 rounded-full border border-border flex items-center justify-center text-gray-400 hover:text-lime hover:border-lime transition-colors duration-200">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <!-- TikTok -->
+          <a href="#" aria-label="Follow on TikTok" class="w-9 h-9 rounded-full border border-border flex items-center justify-center text-gray-400 hover:text-lime hover:border-lime transition-colors duration-200">
+            <svg width="14" height="16" viewBox="0 0 24 27" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34l-.03-8.06a8.18 8.18 0 0 0 4.79 1.52v-3.4a4.85 4.85 0 0 1-1-.67z"/></svg>
+          </a>
+          <!-- YouTube -->
+          <a href="#" aria-label="Follow on YouTube" class="w-9 h-9 rounded-full border border-border flex items-center justify-center text-gray-400 hover:text-lime hover:border-lime transition-colors duration-200">
+            <svg width="16" height="12" viewBox="0 0 24 17" fill="currentColor"><path d="M23.5 2.5a3 3 0 0 0-2.1-2.1C19.5 0 12 0 12 0S4.5 0 2.6.4a3 3 0 0 0-2.1 2.1A31 31 0 0 0 0 8.5a31 31 0 0 0 .5 6 3 3 0 0 0 2.1 2.1C4.5 17 12 17 12 17s7.5 0 9.4-.4a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 8.5a31 31 0 0 0-.5-6zM9.75 12.02V5l6.5 3.5-6.5 3.52z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Shop -->
+      <div>
+        <h4 class="font-grotesk font-semibold text-sm uppercase tracking-widest text-white mb-5">Shop</h4>
+        <ul class="space-y-3">
+          <li><a href="#products" class="font-inter text-sm text-gray-500 hover:text-lime transition-colors duration-200">All Flavors</a></li>
+          <li><a href="#products" class="font-inter text-sm text-gray-500 hover:text-lime transition-colors duration-200">Bundles</a></li>
+          <li><a href="#"         class="font-inter text-sm text-gray-500 hover:text-lime transition-colors duration-200">Merch</a></li>
+          <li><a href="#"         class="font-inter text-sm text-gray-500 hover:text-lime transition-colors duration-200">Subscriptions</a></li>
+        </ul>
+      </div>
+
+      <!-- Company -->
+      <div>
+        <h4 class="font-grotesk font-semibold text-sm uppercase tracking-widest text-white mb-5">Company</h4>
+        <ul class="space-y-3">
+          <li><a href="#about" class="font-inter text-sm text-gray-500 hover:text-lime transition-colors duration-200">About Us</a></li>
+          <li><a href="#"      class="font-inter text-sm text-gray-500 hover:text-lime transition-colors duration-200">Careers</a></li>
+          <li><a href="#"      class="font-inter text-sm text-gray-500 hover:text-lime transition-colors duration-200">Press</a></li>
+          <li><a href="#"      class="font-inter text-sm text-gray-500 hover:text-lime transition-colors duration-200">Sustainability</a></li>
+        </ul>
+      </div>
+
+      <!-- Legal -->
+      <div>
+        <h4 class="font-grotesk font-semibold text-sm uppercase tracking-widest text-white mb-5">Legal</h4>
+        <ul class="space-y-3">
+          <li><a href="#" class="font-inter text-sm text-gray-500 hover:text-lime transition-colors duration-200">Impressum</a></li>
+          <li><a href="#" class="font-inter text-sm text-gray-500 hover:text-lime transition-colors duration-200">Datenschutz</a></li>
+          <li><a href="#" class="font-inter text-sm text-gray-500 hover:text-lime transition-colors duration-200">AGB</a></li>
+          <li><a href="#" class="font-inter text-sm text-gray-500 hover:text-lime transition-colors duration-200">Cookie Policy</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="border-t border-border pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="font-inter text-xs text-gray-600">© 2026 FLAVOR LABS. ALL RIGHTS RESERVED.</p>
+      <p class="font-inter text-xs text-gray-700">Made with 🔥 by Flavor Labs GmbH, Berlin</p>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ═══════════════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════════════ -->
+<script>
+  // ── Navbar scroll ──────────────────────────
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 30) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  }, { passive: true });
+
+  // ── Hamburger menu ─────────────────────────
+  const hamBtn    = document.getElementById('ham-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  hamBtn.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.contains('open-menu');
+    if (isOpen) {
+      mobileMenu.classList.remove('open-menu');
+      mobileMenu.classList.add('hidden-menu');
+      hamBtn.classList.remove('open');
+      document.body.style.overflow = '';
+    } else {
+      mobileMenu.classList.add('open-menu');
+      mobileMenu.classList.remove('hidden-menu');
+      hamBtn.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+  });
+
+  // Close on mobile link click
+  document.querySelectorAll('.mobile-link').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('open-menu');
+      mobileMenu.classList.add('hidden-menu');
+      hamBtn.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // ── Scroll reveal ──────────────────────────
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  revealEls.forEach(el => revealObserver.observe(el));
+
+  // ── Newsletter ─────────────────────────────
+  function handleSubscribe(e) {
+    e.preventDefault();
+    const successEl = document.getElementById('nl-success');
+    const input     = document.getElementById('nl-email');
+    successEl.style.opacity = '1';
+    input.value = '';
+    setTimeout(() => { successEl.style.opacity = '0'; }, 5000);
+  }
+</script>
+
+</body>
+</html>
