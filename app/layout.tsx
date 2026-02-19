@@ -8,14 +8,14 @@ import Footer from '@/components/Footer'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Patrick Eger — Personal Portfolio',
-  description: 'Portfolio, projects, and blog by Patrick Eger.',
-  metadataBase: new URL('http://localhost:3000'),
+  title: 'Patrick Eger - Personal Portfolio',
+  description: 'Portfolio and projects of Patrick Eger.',
+  metadataBase: new URL('https://patrickeger.vercel.app/'),
   openGraph: {
     title: 'Patrick Eger — Personal Portfolio',
-    description: 'Portfolio, projects, and blog by Patrick Eger.',
+    description: 'Portfolio and projects of Patrick Eger.',
     url: '/',
-    siteName: 'YourName.dev',
+    siteName: 'patrickeger.vercel.app',
     locale: 'en_US',
     type: 'website',
   },
