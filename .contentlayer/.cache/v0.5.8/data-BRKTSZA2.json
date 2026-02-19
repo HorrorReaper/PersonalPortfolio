@@ -38,6 +38,51 @@
       "hasWarnings": false,
       "documentTypeName": "Post"
     },
+    "projects/barboost.mdx": {
+      "document": {
+        "title": "BarBoost",
+        "slug": "bar-boost",
+        "summary": "Landing Page for a fictional protein bar manufacturer",
+        "date": "2026-02-10T00:00:00.000Z",
+        "tags": [
+          "HTML",
+          "Landing Page"
+        ],
+        "stack": [
+          "HTML",
+          "CSS",
+          "JavaScript"
+        ],
+        "liveUrl": "/projects/barboost/index.html",
+        "cover": "/images/posts/BarBoost.png",
+        "featured": true,
+        "published": true,
+        "body": {
+          "raw": "\n## Overview\nI built a landing page for a fictional protein bar manufacturer, which I coded myself\n\n<iframe src=\"/projects/barboost/index.html\" style={{width: '100%', height: 480, border: 0, borderRadius: 8}}></iframe>\n\n",
+          "code": "var Component=(()=>{var m=Object.create;var o=Object.defineProperty;var h=Object.getOwnPropertyDescriptor;var f=Object.getOwnPropertyNames;var p=Object.getPrototypeOf,g=Object.prototype.hasOwnProperty;var b=(e,t)=>()=>(t||e((t={exports:{}}).exports,t),t.exports),x=(e,t)=>{for(var a in t)o(e,a,{get:t[a],enumerable:!0})},s=(e,t,a,i)=>{if(t&&typeof t==\"object\"||typeof t==\"function\")for(let n of f(t))!g.call(e,n)&&n!==a&&o(e,n,{get:()=>t[n],enumerable:!(i=h(t,n))||i.enumerable});return e};var v=(e,t,a)=>(a=e!=null?m(p(e)):{},s(t||!e||!e.__esModule?o(a,\"default\",{value:e,enumerable:!0}):a,e)),j=e=>s(o({},\"__esModule\",{value:!0}),e);var d=b((M,c)=>{c.exports=_jsx_runtime});var w={};x(w,{default:()=>u,frontmatter:()=>_});var r=v(d()),_={title:\"BarBoost\",slug:\"bar-boost\",summary:\"Landing Page for a fictional protein bar manufacturer\",date:\"2026-02-10\",tags:[\"HTML\",\"Landing Page\"],stack:[\"HTML\",\"CSS\",\"JavaScript\"],liveUrl:\"/projects/barboost/index.html\",cover:\"/images/posts/BarBoost.png\",featured:!0,published:!0};function l(e){let t={a:\"a\",h2:\"h2\",p:\"p\",...e.components};return(0,r.jsxs)(r.Fragment,{children:[(0,r.jsx)(t.h2,{id:\"overview\",children:(0,r.jsx)(t.a,{href:\"#overview\",children:\"Overview\"})}),`\n`,(0,r.jsx)(t.p,{children:\"I built a landing page for a fictional protein bar manufacturer, which I coded myself\"}),`\n`,(0,r.jsx)(\"iframe\",{src:\"/projects/barboost/index.html\",style:{width:\"100%\",height:480,border:0,borderRadius:8}})]})}function u(e={}){let{wrapper:t}=e.components||{};return t?(0,r.jsx)(t,{...e,children:(0,r.jsx)(l,{...e})}):l(e)}return j(w);})();\n;return Component;"
+        },
+        "_id": "projects/barboost.mdx",
+        "_raw": {
+          "sourceFilePath": "projects/barboost.mdx",
+          "sourceFileName": "barboost.mdx",
+          "sourceFileDir": "projects",
+          "contentType": "mdx",
+          "flattenedPath": "projects/barboost"
+        },
+        "type": "Project",
+        "url": "/projects/bar-boost",
+        "dateObj": "2026-02-10T00:00:00.000Z",
+        "readingTime": {
+          "text": "1 min read",
+          "minutes": 0.135,
+          "time": 8100,
+          "words": 27
+        }
+      },
+      "documentHash": "1771495805415",
+      "hasWarnings": false,
+      "documentTypeName": "Project"
+    },
     "projects/first-project.mdx": {
       "document": {
         "title": "AE-Werbung Meusegast",

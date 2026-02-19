@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BARBOOST – Natürlich stark. Ehrlich gut.</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&family=Caveat:wght@400;600&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bg: '#FAFAF5',
+            bgAlt: '#F0EDE5',
+            textMain: '#2D3A2D',
+            textSec: '#5C6B5C',
+            green: '#4A7C59',
+            greenHover: '#3B6347',
+            greenLight: '#D4E8D0',
+            gold: '#C8A96E',
+            goldLight: '#F5EDDB',
+            border: '#E0DCD4',
+            card: '#FFFFFF',
+          },
+          fontFamily: {
+            serif: ['"DM Serif Display"', 'Georgia', 'serif'],
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            accent: ['Caveat', 'cursive'],
+          },
+          boxShadow: {
+            card: '0 4px 20px rgba(45,58,45,0.08)',
+            cardSm: '0 2px 12px rgba(45,58,45,0.06)',
+            cardHover: '0 8px 32px rgba(45,58,45,0.14)',
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Base */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { background-color: #FAFAF5; color: #2D3A2D; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+
+    /* Fonts */
+    .font-serif { font-family: 'DM Serif Display', Georgia, serif; }
+    .font-accent { font-family: 'Caveat', cursive; }
+
+    /* ===================== ANIMATIONS ===================== */
+
+    /* Float */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-14px); }
+    }
+    .animate-float { animation: float 4s ease-in-out infinite; }
+
+    /* Fade-in Up */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fadeInUp { animation: fadeInUp 0.7s ease-out forwards; }
+
+    /* Fade-in Left */
+    @keyframes fadeInLeft {
+      from { opacity: 0; transform: translateX(-36px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+    .animate-fadeInLeft { animation: fadeInLeft 0.75s ease-out forwards; }
+
+    /* Fade-in Right */
+    @keyframes fadeInRight {
+      from { opacity: 0; transform: translateX(36px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+    .animate-fadeInRight { animation: fadeInRight 0.75s ease-out forwards; }
+
+    /* Scale in */
+    @keyframes scaleIn {
+      from { opacity: 0; transform: scale(0.92); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+    .animate-scaleIn { animation: scaleIn 0.6s ease-out forwards; }
+
+    /* Marquee */
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .animate-marquee { animation: marquee 32s linear infinite; }
+
+    /* Blob pulse */
+    @keyframes blobPulse {
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      33% { transform: scale(1.06) rotate(4deg); }
+      66% { transform: scale(0.96) rotate(-3deg); }
+    }
+    .animate-blob { animation: blobPulse 8s ease-in-out infinite; }
+
+    /* Scroll-triggered reveal */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-left { opacity: 0; transform: translateX(-40px); transition: opacity 0.75s ease, transform 0.75s ease; }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+    .reveal-right { opacity: 0; transform: translateX(40px); transition: opacity 0.75s ease, transform 0.75s ease; }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+    .reveal-scale { opacity: 0; transform: scale(0.93); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .reveal-scale.visible { opacity: 1; transform: scale(1); }
+
+    /* Stagger delays */
+    .delay-100 { transition-delay: 0.1s; }
+    .delay-200 { transition-delay: 0.2s; }
+    .delay-300 { transition-delay: 0.3s; }
+    .delay-400 { transition-delay: 0.4s; }
+    .delay-500 { transition-delay: 0.5s; }
+
+    /* Underline link animation */
+    .link-underline {
+      position: relative; text-decoration: none;
+    }
+    .link-underline::after {
+      content: ''; position: absolute; bottom: -2px; left: 0;
+      width: 0; height: 1.5px; background: #4A7C59;
+      transition: width 0.3s ease;
+    }
+    .link-underline:hover::after { width: 100%; }
+
+    /* Nav scroll shadow */
+    .navbar-scrolled { box-shadow: 0 2px 20px rgba(45,58,45,0.08); }
+
+    /* Circle progress */
+    .circle-ring {
+      fill: none; stroke-width: 8;
+      stroke-linecap: round;
+      transform-origin: center;
+      transform: rotate(-90deg);
+      transition: stroke-dashoffset 1.5s ease-out;
+    }
+
+    /* Mobile menu */
+    #mobileMenu {
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+    }
+    #mobileMenu.open { transform: translateX(0); }
+
+    /* Product card hover */
+    .product-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .product-card:hover { transform: scale(1.025); box-shadow: 0 12px 40px rgba(45,58,45,0.14); }
+
+    /* Btn hover */
+    .btn-primary { transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease; }
+    .btn-primary:hover { transform: scale(1.04); box-shadow: 0 8px 24px rgba(74,124,89,0.3); background-color: #3B6347; }
+
+    /* Focus states */
+    a:focus-visible, button:focus-visible { outline: 2px solid #4A7C59; outline-offset: 3px; border-radius: 4px; }
+    input:focus { outline: none; border-color: #4A7C59 !important; box-shadow: 0 0 0 3px rgba(74,124,89,0.15); }
+
+    /* Scroll progress */
+    #scrollProgress {
+      position: fixed; top: 0; left: 0; height: 2px;
+      background: #4A7C59; z-index: 999;
+      transition: width 0.1s linear;
+    }
+  </style>
+</head>
+
+<body class="antialiased">
+
+<!-- Scroll Progress -->
+<div id="scrollProgress" style="width:0%"></div>
+
+<!-- =========================================
+     1. ANNOUNCEMENT BAR
+========================================= -->
+<div id="announcementBar" class="w-full text-white text-center py-2.5 px-4 text-[13px] font-medium tracking-wide opacity-0 transition-opacity duration-700" style="background:#4A7C59;">
+  🌿 Kostenloser Versand ab 30&euro; &ndash; Jetzt entdecken
+</div>
+
+<!-- =========================================
+     2. NAVBAR
+========================================= -->
+<nav id="navbar" class="sticky top-0 z-50 transition-all duration-300 border-b border-[#E0DCD4]" style="background: rgba(250,250,245,0.9); backdrop-filter: blur(12px);" aria-label="Hauptnavigation">
+  <div class="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
+    <!-- Logo -->
+    <a href="#" class="font-serif text-2xl text-[#2D3A2D] tracking-tight">BARBOOST</a>
+
+    <!-- Nav Links Desktop -->
+    <ul class="hidden md:flex items-center gap-8 list-none">
+      <li><a href="#produkte" class="link-underline text-sm font-medium text-[#5C6B5C] hover:text-[#4A7C59] transition-colors">Produkte</a></li>
+      <li><a href="#zutaten" class="link-underline text-sm font-medium text-[#5C6B5C] hover:text-[#4A7C59] transition-colors">Zutaten</a></li>
+      <li><a href="#mission" class="link-underline text-sm font-medium text-[#5C6B5C] hover:text-[#4A7C59] transition-colors">Über uns</a></li>
+      <li><a href="#nachhaltigkeit" class="link-underline text-sm font-medium text-[#5C6B5C] hover:text-[#4A7C59] transition-colors">Nachhaltigkeit</a></li>
+    </ul>
+
+    <!-- Right side -->
+    <div class="flex items-center gap-4">
+      <!-- Cart -->
+      <button aria-label="Warenkorb" class="hidden md:flex items-center justify-center w-10 h-10 text-[#5C6B5C] hover:text-[#4A7C59] transition-colors rounded-full hover:bg-[#D4E8D0]">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
+        </svg>
+      </button>
+      <!-- CTA -->
+      <a href="#produkte" class="hidden md:inline-flex btn-primary items-center bg-[#4A7C59] text-white text-sm font-semibold rounded-full px-6 py-2.5">Jetzt bestellen</a>
+      <!-- Hamburger -->
+      <button id="hamburger" class="md:hidden flex flex-col gap-1.5 w-10 h-10 items-center justify-center" aria-label="Menü öffnen">
+        <span class="w-5 h-0.5 bg-[#2D3A2D] transition-all duration-300 origin-center" id="line1"></span>
+        <span class="w-5 h-0.5 bg-[#2D3A2D] transition-all duration-300" id="line2"></span>
+        <span class="w-5 h-0.5 bg-[#2D3A2D] transition-all duration-300 origin-center" id="line3"></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div id="mobileMenu" class="fixed top-0 right-0 h-full w-80 max-w-full bg-white z-50 shadow-2xl flex flex-col pt-20 pb-8 px-8">
+  <button id="closeMenu" class="absolute top-5 right-5 text-[#2D3A2D]" aria-label="Menü schließen">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+  </button>
+  <ul class="flex flex-col gap-6 list-none text-xl font-medium text-[#2D3A2D]">
+    <li><a href="#produkte" class="block hover:text-[#4A7C59] transition-colors" onclick="closeMenuFn()">Produkte</a></li>
+    <li><a href="#zutaten" class="block hover:text-[#4A7C59] transition-colors" onclick="closeMenuFn()">Zutaten</a></li>
+    <li><a href="#mission" class="block hover:text-[#4A7C59] transition-colors" onclick="closeMenuFn()">Über uns</a></li>
+    <li><a href="#nachhaltigkeit" class="block hover:text-[#4A7C59] transition-colors" onclick="closeMenuFn()">Nachhaltigkeit</a></li>
+  </ul>
+  <div class="mt-auto">
+    <a href="#produkte" onclick="closeMenuFn()" class="btn-primary flex items-center justify-center w-full bg-[#4A7C59] text-white font-semibold rounded-full py-4 text-base">Jetzt bestellen</a>
+  </div>
+</div>
+<div id="menuOverlay" class="fixed inset-0 bg-black/30 z-40 hidden" onclick="closeMenuFn()"></div>
+
+<!-- =========================================
+     3. HERO SECTION
+========================================= -->
+<section id="hero" class="min-h-screen flex items-center" style="background:#FAFAF5; padding-top:2rem; padding-bottom:2rem;">
+  <div class="max-w-7xl mx-auto px-6 w-full">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <!-- Text -->
+      <div class="flex flex-col items-start gap-6">
+        <!-- Badge -->
+        <div class="animate-fadeInUp" style="animation-delay:0.1s;">
+          <span class="inline-flex items-center gap-2 bg-[#D4E8D0] text-[#4A7C59] rounded-full px-4 py-1.5 text-sm font-medium">
+            <span>🌿</span> 100% natürlich
+          </span>
+        </div>
+
+        <!-- H1 -->
+        <h1 class="font-serif text-4xl md:text-5xl lg:text-[3.5rem] leading-tight text-[#2D3A2D] animate-fadeInUp" style="animation-delay:0.2s;">
+          Natürlich stark.<br/>Ehrlich gut.
+        </h1>
+
+        <!-- Sub -->
+        <p class="text-[#5C6B5C] text-lg leading-relaxed max-w-lg animate-fadeInUp" style="animation-delay:0.3s;">
+          Proteinriegel aus echten Zutaten &ndash; ohne künstliche Zusätze, ohne Kompromisse.
+        </p>
+
+        <!-- CTAs -->
+        <div class="flex flex-wrap items-center gap-4 animate-fadeInUp" style="animation-delay:0.4s;">
+          <a href="#produkte" class="btn-primary inline-flex items-center bg-[#4A7C59] text-white font-semibold rounded-full px-8 py-4 text-base shadow-sm">
+            Jetzt probieren
+          </a>
+          <a href="#zutaten" class="inline-flex items-center text-[#4A7C59] font-medium text-base hover:underline underline-offset-4 transition-all">
+            Mehr erfahren &rarr;
+          </a>
+        </div>
+
+        <!-- Trust badges -->
+        <div class="flex flex-wrap gap-3 animate-fadeInUp" style="animation-delay:0.5s;">
+          <span class="bg-[#F0EDE5] text-[#5C6B5C] text-sm rounded-full px-4 py-2 font-medium">🌱 Vegan</span>
+          <span class="bg-[#F0EDE5] text-[#5C6B5C] text-sm rounded-full px-4 py-2 font-medium">🍫 3 Sorten</span>
+          <span class="bg-[#F0EDE5] text-[#5C6B5C] text-sm rounded-full px-4 py-2 font-medium">💪 24g Protein</span>
+        </div>
+      </div>
+
+      <!-- Image -->
+      <div class="relative flex items-center justify-center animate-scaleIn" style="animation-delay:0.35s;">
+        <!-- Blob BG -->
+        <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <div class="w-80 h-80 md:w-[420px] md:h-[420px] rounded-full opacity-30 animate-blob" style="background:radial-gradient(circle at 40% 40%, #D4E8D0 0%, #F0EDE5 70%);"></div>
+        </div>
+        <div class="relative z-10 animate-float">
+          <img
+            src="https://images.unsplash.com/photo-1571748982800-fa51082c2224?w=600&auto=format&fit=crop&q=80"
+            alt="BARBOOST Proteinriegel mit natürlichen Zutaten"
+            class="w-full max-w-sm md:max-w-md rounded-3xl shadow-card object-cover"
+            loading="eager"
+            onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&auto=format&fit=crop&q=80';"
+          />
+          <!-- Floating label -->
+          <div class="absolute -top-4 -right-4 md:-right-8 bg-white rounded-2xl shadow-card px-4 py-3 flex items-center gap-2">
+            <span class="text-[#4A7C59] font-accent text-xl">24g</span>
+            <span class="text-[#5C6B5C] text-xs font-medium">Protein</span>
+          </div>
+          <div class="absolute -bottom-4 -left-4 md:-left-8 bg-[#4A7C59] rounded-2xl shadow-card px-4 py-3 flex items-center gap-2">
+            <span class="text-white text-xs font-medium">Clean Label ✓</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================
+     4. TRUST / LOGOS BAR
+========================================= -->
+<section id="trust" class="py-12 overflow-hidden" style="background:#F0EDE5;">
+  <div class="max-w-7xl mx-auto px-6">
+    <p class="text-center text-xs text-[#5C6B5C] uppercase tracking-[0.2em] font-medium mb-8 reveal">Bekannt aus</p>
+  </div>
+  <div class="relative overflow-hidden">
+    <div class="flex gap-16 items-center animate-marquee whitespace-nowrap" style="width: max-content;">
+      <!-- Logos (text placeholders in brand style) -->
+      <span class="opacity-40 hover:opacity-80 transition-opacity duration-300 font-serif text-2xl text-[#2D3A2D] cursor-default select-none">Men's Health</span>
+      <span class="opacity-40 hover:opacity-80 transition-opacity duration-300 font-serif text-2xl text-[#2D3A2D] cursor-default select-none">FitForFun</span>
+      <span class="opacity-40 hover:opacity-80 transition-opacity duration-300 font-serif text-2xl text-[#2D3A2D] cursor-default select-none">EatSmarter</span>
+      <span class="opacity-40 hover:opacity-80 transition-opacity duration-300 font-serif text-2xl text-[#2D3A2D] cursor-default select-none">Women's Health</span>
+      <span class="opacity-40 hover:opacity-80 transition-opacity duration-300 font-serif text-2xl text-[#2D3A2D] cursor-default select-none">BRIGITTE</span>
+      <span class="opacity-40 hover:opacity-80 transition-opacity duration-300 font-serif text-2xl text-[#2D3A2D] cursor-default select-none">Glamour</span>
+      <!-- duplicate for seamless loop -->
+      <span class="opacity-40 hover:opacity-80 transition-opacity duration-300 font-serif text-2xl text-[#2D3A2D] cursor-default select-none">Men's Health</span>
+      <span class="opacity-40 hover:opacity-80 transition-opacity duration-300 font-serif text-2xl text-[#2D3A2D] cursor-default select-none">FitForFun</span>
+      <span class="opacity-40 hover:opacity-80 transition-opacity duration-300 font-serif text-2xl text-[#2D3A2D] cursor-default select-none">EatSmarter</span>
+      <span class="opacity-40 hover:opacity-80 transition-opacity duration-300 font-serif text-2xl text-[#2D3A2D] cursor-default select-none">Women's Health</span>
+      <span class="opacity-40 hover:opacity-80 transition-opacity duration-300 font-serif text-2xl text-[#2D3A2D] cursor-default select-none">BRIGITTE</span>
+      <span class="opacity-40 hover:opacity-80 transition-opacity duration-300 font-serif text-2xl text-[#2D3A2D] cursor-default select-none">Glamour</span>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================
+     5. PRODUCT SHOWCASE
+========================================= -->
+<section id="produkte" class="py-24" style="background:#FAFAF5;">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-14 reveal">
+      <h2 class="font-serif text-4xl md:text-5xl text-[#2D3A2D] mb-4">Unsere Sorten</h2>
+      <p class="text-[#5C6B5C] text-lg">Drei Geschmäcker. Eine Mission: Natürlich gut.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- Card 1: Crunchy Almond -->
+      <article class="product-card bg-white rounded-2xl overflow-hidden border border-[#E0DCD4] reveal delay-100" style="box-shadow:0 2px 12px rgba(45,58,45,0.06);">
+        <div class="relative aspect-[4/3] bg-[#F0EDE5] overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1606312619070-d48b4c652a52?w=600&auto=format&fit=crop&q=80" alt="Crunchy Almond Proteinriegel mit Mandeln" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1543352634-a1c51d9f1fa7?w=600&auto=format&fit=crop&q=80';" class="w-full h-full object-cover" loading="lazy" />
+          <div class="absolute top-4 left-4">
+            <span class="bg-[#C8A96E] text-white text-xs font-semibold rounded-full px-3 py-1">Bestseller</span>
+          </div>
+        </div>
+        <div class="p-6">
+          <h3 class="font-serif text-2xl text-[#2D3A2D] mb-1">Crunchy Almond</h3>
+          <p class="text-[#5C6B5C] text-sm mb-4">Knackige Mandeln &amp; ein Hauch Vanille</p>
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-[#4A7C59] text-xl">3,49 €</span>
+            <button class="btn-primary bg-[#4A7C59] text-white text-sm font-semibold rounded-full px-5 py-2.5">In den Warenkorb</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 2: Dark Cocoa -->
+      <article class="product-card bg-white rounded-2xl overflow-hidden border border-[#E0DCD4] reveal delay-200" style="box-shadow:0 2px 12px rgba(45,58,45,0.06);">
+        <div class="relative aspect-[4/3] bg-[#F0EDE5] overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1548907040-4baa42d10919?w=600&auto=format&fit=crop&q=80" alt="Dark Cocoa Proteinriegel mit Schokolade" class="w-full h-full object-cover" loading="lazy" />
+          <div class="absolute top-4 left-4">
+            <span class="bg-[#4A7C59] text-white text-xs font-semibold rounded-full px-3 py-1">Neu</span>
+          </div>
+        </div>
+        <div class="p-6">
+          <h3 class="font-serif text-2xl text-[#2D3A2D] mb-1">Dark Cocoa</h3>
+          <p class="text-[#5C6B5C] text-sm mb-4">Intensiver Kakao &amp; Meersalz</p>
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-[#4A7C59] text-xl">3,49 €</span>
+            <button class="btn-primary bg-[#4A7C59] text-white text-sm font-semibold rounded-full px-5 py-2.5">In den Warenkorb</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 3: Berry Boost -->
+      <article class="product-card bg-white rounded-2xl overflow-hidden border border-[#E0DCD4] reveal delay-300" style="box-shadow:0 2px 12px rgba(45,58,45,0.06);">
+        <div class="relative aspect-[4/3] bg-[#F0EDE5] overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=600&auto=format&fit=crop&q=80" alt="Berry Boost Proteinriegel mit Beeren" class="w-full h-full object-cover" loading="lazy" />
+        </div>
+        <div class="p-6">
+          <h3 class="font-serif text-2xl text-[#2D3A2D] mb-1">Berry Boost</h3>
+          <p class="text-[#5C6B5C] text-sm mb-4">Himbeere, Cranberry &amp; Chia</p>
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-[#4A7C59] text-xl">3,49 €</span>
+            <button class="btn-primary bg-[#4A7C59] text-white text-sm font-semibold rounded-full px-5 py-2.5">In den Warenkorb</button>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="text-center mt-10 reveal">
+      <a href="#" class="text-[#4A7C59] font-medium hover:underline underline-offset-4 text-base">Alle Sorten entdecken &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================
+     6. NUTRITION SECTION – Was drinsteckt
+========================================= -->
+<section id="zutaten" class="py-24" style="background:#F0EDE5;">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <!-- Image -->
+      <div class="reveal-left">
+        <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=700&auto=format&fit=crop&q=80" alt="Natürliche Zutaten – Nüsse und Mandeln" class="w-full rounded-3xl shadow-card object-cover" style="max-height:520px;" loading="lazy" />
+      </div>
+
+      <!-- Content -->
+      <div class="reveal-right">
+        <div class="mb-2">
+          <span class="font-accent text-[#4A7C59] text-xl">Ehrliche Nährwerte</span>
+        </div>
+        <h2 class="font-serif text-4xl md:text-5xl text-[#2D3A2D] mb-4">Was drinsteckt</h2>
+        <p class="text-[#5C6B5C] text-lg mb-10 leading-relaxed">Transparenz ist uns wichtig &ndash; hier sind die Fakten.</p>
+
+        <!-- Nutrition circles -->
+        <div class="grid grid-cols-2 gap-6 mb-10">
+          <!-- Protein -->
+          <div class="flex items-center gap-4">
+            <div class="relative w-20 h-20 shrink-0">
+              <svg class="w-full h-full" viewBox="0 0 80 80">
+                <circle cx="40" cy="40" r="32" fill="none" stroke="#E0DCD4" stroke-width="8"/>
+                <circle cx="40" cy="40" r="32" class="circle-ring" stroke="#4A7C59" stroke-dasharray="201" stroke-dashoffset="201" data-target="40" id="c1"/>
+              </svg>
+              <span class="absolute inset-0 flex items-center justify-center font-serif text-lg text-[#2D3A2D]" id="cv1">0g</span>
+            </div>
+            <div>
+              <div class="font-semibold text-[#2D3A2D] text-base">Protein</div>
+              <div class="text-[#5C6B5C] text-sm">Pro Riegel</div>
+            </div>
+          </div>
+          <!-- Zucker -->
+          <div class="flex items-center gap-4">
+            <div class="relative w-20 h-20 shrink-0">
+              <svg class="w-full h-full" viewBox="0 0 80 80">
+                <circle cx="40" cy="40" r="32" fill="none" stroke="#E0DCD4" stroke-width="8"/>
+                <circle cx="40" cy="40" r="32" class="circle-ring" stroke="#C8A96E" stroke-dasharray="201" stroke-dashoffset="201" data-target="5" id="c2"/>
+              </svg>
+              <span class="absolute inset-0 flex items-center justify-center font-serif text-lg text-[#2D3A2D]" id="cv2">0g</span>
+            </div>
+            <div>
+              <div class="font-semibold text-[#2D3A2D] text-base">Zucker</div>
+              <div class="text-[#5C6B5C] text-sm">Nur natürlich</div>
+            </div>
+          </div>
+          <!-- Kalorien -->
+          <div class="flex items-center gap-4">
+            <div class="relative w-20 h-20 shrink-0">
+              <svg class="w-full h-full" viewBox="0 0 80 80">
+                <circle cx="40" cy="40" r="32" fill="none" stroke="#E0DCD4" stroke-width="8"/>
+                <circle cx="40" cy="40" r="32" class="circle-ring" stroke="#4A7C59" stroke-dasharray="201" stroke-dashoffset="201" data-target="65" id="c3"/>
+              </svg>
+              <span class="absolute inset-0 flex items-center justify-center font-serif text-sm text-[#2D3A2D] leading-tight text-center" id="cv3">0</span>
+            </div>
+            <div>
+              <div class="font-semibold text-[#2D3A2D] text-base">Kalorien</div>
+              <div class="text-[#5C6B5C] text-sm">210 kcal total</div>
+            </div>
+          </div>
+          <!-- Ballaststoffe -->
+          <div class="flex items-center gap-4">
+            <div class="relative w-20 h-20 shrink-0">
+              <svg class="w-full h-full" viewBox="0 0 80 80">
+                <circle cx="40" cy="40" r="32" fill="none" stroke="#E0DCD4" stroke-width="8"/>
+                <circle cx="40" cy="40" r="32" class="circle-ring" stroke="#C8A96E" stroke-dasharray="201" stroke-dashoffset="201" data-target="20" id="c4"/>
+              </svg>
+              <span class="absolute inset-0 flex items-center justify-center font-serif text-lg text-[#2D3A2D]" id="cv4">0g</span>
+            </div>
+            <div>
+              <div class="font-semibold text-[#2D3A2D] text-base">Ballaststoffe</div>
+              <div class="text-[#5C6B5C] text-sm">8g pro Riegel</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ingredient Tags -->
+        <div class="flex flex-wrap gap-2">
+          <span class="bg-white border border-[#E0DCD4] rounded-full px-4 py-2 text-sm text-[#2D3A2D]">🥜 Mandeln</span>
+          <span class="bg-white border border-[#E0DCD4] rounded-full px-4 py-2 text-sm text-[#2D3A2D]">🌾 Hafer</span>
+          <span class="bg-white border border-[#E0DCD4] rounded-full px-4 py-2 text-sm text-[#2D3A2D]">💪 Erbsenprotein</span>
+          <span class="bg-white border border-[#E0DCD4] rounded-full px-4 py-2 text-sm text-[#2D3A2D]">🍫 Kakao</span>
+          <span class="bg-white border border-[#E0DCD4] rounded-full px-4 py-2 text-sm text-[#2D3A2D]">🍯 Dattelsirup</span>
+          <span class="bg-white border border-[#E0DCD4] rounded-full px-4 py-2 text-sm text-[#2D3A2D]">🥥 Kokosöl</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================
+     7. FEATURES / USP SECTION
+========================================= -->
+<section id="features" class="py-24" style="background:#FAFAF5;">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16 reveal">
+      <h2 class="font-serif text-4xl md:text-5xl text-[#2D3A2D]">Warum BARBOOST?</h2>
+    </div>
+
+    <!-- Feature 1 -->
+    <div class="grid lg:grid-cols-2 gap-16 items-center mb-24">
+      <div class="reveal-left">
+        <img src="https://images.unsplash.com/photo-1543352634-a1c51d9f1fa7?w=700&auto=format&fit=crop&q=80" alt="Natürliche Zutaten auf Holzbrett – Nüsse und Samen" class="w-full rounded-3xl shadow-card object-cover" style="max-height:420px;" loading="lazy" />
+      </div>
+      <div class="reveal-right">
+        <span class="text-4xl mb-4 block">🌿</span>
+        <h3 class="font-serif text-3xl text-[#2D3A2D] mb-4">Echte Zutaten</h3>
+        <p class="text-[#5C6B5C] text-lg leading-relaxed">Keine künstlichen Aromen, keine versteckten Zusätze. Nur echte Lebensmittel, die du kennst und aussprechen kannst. Jeder Riegel erzählt die Geschichte seiner Zutaten.</p>
+      </div>
+    </div>
+
+    <!-- Feature 2 (reversed) -->
+    <div class="grid lg:grid-cols-2 gap-16 items-center mb-24">
+      <div class="order-2 lg:order-1 reveal-left">
+        <span class="text-4xl mb-4 block">♻️</span>
+        <h3 class="font-serif text-3xl text-[#2D3A2D] mb-4">Nachhaltig verpackt</h3>
+        <p class="text-[#5C6B5C] text-lg leading-relaxed">Unsere Verpackung ist 100% kompostierbar. Weil guter Geschmack nicht auf Kosten der Umwelt gehen darf. Gut für dich &ndash; gut für den Planeten.</p>
+      </div>
+      <div class="order-1 lg:order-2 reveal-right">
+        <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=700&auto=format&fit=crop&q=80" alt="Nachhaltige Natur und Verpackung" class="w-full rounded-3xl shadow-card object-cover" style="max-height:420px;" loading="lazy" />
+      </div>
+    </div>
+
+    <!-- Feature 3 -->
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <div class="reveal-left">
+        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=700&auto=format&fit=crop&q=80" alt="Person beim Sport mit gesundem Snack" class="w-full rounded-3xl shadow-card object-cover" style="max-height:420px;" loading="lazy" />
+      </div>
+      <div class="reveal-right">
+        <span class="text-4xl mb-4 block">⚡</span>
+        <h3 class="font-serif text-3xl text-[#2D3A2D] mb-4">Für deinen Alltag</h3>
+        <p class="text-[#5C6B5C] text-lg leading-relaxed">Ob nach dem Training, im Büro oder unterwegs &ndash; BARBOOST gibt dir die Energie, die du brauchst. Kompakt, praktisch und immer bereit.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================
+     8. SOCIAL PROOF BANNER
+========================================= -->
+<section id="stats" class="py-20" style="background:#4A7C59;">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-10 text-center text-white">
+      <div class="reveal">
+        <div class="font-serif text-5xl md:text-6xl mb-2" data-counter="50000" data-suffix="+" id="stat1">0</div>
+        <div class="text-xs uppercase tracking-[0.2em] text-white/70 font-medium">Zufriedene Kunden</div>
+      </div>
+      <div class="reveal delay-100">
+        <div class="font-serif text-5xl md:text-6xl mb-2" data-counter="48" data-suffix="" data-decimal="true" id="stat2">0</div>
+        <div class="text-white/70 text-lg mb-1">★★★★★</div>
+        <div class="text-xs uppercase tracking-[0.2em] text-white/70 font-medium">Ø Bewertung</div>
+      </div>
+      <div class="reveal delay-200">
+        <div class="font-serif text-5xl md:text-6xl mb-2" data-counter="100" data-suffix="%" id="stat3">0</div>
+        <div class="text-xs uppercase tracking-[0.2em] text-white/70 font-medium">Natürliche Zutaten</div>
+      </div>
+      <div class="reveal delay-300">
+        <div class="font-serif text-5xl md:text-6xl mb-2" data-counter="0" data-suffix="g" id="stat4">0g</div>
+        <div class="text-xs uppercase tracking-[0.2em] text-white/70 font-medium">Künstlicher Zucker</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================
+     9. TESTIMONIALS
+========================================= -->
+<section id="testimonials" class="py-24" style="background:#FAFAF5;">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-14 reveal">
+      <h2 class="font-serif text-4xl md:text-5xl text-[#2D3A2D]">Das sagen unsere Kunden</h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- Review 1 -->
+      <article class="bg-white rounded-2xl border border-[#E0DCD4] p-8 reveal delay-100" style="box-shadow:0 4px 20px rgba(45,58,45,0.06);">
+        <div class="flex gap-0.5 mb-5 text-[#C8A96E] text-xl">★★★★★</div>
+        <blockquote class="text-[#2D3A2D] text-base leading-relaxed italic mb-6">"Endlich ein Riegel, der wirklich nach etwas schmeckt &ndash; und bei dem ich weiß, was drin ist. Der Crunchy Almond ist mein Favorit!"</blockquote>
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-full bg-[#D4E8D0] flex items-center justify-center text-[#4A7C59] font-serif text-lg shrink-0">L</div>
+          <div>
+            <div class="font-semibold text-[#2D3A2D] text-sm">Lisa M.</div>
+            <div class="text-xs text-[#4A7C59] font-medium bg-[#D4E8D0] rounded-full px-3 py-0.5 inline-block mt-1">Verifizierter Kauf</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Review 2 -->
+      <article class="bg-white rounded-2xl border border-[#E0DCD4] p-8 reveal delay-200" style="box-shadow:0 4px 20px rgba(45,58,45,0.06);">
+        <div class="flex gap-0.5 mb-5 text-[#C8A96E] text-xl">★★★★★</div>
+        <blockquote class="text-[#2D3A2D] text-base leading-relaxed italic mb-6">"Ich habe schon viele Proteinriegel probiert, aber BARBOOST ist der erste, den ich guten Gewissens empfehlen kann."</blockquote>
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-full bg-[#D4E8D0] flex items-center justify-center text-[#4A7C59] font-serif text-lg shrink-0">M</div>
+          <div>
+            <div class="font-semibold text-[#2D3A2D] text-sm">Max T.</div>
+            <div class="text-xs text-[#4A7C59] font-medium bg-[#D4E8D0] rounded-full px-3 py-0.5 inline-block mt-1">Verifizierter Kauf</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Review 3 -->
+      <article class="bg-white rounded-2xl border border-[#E0DCD4] p-8 reveal delay-300" style="box-shadow:0 4px 20px rgba(45,58,45,0.06);">
+        <div class="flex gap-0.5 mb-5 text-[#C8A96E] text-xl">★★★★★</div>
+        <blockquote class="text-[#2D3A2D] text-base leading-relaxed italic mb-6">"Top Konsistenz, nicht zu süß und die Nährwerte stimmen. Perfekt für nach dem Training!"</blockquote>
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-full bg-[#D4E8D0] flex items-center justify-center text-[#4A7C59] font-serif text-lg shrink-0">S</div>
+          <div>
+            <div class="font-semibold text-[#2D3A2D] text-sm">Sarah K.</div>
+            <div class="text-xs text-[#4A7C59] font-medium bg-[#D4E8D0] rounded-full px-3 py-0.5 inline-block mt-1">Verifizierter Kauf</div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================
+     10. MISSION / NACHHALTIGKEIT
+========================================= -->
+<section id="nachhaltigkeit" class="py-24" style="background:#F0EDE5;">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid lg:grid-cols-2 gap-16 items-center" id="mission">
+      <!-- Image -->
+      <div class="reveal-left">
+        <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=700&auto=format&fit=crop&q=80" alt="Grüne Natur und Waldlandschaft" class="w-full rounded-3xl shadow-card object-cover" style="max-height:500px;" loading="lazy" />
+      </div>
+
+      <!-- Text -->
+      <div class="reveal-right">
+        <span class="font-accent text-[#4A7C59] text-xl mb-2 block">Wer wir sind</span>
+        <h2 class="font-serif text-4xl md:text-5xl text-[#2D3A2D] mb-6">Unsere Mission</h2>
+        <p class="text-[#5C6B5C] text-lg leading-relaxed mb-10">
+          Wir glauben, dass gute Ernährung einfach, ehrlich und nachhaltig sein kann. Deshalb setzen wir auf regionale Zutaten, faire Produktion und kompostierbare Verpackungen &ndash; für eine bessere Welt mit jedem Biss.
+        </p>
+
+        <!-- Icons -->
+        <div class="flex flex-col gap-5 mb-8">
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-2xl bg-[#D4E8D0] flex items-center justify-center text-2xl shrink-0">🌍</div>
+            <div>
+              <div class="font-semibold text-[#2D3A2D] text-base">CO₂-neutral produziert</div>
+              <div class="text-[#5C6B5C] text-sm">100% erneuerbare Energie in der Produktion</div>
+            </div>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-2xl bg-[#D4E8D0] flex items-center justify-center text-2xl shrink-0">🌱</div>
+            <div>
+              <div class="font-semibold text-[#2D3A2D] text-base">100% pflanzlich</div>
+              <div class="text-[#5C6B5C] text-sm">Keine tierischen Zutaten, keine Kompromisse</div>
+            </div>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-2xl bg-[#D4E8D0] flex items-center justify-center text-2xl shrink-0">🤝</div>
+            <div>
+              <div class="font-semibold text-[#2D3A2D] text-base">Fair gehandelte Zutaten</div>
+              <div class="text-[#5C6B5C] text-sm">Direkte Partnerschaften mit Bauern weltweit</div>
+            </div>
+          </div>
+        </div>
+
+        <a href="#" class="text-[#4A7C59] font-medium hover:underline underline-offset-4 text-base">Mehr über uns erfahren &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================
+     11. NEWSLETTER CTA
+========================================= -->
+<section id="newsletter" class="relative py-28 overflow-hidden">
+  <div class="absolute inset-0 z-0">
+    <img src="https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=1600&auto=format&fit=crop&q=70" alt="Grüne Natur Hintergrund" class="w-full h-full object-cover" loading="lazy" />
+    <div class="absolute inset-0" style="background:rgba(74,124,89,0.92);"></div>
+  </div>
+  <div class="relative z-10 max-w-2xl mx-auto px-6 text-center">
+    <div class="reveal">
+      <h2 class="font-serif text-4xl md:text-5xl text-white mb-4">Bleib auf dem Laufenden</h2>
+      <p class="text-white/90 text-lg mb-10">Melde dich an und erhalte 10% Rabatt auf deine erste Bestellung.</p>
+      <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto" onsubmit="handleNewsletterSubmit(event)">
+        <input
+          type="email"
+          placeholder="Deine E-Mail-Adresse"
+          required
+          class="flex-1 bg-white/20 border border-white/30 text-white placeholder-white/60 rounded-full px-6 py-4 text-base focus:outline-none transition-all"
+          style="backdrop-filter:blur(4px);"
+        />
+        <button type="submit" class="bg-white text-[#4A7C59] font-bold rounded-full px-8 py-4 text-base hover:bg-[#F0EDE5] transition-colors shrink-0 btn-primary">
+          Jetzt anmelden
+        </button>
+      </form>
+      <p class="text-white/60 text-sm mt-4">🔒 Kein Spam. Jederzeit kündbar.</p>
+      <div id="successMsg" class="hidden mt-4 bg-white/20 text-white rounded-full px-6 py-3 text-sm font-medium">
+        ✅ Perfekt! Du erhältst gleich eine Bestätigungs-E-Mail.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================
+     12. FOOTER
+========================================= -->
+<footer id="footer" style="background:#2D3A2D;" class="pt-16 pb-8">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-white/10">
+      <!-- Brand -->
+      <div class="col-span-2 lg:col-span-1">
+        <div class="font-serif text-2xl text-white mb-2">BARBOOST</div>
+        <p class="text-white/60 text-sm mb-6 leading-relaxed">Natürlich stark.<br/>Ehrlich gut. Für dich und den Planeten.</p>
+        <!-- Social Icons -->
+        <div class="flex gap-4">
+          <a href="#" aria-label="Instagram" class="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:text-white hover:border-white transition-colors">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+          <a href="#" aria-label="TikTok" class="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:text-white hover:border-white transition-colors">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.31 6.31 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.77 1.52V6.75a4.85 4.85 0 01-1-.06z"/></svg>
+          </a>
+          <a href="#" aria-label="Pinterest" class="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:text-white hover:border-white transition-colors">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Shop -->
+      <div>
+        <h4 class="text-white font-semibold text-sm uppercase tracking-wider mb-5">Shop</h4>
+        <ul class="flex flex-col gap-3 list-none">
+          <li><a href="#" class="text-white/60 text-sm hover:text-white transition-colors">Alle Sorten</a></li>
+          <li><a href="#" class="text-white/60 text-sm hover:text-white transition-colors">Bundles</a></li>
+          <li><a href="#" class="text-white/60 text-sm hover:text-white transition-colors">Abo</a></li>
+          <li><a href="#" class="text-white/60 text-sm hover:text-white transition-colors">Geschenkbox</a></li>
+        </ul>
+      </div>
+
+      <!-- Unternehmen -->
+      <div>
+        <h4 class="text-white font-semibold text-sm uppercase tracking-wider mb-5">Unternehmen</h4>
+        <ul class="flex flex-col gap-3 list-none">
+          <li><a href="#" class="text-white/60 text-sm hover:text-white transition-colors">Über uns</a></li>
+          <li><a href="#" class="text-white/60 text-sm hover:text-white transition-colors">Nachhaltigkeit</a></li>
+          <li><a href="#" class="text-white/60 text-sm hover:text-white transition-colors">Blog</a></li>
+          <li><a href="#" class="text-white/60 text-sm hover:text-white transition-colors">Jobs</a></li>
+          <li><a href="#" class="text-white/60 text-sm hover:text-white transition-colors">Presse</a></li>
+        </ul>
+      </div>
+
+      <!-- Hilfe -->
+      <div>
+        <h4 class="text-white font-semibold text-sm uppercase tracking-wider mb-5">Hilfe</h4>
+        <ul class="flex flex-col gap-3 list-none">
+          <li><a href="#" class="text-white/60 text-sm hover:text-white transition-colors">FAQ</a></li>
+          <li><a href="#" class="text-white/60 text-sm hover:text-white transition-colors">Versand &amp; Retouren</a></li>
+          <li><a href="#" class="text-white/60 text-sm hover:text-white transition-colors">Kontakt</a></li>
+          <li><a href="#" class="text-white/60 text-sm hover:text-white transition-colors">AGB</a></li>
+          <li><a href="#" class="text-white/60 text-sm hover:text-white transition-colors">Datenschutz</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="pt-8 text-center text-white/40 text-sm">
+      &copy; 2026 BARBOOST. Mit 🌱 gemacht.
+    </div>
+  </div>
+</footer>
+
+<!-- =========================================
+     JAVASCRIPT
+========================================= -->
+<script>
+  // ——— Announcement bar fade-in
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.getElementById('announcementBar').style.opacity = '1';
+    }, 300);
+  });
+
+  // ——— Navbar scroll effect
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      navbar.classList.add('navbar-scrolled');
+    } else {
+      navbar.classList.remove('navbar-scrolled');
+    }
+    // Scroll progress
+    const doc = document.documentElement;
+    const scrolled = (window.scrollY / (doc.scrollHeight - doc.clientHeight)) * 100;
+    document.getElementById('scrollProgress').style.width = scrolled + '%';
+  }, { passive: true });
+
+  // ——— Mobile Menu
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const menuOverlay = document.getElementById('menuOverlay');
+  const line1 = document.getElementById('line1');
+  const line2 = document.getElementById('line2');
+  const line3 = document.getElementById('line3');
+  let menuOpen = false;
+
+  hamburger.addEventListener('click', () => {
+    menuOpen = !menuOpen;
+    if (menuOpen) {
+      mobileMenu.classList.add('open');
+      menuOverlay.classList.remove('hidden');
+      line1.style.transform = 'rotate(45deg) translate(3px, 3px)';
+      line2.style.opacity = '0';
+      line3.style.transform = 'rotate(-45deg) translate(3px, -3px)';
+    } else {
+      closeMenuFn();
+    }
+  });
+
+  document.getElementById('closeMenu').addEventListener('click', closeMenuFn);
+
+  function closeMenuFn() {
+    menuOpen = false;
+    mobileMenu.classList.remove('open');
+    menuOverlay.classList.add('hidden');
+    line1.style.transform = '';
+    line2.style.opacity = '';
+    line3.style.transform = '';
+  }
+
+  // ——— Intersection Observer for scroll reveals
+  const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => revealObserver.observe(el));
+
+  // ——— Nutrition circles + counter (scroll-triggered)
+  const circleData = [
+    { id: 'c1', valueId: 'cv1', targetValue: 24, label: 'g', totalCirc: 201, max: 60 },
+    { id: 'c2', valueId: 'cv2', targetValue: 2,  label: 'g', totalCirc: 201, max: 60 },
+    { id: 'c3', valueId: 'cv3', targetValue: 210, label: 'kcal', totalCirc: 201, max: 300 },
+    { id: 'c4', valueId: 'cv4', targetValue: 8,  label: 'g', totalCirc: 201, max: 60 },
+  ];
+
+  let circlesAnimated = false;
+  const nutritionSection = document.getElementById('zutaten');
+
+  const nutritionObserver = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting && !circlesAnimated) {
+      circlesAnimated = true;
+      circleData.forEach(d => {
+        const circle = document.getElementById(d.id);
+        const valueEl = document.getElementById(d.valueId);
+        const progress = Math.min(d.targetValue / d.max, 1);
+        const offset = d.totalCirc - d.totalCirc * progress;
+        setTimeout(() => {
+          circle.style.strokeDashoffset = offset;
+          animateCounter(valueEl, 0, d.targetValue, d.label, 1500);
+        }, 200);
+      });
+    }
+  }, { threshold: 0.3 });
+  nutritionObserver.observe(nutritionSection);
+
+  // ——— Stats counter (social proof)
+  let statsAnimated = false;
+  const statsSection = document.getElementById('stats');
+
+  const statsObserver = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting && !statsAnimated) {
+      statsAnimated = true;
+      // stat1: 50000+
+      animateCounter(document.getElementById('stat1'), 0, 50000, '+', 2000, true);
+      // stat2: 4.8 ★
+      animateCounterDecimal(document.getElementById('stat2'), 0, 4.8, '', 1800);
+      // stat3: 100%
+      animateCounter(document.getElementById('stat3'), 0, 100, '%', 1500);
+      // stat4: 0g (stays 0)
+      document.getElementById('stat4').textContent = '0g';
+    }
+  }, { threshold: 0.3 });
+  statsObserver.observe(statsSection);
+
+  function animateCounter(el, start, end, suffix, duration, thousands = false) {
+    const startTime = performance.now();
+    function update(currentTime) {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const value = Math.round(start + (end - start) * eased);
+      el.textContent = thousands ? value.toLocaleString('de-DE') + suffix : value + suffix;
+      if (progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  }
+
+  function animateCounterDecimal(el, start, end, suffix, duration) {
+    const startTime = performance.now();
+    function update(currentTime) {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const value = (start + (end - start) * eased).toFixed(1);
+      el.textContent = value + suffix;
+      if (progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  }
+
+  // ——— Newsletter form
+  function handleNewsletterSubmit(e) {
+    e.preventDefault();
+    document.getElementById('successMsg').classList.remove('hidden');
+    e.target.reset();
+  }
+</script>
+
+</body>
+</html>
