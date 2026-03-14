@@ -8,7 +8,8 @@ import projects__focusChromeExtentionMdx from './projects__focus-chrome-extentio
 import projects__ironbiteMdx from './projects__ironbite.mdx.json' with { type: 'json' }
 import projects__iwsLandingPageMdx from './projects__iws-landing-page.mdx.json' with { type: 'json' }
 import projects__kathrinMdx from './projects__kathrin.mdx.json' with { type: 'json' }
+import projects__minimalistLauncherMdx from './projects__minimalistLauncher.mdx.json' with { type: 'json' }
 import projects__pirnaturMdx from './projects__pirnatur.mdx.json' with { type: 'json' }
 import projects__schusterLandingMdx from './projects__schuster-landing.mdx.json' with { type: 'json' }
 
-export const allProjects = [projects__barboostMdx, projects__firstProjectMdx, projects__flavorLabsMdx, projects__flavorLabs2Mdx, projects__focusChromeExtentionMdx, projects__ironbiteMdx, projects__iwsLandingPageMdx, projects__kathrinMdx, projects__pirnaturMdx, projects__schusterLandingMdx]
+export const allProjects = [projects__barboostMdx, projects__firstProjectMdx, projects__flavorLabsMdx, projects__flavorLabs2Mdx, projects__focusChromeExtentionMdx, projects__ironbiteMdx, projects__iwsLandingPageMdx, projects__kathrinMdx, projects__minimalistLauncherMdx, projects__pirnaturMdx, projects__schusterLandingMdx]
